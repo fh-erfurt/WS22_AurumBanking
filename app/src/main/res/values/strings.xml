@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">AurumBanking</string>
+    <string name="passwort">Passwort</string>
+    <string name="email">Email:</string>
+    <string name="login">Login</string>
+    <string name="profil">Profil</string>
+    <string name="sichteinlagen">Sichteinlagen</string>
+    <string name="ueberweisung">Überweisung</string>
+    <string name="sa">Support Anfragen</string>
+    <string name="beguenstigter">Begünstigter:</string>
+    <string name="name_of_beneficiary">Name of Beneficiary</string>
+    <string name="iban_number">IBAN</string>
+    <string name="bank_name">Bank</string>
+    <string name="amountMoney">Betrag</string>
+    <string name="bic">BIC</string>
+    <string name="date_of_transfer">Datum der Überweisung</string>
+    <string name="transfer_usage">Verwendungszweck</string>
+    <string name="transfer_btn">Überweisung durchführen</string>
+
+
+</resources>
