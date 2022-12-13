@@ -1,13 +1,13 @@
 package de.fhe.ai.aurumbanking.view.overview
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -36,20 +36,29 @@ class OverviewFragement : Fragment() {
             set current Date
          */
         val currentDate = root.findViewById<TextView?>(R.id.currentDate)
-        currentDate.text = "10.12.2022"
+        currentDate.text = "13.12.2022"
 
 
         val depositInformation = root.findViewById<TextView?>(R.id.depositInformation)
-        depositInformation.text = "Sichteinlagen vom 10.12.2022"
+        depositInformation.text = "Sichteinlagen vom 12.12.2022"
 
         /*
-            set color of deposit Textview
+            set current deposit of user, leftside
          */
-        val currentDeposit = root.findViewById<TextView?>(R.id.currentDeposit)
+        val currentDeposit = root.findViewById<TextView?>(R.id.userDepotLeft)
         currentDeposit.text = "5478,45 \n Euro"
-        // Inflate the layout for this fragment
+
+        /*
+           set current deposit of user, rightside
+        */
+        val currentDepotCountry = root.findViewById<ImageView>(R.id.userDepotRight)
+        currentDepotCountry.setImageResource(R.drawable.europaische_union)
 
 
+
+        /*
+            set Text Information of latest Transaction
+         */
         val lastTransactionInfo = root.findViewById<TextView?>(R.id.lastTransactionInformation)
         lastTransactionInfo.text = "letzte Transaktion"
 

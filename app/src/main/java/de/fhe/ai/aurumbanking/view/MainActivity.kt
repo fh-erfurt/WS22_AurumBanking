@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             checkLogin(validateEmail())
         }
 
-        (findViewById<TextView>(R.id.UserPassword)).setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        (findViewById<TextView>(R.id.UserPassword)).setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 getCredentails()
                 checkLogin(validateEmail())

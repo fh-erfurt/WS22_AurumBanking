@@ -1,16 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.profil.ProfileFragment">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Profile"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        tools:context=".view.profil.ProfileFragment">
+
+        <TextView
+            android:id="@+id/userNameLeft"
+            android:layout_width="142dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/leftside_rounded_corner_style"
+            android:gravity="center"
+            android:text="@string/law_name"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/userNameRight"
+            android:layout_width="234dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="16dp"
+            android:autofillHints=""
+            android:background="@drawable/rightside_rounded_corner_style"
+            android:gravity="center"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/userNameLeft"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/customerSupportMessage"
+            android:layout_width="378dp"
+            android:layout_height="134dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_rounded_corner_style"
+            android:gravity="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.606"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customerSupportMessageInfo" />
+
+        <TextView
+            android:id="@+id/customerSupportMessageInfo"
+            android:layout_width="378dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:background="@drawable/top_rounded_corner_style"
+            android:gravity="left|center"
+            android:paddingStart="20dp"
+            android:text="@string/customer_address"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.606"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userNameRight"
+            tools:ignore="RtlHardcoded" />
+
+
+        <TextView
+            android:id="@+id/userEmailLeft"
+            android:layout_width="142dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/leftside_rounded_corner_style"
+            android:gravity="center"
+            android:text="@string/email"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/userEmailRight"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customerSupportMessage" />
+
+        <TextView
+            android:id="@+id/userEmailRight"
+            android:layout_width="234dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:autofillHints=""
+            android:background="@drawable/rightside_rounded_corner_style"
+            android:gravity="center"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customerSupportMessage" />
+
+
+        <TextView
+            android:id="@+id/userTelNumberLeft"
+            android:layout_width="142dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/leftside_rounded_corner_style"
+            android:gravity="center"
+            android:text="@string/tel_number"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/switch1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userEmailLeft"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/userTelNumberRight"
+            android:layout_width="234dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:autofillHints=""
+            android:background="@drawable/rightside_rounded_corner_style"
+            android:gravity="center"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userEmailRight" />
+
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/switch_pw_change"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.147"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userTelNumberRight"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <TextView
+            android:id="@+id/oldPwLeft"
+            android:layout_width="142dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/leftside_rounded_corner_style"
+            android:gravity="center"
+            android:text="@string/old_pw"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+        <TextView
+            android:id="@+id/oldPwRight"
+            android:layout_width="234dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:autofillHints=""
+            android:background="@drawable/rightside_rounded_corner_style"
+            android:gravity="center"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+
+        <TextView
+            android:id="@+id/newPwLeft"
+            android:layout_width="142dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/leftside_rounded_corner_style"
+            android:gravity="center"
+            android:text="@string/new_pw"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/oldPwLeft" />
+
+        <TextView
+            android:id="@+id/newPwRight"
+            android:layout_width="234dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:autofillHints=""
+            android:background="@drawable/rightside_rounded_corner_style"
+            android:gravity="center"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/oldPwRight" />
+
+
+        <TextView
+            android:id="@+id/newPwAgainLeft"
+            android:layout_width="142dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/leftside_rounded_corner_style"
+            android:gravity="center"
+            android:text="@string/new_pw_check"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newPwLeft" />
+
+        <TextView
+            android:id="@+id/newPwAgainRight"
+            android:layout_width="234dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:autofillHints=""
+            android:background="@drawable/rightside_rounded_corner_style"
+            android:gravity="center"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newPwRight" />
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="197dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginBottom="44dp"
+            android:background="@drawable/round_blue_btn"
+            android:text="@string/change_pw_bnt"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newPwAgainLeft"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

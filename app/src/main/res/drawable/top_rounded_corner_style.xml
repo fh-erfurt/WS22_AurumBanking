@@ -3,12 +3,11 @@
 
 
     <solid android:color="#2F2C2B" />
-
-
-
+    
     <corners
-        android:bottomLeftRadius="25dp"
-        android:bottomRightRadius="0dp"
         android:topLeftRadius="25dp"
-        android:topRightRadius="0dp" />
+        android:topRightRadius="25dp"
+        android:bottomLeftRadius="0dp"
+        android:bottomRightRadius="0dp"
+        />
 </shape>
