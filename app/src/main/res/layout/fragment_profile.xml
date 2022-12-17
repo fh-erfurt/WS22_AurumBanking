@@ -153,7 +153,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
-        <TextView
+        <EditText
             android:id="@+id/oldPwRight"
             android:layout_width="234dp"
             android:layout_height="67dp"
@@ -180,7 +180,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/oldPwLeft" />
 
-        <TextView
+        <EditText
             android:id="@+id/newPwRight"
             android:layout_width="234dp"
             android:layout_height="67dp"
@@ -207,7 +207,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/newPwLeft" />
 
-        <TextView
+        <EditText
             android:id="@+id/newPwAgainRight"
             android:layout_width="234dp"
             android:layout_height="67dp"

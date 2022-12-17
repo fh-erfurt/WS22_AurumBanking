@@ -1,38 +1,83 @@
 package de.fhe.ai.aurumbanking.model
 
 
+import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
 
-// @Entity
-class CustomerAddress {
-
-    /*
+@Entity(
+    foreignKeys = [ForeignKey(
+        entity = Customer::class,
+        parentColumns = ["customerId"],
+        childColumns = ["customerId"],
+        onDelete = CASCADE
+    )]
+)
+class CustomerAddress() {
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "address_id")
-    private val addressId: Long = 0
+    @ColumnInfo(name = "Customer Address Id")
+    private var customerAddressId: Long? = null
+        get() = field
+        set(value) {
+            field = value
+        }
 
-    @ColumnInfo(name = "contact_id")
-    private val contactId: Long = 0
+    @NonNull
+    @ColumnInfo(name = "Customer Id")
+    private var customerId: Long? = null
+        get() = field
+        set(value) {
+            field = value
+        }
 
-    @ColumnInfo(name = "street")
-    private val street: String = null
+    @NonNull
+    @ColumnInfo(name = "Street Name")
+    private var streetname: String? = null
+        get() = field
+        set(value) {
+            field = value
+        }
 
-    @ColumnInfo(name = "city")
-    private val city: String = null
-
-    @ColumnInfo(name = "zipCode")
-    private val zipCode: String = null
-
-    @ColumnInfo(name = "created")
-    private val created: Long = 0
-
+    @NonNull
     @ColumnInfo(name = "modified")
-    private val modified: Long = 0
+    private var housenumber: Long? = null
+        get() = field
+        set(value) {
+            field = value
+        }
 
-    @ColumnInfo(name = "version")
-    private val version = 0
+    @NonNull
+    @ColumnInfo(name = "modified")
+    private var additionalHousenumberValue: String? = null
+        get() = field
+        set(value) {
+            field = value
+        }
 
-     */
+    @NonNull
+    @ColumnInfo(name = "City")
+    private var city: String? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+
+    @NonNull
+    @ColumnInfo(name = "ZipCode")
+    private var zipCode: String? = null
+        get() = field
+        set(value) {
+            field = value
+        }
+
+    @NonNull
+    @ColumnInfo(name = "Country")
+    private var country: Long? = null
+        get() = field
+        set(value) {
+            field = value
+        }
 }
