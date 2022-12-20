@@ -19,63 +19,41 @@ import androidx.room.PrimaryKey
 class CustomerAddress() {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "Customer Address Id")
-    private var customerAddressId: Long? = null
-        get() = field
-        set(value) {
-            field = value
-        }
+    private var customerAddressId: Long? = 0
+       
 
     @NonNull
     @ColumnInfo(name = "Customer Id")
-    private var customerId: Long? = null
-        get() = field
-        set(value) {
-            field = value
-        }
+    private var customerId: Long? = 0
+        
 
     @NonNull
     @ColumnInfo(name = "Street Name")
-    private var streetname: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
+    private var streetname: String? = ""
+        
 
     @NonNull
     @ColumnInfo(name = "modified")
-    private var housenumber: Long? = null
-        get() = field
-        set(value) {
-            field = value
-        }
-
+    private var housenumber: Long? = 0
+       
     @NonNull
     @ColumnInfo(name = "modified")
-    private var additionalHousenumberValue: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
+    private var additionalHousenumberValue: String? = ""
+        
 
     @NonNull
     @ColumnInfo(name = "City")
-    private var city: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
+    private var city: String? = ""
+       
 
     @NonNull
     @ColumnInfo(name = "ZipCode")
-    private var zipCode: String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
+    private var zipCode: String? = ""
+        
 
     @NonNull
     @ColumnInfo(name = "Country")
-    private var country: Long? = null
+    private var country: Long? = 0
         get() = field
         set(value) {
             field = value

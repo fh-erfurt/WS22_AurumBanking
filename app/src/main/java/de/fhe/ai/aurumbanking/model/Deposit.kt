@@ -18,7 +18,7 @@ import androidx.room.PrimaryKey
 class Deposit {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "Deposit Id")
-    private var depositId: Long? = null
+    private var depositId: Long? = 0
         get() = field
         set(value) {
             field = value
@@ -26,7 +26,7 @@ class Deposit {
 
     @NonNull
     @ColumnInfo(name = "Customer Id")
-    private var customerId: Long? = null
+    private var customerId: Long? = 0
         get() = field
         set(value) {
             field = value

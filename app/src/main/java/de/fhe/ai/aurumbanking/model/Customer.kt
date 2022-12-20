@@ -7,49 +7,25 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class Customer () {
+data class Customer(
     @ColumnInfo(name = "Customer Id")
     @PrimaryKey(autoGenerate = true)
-    private var customerId : Long?=null
-        get() = field
-
+    var customerId: Long? = null,
     @NonNull
     @ColumnInfo(name = "Lastname")
-    private var lastname: String ?=null
-        get() = field
-        set(value) {
-            field = value
-        }
+    var lastname: String? = null,
     @NonNull
     @ColumnInfo(name = "Midname")
-    private var midname: String ?=null
-        get() = field
-        set(value) {
-            field = value
-        }
-
+    var midname: String? = null,
     @NonNull
     @ColumnInfo(name = "Firstname")
-    private var firstname: String ?=null
-        get() = field
-        set(value) {
-            field = value
-        }
+    var firstname: String? = null,
 
     @NonNull
     @ColumnInfo(name = "Customer Email")
-    private var email: String ?=null
-        get() = field
-        set(value) {
-            field = value
-        }
+    var email: String? = null,
 
     @NonNull
     @ColumnInfo(name = "Customer Phonenumber")
-    private var phonenumber: String ?=null
-        get() = field
-        set(value) {
-            field = value
-        }
-
-}
+    var phonenumber: Int? = null,
+    )

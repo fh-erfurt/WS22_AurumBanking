@@ -18,7 +18,7 @@ import java.util.Date
 class OrderOutput {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "Order Output Id")
-    private var orderOutputId: Long? = null
+    private var orderOutputId: Long? = 0
         get() = field
         set(value) {
             field = value
@@ -27,7 +27,7 @@ class OrderOutput {
 
     @NonNull
     @ColumnInfo(name = "Transaction List Id")
-    private var transactionListId: Long? = null
+    private var transactionListId: Long? = 0
         get() = field
         set(value) {
             field = value
@@ -43,7 +43,7 @@ class OrderOutput {
 
     @NonNull
     @ColumnInfo(name = "Beneficiary")
-    private var beneficiary: String? = null
+    private var beneficiary: String? = ""
         get() = field
         set(value) {
             field = value
@@ -52,7 +52,7 @@ class OrderOutput {
 
     @NonNull
     @ColumnInfo(name = "IBAN")
-    private var iBAN: String? = null
+    private var iBAN: String? = ""
         get() = field
         set(value) {
             field = value
@@ -60,7 +60,7 @@ class OrderOutput {
 
     @NonNull
     @ColumnInfo(name = "BIC")
-    private var bIC: String? = null
+    private var bIC: String? = ""
         get() = field
         set(value) {
             field = value
@@ -68,7 +68,7 @@ class OrderOutput {
 
     @NonNull
     @ColumnInfo(name = "dstinationBankname")
-    private var destinationBankname: String? = null
+    private var destinationBankname: String? = ""
         get() = field
         set(value) {
             field = value
@@ -84,7 +84,7 @@ class OrderOutput {
 
     @NonNull
     @ColumnInfo(name = "Purpose Of Use")
-    private var purposeOfUse: String? = null
+    private var purposeOfUse: String? = ""
         get() = field
         set(value) {
             field = value

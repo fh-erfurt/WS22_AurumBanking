@@ -18,7 +18,7 @@ import androidx.room.PrimaryKey
 class CustomerCredentials () {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "Customer Credentials Id")
-    private var customerCredentialsId: Long? = null
+    private var customerCredentialsId: Long? = 0
         get() = field
         set(value) {
             field = value
@@ -26,7 +26,7 @@ class CustomerCredentials () {
 
     @NonNull
     @ColumnInfo(name = "Customer Id")
-    private var customerId: Long? = null
+    private var customerId: Long? = 0
         get() = field
         set(value) {
             field = value
@@ -34,7 +34,7 @@ class CustomerCredentials () {
 
     @NonNull
     @ColumnInfo(name = "User Password")
-    private var password: String? = null
+    private var password: String? = ""
         get() = field
         set(value) {
             field = value

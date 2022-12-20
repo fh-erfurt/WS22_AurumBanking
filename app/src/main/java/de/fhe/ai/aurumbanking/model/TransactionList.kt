@@ -18,7 +18,7 @@ import androidx.room.PrimaryKey
 class TransactionList {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "TransactionList Id")
-    private var transactionListId: Long? = null
+    private var transactionListId: Long? = 0
         get() = field
         set(value) {
             field = value
@@ -26,7 +26,7 @@ class TransactionList {
 
     @NonNull
     @ColumnInfo(name = "Deposit Id")
-    private var depositId: Long? = null
+    private var depositId: Long? = 0
         get() = field
         set(value) {
             field = value
