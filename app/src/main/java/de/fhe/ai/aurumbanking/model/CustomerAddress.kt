@@ -16,46 +16,32 @@ import androidx.room.PrimaryKey
         onDelete = CASCADE
     )]
 )
-class CustomerAddress() {
+data class CustomerAddress(
+
+    @ColumnInfo(name = "Street Name", index = true)
+    var streetname: String? = null,
+
+
+    @ColumnInfo(name = "Housenumber")
+    var streetAddressNumber: String? = null,
+
+
+    @ColumnInfo(name = "City")
+    var city: String? = null,
+
+
+    @ColumnInfo(name = "ZipCode")
+    var zipCode: String? = null,
+
+
+    @ColumnInfo(name = "Country")
+    var country: String? = null
+) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "Customer Address Id")
-    private var customerAddressId: Long? = 0
-       
+    var customerAddressId: Long? = null
 
-    @NonNull
-    @ColumnInfo(name = "Customer Id")
-    private var customerId: Long? = 0
-        
 
-    @NonNull
-    @ColumnInfo(name = "Street Name")
-    private var streetname: String? = ""
-        
-
-    @NonNull
-    @ColumnInfo(name = "modified")
-    private var housenumber: Long? = 0
-       
-    @NonNull
-    @ColumnInfo(name = "modified")
-    private var additionalHousenumberValue: String? = ""
-        
-
-    @NonNull
-    @ColumnInfo(name = "City")
-    private var city: String? = ""
-       
-
-    @NonNull
-    @ColumnInfo(name = "ZipCode")
-    private var zipCode: String? = ""
-        
-
-    @NonNull
-    @ColumnInfo(name = "Country")
-    private var country: Long? = 0
-        get() = field
-        set(value) {
-            field = value
-        }
+    @ColumnInfo(name = "customerId", index = true)
+    var customerId: Long? = null
 }

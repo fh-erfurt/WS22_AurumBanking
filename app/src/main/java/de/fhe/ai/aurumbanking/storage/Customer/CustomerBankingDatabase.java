@@ -16,12 +16,22 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import de.fhe.ai.aurumbanking.model.Customer;
+import de.fhe.ai.aurumbanking.model.CustomerAddress;
+import de.fhe.ai.aurumbanking.model.CustomerCredentials;
+import de.fhe.ai.aurumbanking.model.Deposit;
+import de.fhe.ai.aurumbanking.model.OrderInput;
+import de.fhe.ai.aurumbanking.model.OrderOutput;
+import de.fhe.ai.aurumbanking.model.TransactionList;
 
+/*
+    Class only there to init Database with all the entities
+    Database class instance should be handled as Singleton
+ */
+@Database( entities = {Customer.class, CustomerAddress.class, CustomerCredentials.class, Deposit.class, OrderInput.class, OrderOutput.class, TransactionList.class}, version = 1)
 
-@Database( entities = {Customer.class}, version = 1 )
-public abstract class CustomerDatabase extends RoomDatabase {
+public abstract class CustomerBankingDatabase extends RoomDatabase {
 
-    private static final String LOG_TAG = "CustomerDb";
+    private static final String LOG_TAG = "CustomerBakingDatabase";
 
     /*
         Contact DAO reference, will be filled by Android
@@ -39,7 +49,7 @@ public abstract class CustomerDatabase extends RoomDatabase {
     /*
         Singleton Instance
      */
-    private static volatile CustomerDatabase INSTANCE;
+    private static volatile CustomerBankingDatabase INSTANCE;
 
     /*
         Helper methods to ease external usage of ExecutorService
@@ -60,21 +70,18 @@ public abstract class CustomerDatabase extends RoomDatabase {
         Singleton 'getInstance' method to create database instance thereby opening and, if not
         already done, init the database. Note the 'createCallback'.
      */
-    static CustomerDatabase getDatabase(final Context context) {
-        Log.i( LOG_TAG, "getDatabase() called TEST" );
+    static CustomerBankingDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (CustomerDatabase.class) {
+            synchronized (CustomerBankingDatabase.class) {
                 if (INSTANCE == null) {
                             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    CustomerDatabase.class, "customer_db")
+                                    CustomerBankingDatabase.class, "customer_db")
                             .addCallback(createCallback) // See below
                             .build();
-                    Log.i( LOG_TAG, "CustomerDB angelegt");
+                    Log.i( LOG_TAG, "CustomerBankingDatabase was initialized. ");
                 }
             }
         }
-
-        Log.i( LOG_TAG, "Methode durchgelaufen" );
         return INSTANCE;
     }
 
@@ -87,11 +94,11 @@ public abstract class CustomerDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
 
-            Log.i( LOG_TAG, "onCreate() ist durchgelaufen LOL" );
+            Log.i( LOG_TAG, "Calling createCallback-methode!" );
 
             /*
             execute(() -> {
-                ContactDao dao = INSTANCE.contactDao();
+                ContactDao dao = CUSTOMERDATBASE.contactDao();
 
                 Faker faker = Faker.instance();
                 for (int i = 0; i < 10; i++)

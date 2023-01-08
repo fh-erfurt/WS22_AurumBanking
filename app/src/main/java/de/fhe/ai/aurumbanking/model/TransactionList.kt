@@ -15,29 +15,15 @@ import androidx.room.PrimaryKey
         onDelete = ForeignKey.CASCADE
     )]
 )
-class TransactionList {
+data class TransactionList(
+
+    @ColumnInfo(name = "Transction Deduction Flag")
+    var TransctionDeductionFlag: Boolean? = null
+) {
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "TransactionList Id")
-    private var transactionListId: Long? = 0
-        get() = field
-        set(value) {
-            field = value
-        }
+    @ColumnInfo(name = "transactionListId", index = true)
+    var transactionListId: Long? = 0
 
-    @NonNull
-    @ColumnInfo(name = "Deposit Id")
-    private var depositId: Long? = 0
-        get() = field
-        set(value) {
-            field = value
-        }
-
-    @NonNull
-    @ColumnInfo(name = "User Password")
-    private var TransctionDeductionFlag: Boolean? = null
-        get() = field
-        set(value) {
-            field = value
-        }
-
+    @ColumnInfo(name = "depositId")
+    var depositId: Long? = 0
 }

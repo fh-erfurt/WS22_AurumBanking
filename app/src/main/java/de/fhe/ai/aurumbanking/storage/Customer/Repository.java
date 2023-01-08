@@ -9,6 +9,9 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 import de.fhe.ai.aurumbanking.model.Customer;
+import de.fhe.ai.aurumbanking.model.CustomerAddress;
+import de.fhe.ai.aurumbanking.model.CustomerCredentials;
+import de.fhe.ai.aurumbanking.model.Deposit;
 
 
 public class Repository {
@@ -32,7 +35,7 @@ public class Repository {
     }
 
     public Repository(Context context ) {
-        CustomerDatabase db = CustomerDatabase.getDatabase( context );
+        CustomerBankingDatabase db = CustomerBankingDatabase.getDatabase( context );
         this.customerDao = db.customerDao();
     }
 
@@ -41,7 +44,7 @@ public class Repository {
     private List<Customer> query( Callable<List<Customer>> query )
     {
         try {
-            return CustomerDatabase.query( query );
+            return CustomerBankingDatabase.query( query );
         }
         catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
@@ -49,8 +52,19 @@ public class Repository {
 
         return new ArrayList<>();
     }
-    
 
 
+    public void insertCustomer(Customer customer) {
+        CustomerBankingDatabase.execute( () -> customerDao.insertCustomer(customer) );
+    }
+
+    public void deleteAllCustomer() {
+        CustomerBankingDatabase.execute( () -> customerDao.deleteAll() );
+    }
+
+
+    public void insertUserAccount(Customer customer, CustomerAddress customerAddress, CustomerCredentials newUserCredentials, Deposit deposit) {
+        CustomerBankingDatabase.execute( () -> customerDao.insertUserAccount( customerDao.insertCustomer(customer) ,customerAddress, newUserCredentials, deposit));
+    }
 }
 

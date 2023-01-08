@@ -15,29 +15,18 @@ import androidx.room.PrimaryKey
         onDelete = ForeignKey.CASCADE
     )]
 )
-class CustomerCredentials () {
+data class CustomerCredentials(
+
+    @ColumnInfo(name = "User Password")
+     var password: String? = null
+) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "Customer Credentials Id")
-    private var customerCredentialsId: Long? = 0
-        get() = field
-        set(value) {
-            field = value
-        }
+     var customerCredentialsId: Long? = null
 
-    @NonNull
-    @ColumnInfo(name = "Customer Id")
-    private var customerId: Long? = 0
-        get() = field
-        set(value) {
-            field = value
-        }
 
-    @NonNull
-    @ColumnInfo(name = "User Password")
-    private var password: String? = ""
-        get() = field
-        set(value) {
-            field = value
-        }
+    @ColumnInfo(name = "customerId")
+     var customerId: Long? = null
+
 
 }

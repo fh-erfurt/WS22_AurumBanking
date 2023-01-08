@@ -15,28 +15,19 @@ import androidx.room.PrimaryKey
         onDelete = ForeignKey.CASCADE
     )]
 )
-class Deposit {
+data class Deposit(
+
+    @ColumnInfo(name = "Current Depostit Value")
+     var currentDepostitValue: Float? = null
+) {
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "Deposit Id")
-    private var depositId: Long? = 0
-        get() = field
-        set(value) {
-            field = value
-        }
+    @ColumnInfo(name = "depositId", index = true)
+     var depositId: Long? = null
 
-    @NonNull
-    @ColumnInfo(name = "Customer Id")
-    private var customerId: Long? = 0
-        get() = field
-        set(value) {
-            field = value
-        }
 
-    @NonNull
-    @ColumnInfo(name = "User Password")
-    private var currentDepostitValue: Float? = null
-        get() = field
-        set(value) {
-            field = value
-        }
+
+    @ColumnInfo(name = "customerId")
+     var customerId: Long? = null
+
+
 }
