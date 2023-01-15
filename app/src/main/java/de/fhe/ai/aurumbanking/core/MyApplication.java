@@ -70,6 +70,8 @@ public class MyApplication extends Application {
 
         customerRepository.insertUserAccount(newCustomer, customerAddress, newUserCredentials, deposit);
 
+
+
     }
 
 

@@ -2,11 +2,16 @@ package de.fhe.ai.aurumbanking.storage.Customer;
 
 import android.app.Application;
 import android.content.Context;
+import android.provider.ContactsContract;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 import de.fhe.ai.aurumbanking.model.Customer;
 import de.fhe.ai.aurumbanking.model.CustomerAddress;
@@ -65,6 +70,23 @@ public class Repository {
 
     public void insertUserAccount(Customer customer, CustomerAddress customerAddress, CustomerCredentials newUserCredentials, Deposit deposit) {
         CustomerBankingDatabase.execute( () -> customerDao.insertUserAccount( customerDao.insertCustomer(customer) ,customerAddress, newUserCredentials, deposit));
+    }
+
+    public LiveData<List<Customer>> getAllCustomerData(){
+        return customerDao.getAllCustomersData();
+    }
+
+    public LiveData<String> getCustomerEmailByCustomerId(long id){
+
+        // TODO: Always get testValue = null, but in DB there are some values
+        // Query is working
+        String testValue = customerDao.getCustomerEmailByCustomerId(id).getValue();
+
+        // Transformations.map(getAllCustomerData(), cus -> {
+        //     cus.stream().filter(Customer-> Customer.getEmail().contains("@")).collect(Collectors.toList())
+        // });
+
+        return customerDao.getCustomerEmailByCustomerId(id);
     }
 }
 

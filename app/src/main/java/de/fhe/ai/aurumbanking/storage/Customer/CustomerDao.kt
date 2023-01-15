@@ -1,6 +1,6 @@
 package de.fhe.ai.aurumbanking.storage.Customer
 
-import android.net.wifi.hotspot2.pps.Credential.UserCredential
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import de.fhe.ai.aurumbanking.model.Customer
 import de.fhe.ai.aurumbanking.model.CustomerAddress
@@ -46,11 +46,17 @@ interface CustomerDao {
     @Query("DELETE FROM Customer")
     fun deleteAll()
 
+
+    @Query("SELECT * from Customer")
+    fun getAllCustomersData(): LiveData<List<Customer>>
+
+
     @Query("SELECT c.customerId  FROM Customer c where c.`Customer Email` = :customerEmail  AND c.`Customer Phonenumber` = :customerPhonenumber")
     fun getCustomerIdByEmailndTelefonnumer(customerEmail : String, customerPhonenumber: Int ): Long
 
+    @Transaction
     @Query("SELECT c.`Customer Email` from Customer c where c.customerId = :customerId")
-    fun getCustomerEmailByCustomerId(customerId: Long): String
+    fun getCustomerEmailByCustomerId(customerId: Long): LiveData<String>
 
     @Query("SELECT c.Firstname  from Customer c where c.customerId = :customerId")
     fun getCustomerFirstNameByCustomerId(customerId: Long): String
