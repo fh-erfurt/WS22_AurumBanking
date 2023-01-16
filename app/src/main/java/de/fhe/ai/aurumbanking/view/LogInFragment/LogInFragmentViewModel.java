@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import java.util.List;
+import java.util.Map;
+
 import de.fhe.ai.aurumbanking.storage.Customer.Repository;
 
 public class LogInFragmentViewModel extends AndroidViewModel {
@@ -20,4 +23,13 @@ public class LogInFragmentViewModel extends AndroidViewModel {
     public LiveData<String> getCustomerEmailById(Long id){
         return this.repository.getCustomerEmailByCustomerId(id);
     }
+
+    public LiveData<Map<String, String>> getMapOfCustomerEmailAndPassword(){
+        return this.repository.getAllCustomerEmailAndPassword();
+    }
+
+    public LiveData<Long> getCustomerIdByEmail(String email) {
+        return repository.getCustomerIdByEmail(email);
+    }
+
 }

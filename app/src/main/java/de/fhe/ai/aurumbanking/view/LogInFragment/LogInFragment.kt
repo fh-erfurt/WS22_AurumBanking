@@ -1,7 +1,10 @@
 package de.fhe.ai.aurumbanking.view.LogInFragment
 
+import android.app.Activity
+import android.app.Application
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -12,16 +15,24 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import de.fhe.ai.aurumbanking.R
+import de.fhe.ai.aurumbanking.core.CustomerIdStore
+import de.fhe.ai.aurumbanking.core.MyApplication
+import de.fhe.ai.aurumbanking.view.MainActivity
 import de.fhe.ai.aurumbanking.view.StartActivity
 import java.util.regex.Pattern
+
 
 class LogInFragment: Fragment() {
 
     private lateinit var viewModel : LogInFragmentViewModel
     private var password: String = ""
     private var email: String = ""
+    private val STORE_KEY_COUNTER = "CustomerId"
+
+
 
 
     private val EMAIL_ADDRESS_PATTERN = Pattern.compile(
@@ -42,23 +53,34 @@ class LogInFragment: Fragment() {
         val root = inflater.inflate(R.layout.fragment_login, container, false)
         val login_Button = root.findViewById<Button>(R.id.login)
 
+        this.viewModel = ViewModelProvider(this)[LogInFragmentViewModel::class.java]
+
 
         login_Button.setOnClickListener() {
             this.email = root.findViewById<TextView?>(R.id.UserEmailAddress).text.toString()
             this.password = root.findViewById<TextView?>(R.id.UserPassword).text.toString()
-            checkLogin(validateEmail())
+
+            if (validateEmail()){
+
+                //TODO: need an Oberserver, to get the Data from Live Data
+                val emailLiveData = this.viewModel.mapOfCustomerEmailAndPassword
+                emailLiveData.observe(requireActivity(), this::checkLogin)
+            }
         }
 
         (root.findViewById<TextView>(R.id.UserPassword)).setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 this.email = root.findViewById<TextView?>(R.id.UserEmailAddress).text.toString()
                 this.password = root.findViewById<TextView?>(R.id.UserPassword).text.toString()
-                checkLogin(validateEmail())
+
+                val emailLiveData = this.viewModel.mapOfCustomerEmailAndPassword
+                emailLiveData.observe(requireActivity(), this::checkLogin)
 
                 return@OnKeyListener true
             }
             false
         })
+
 
         return root
     }
@@ -105,20 +127,20 @@ class LogInFragment: Fragment() {
         alert.show()
     }
 
+    //(
+    private fun checkLogin ( userCredentials: Map<String, String>){
 
-    private fun checkLogin(emailValidation: Boolean){
-        if (this.email.equals("abc@test.de")  && this.password.equals("123") && emailValidation) {
-
-            this.viewModel = ViewModelProvider(this)[LogInFragmentViewModel::class.java]
-
-            //TODO: maybe need an Oberservr, some online research, don't know how to do it
-            val email = this.viewModel.getCustomerEmailById(15).value
-            Log.i("Check Email", "Email:" + email)
+        if (userCredentials.containsKey(this.email) && userCredentials.containsValue(this.password)) {
             onPostExecute()
+            // TODO: Value is not right
+            this.viewModel.getCustomerIdByEmail(this.email).observe(requireActivity(), this::setCustomerIdStore)
         }
         else {
             logInError()
         }
+
+        this.updateStuff()
+
     }
 
     private fun validateEmail() : Boolean{
@@ -132,5 +154,18 @@ class LogInFragment: Fragment() {
     private fun onPostExecute() {
         val startActivity = Intent(activity, StartActivity::class.java)
         startActivity(startActivity)
+    }
+
+    private fun setCustomerIdStore(id: Long){
+        val appInstance = activity?.application
+        val customerIdStore : CustomerIdStore = CustomerIdStore(appInstance)
+        Log.i("Check Id", "id:$id")
+        customerIdStore.setCustomerId(STORE_KEY_COUNTER, id )
+    }
+
+    private fun updateStuff(){
+        val appInstance = activity?.application
+        val customerIdStore : CustomerIdStore = CustomerIdStore(appInstance)
+        Log.i("Check Infos", "Info:" + customerIdStore.getCustomerId(STORE_KEY_COUNTER))
     }
 }

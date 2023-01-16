@@ -29,7 +29,6 @@ public class MyApplication extends Application {
         super.onCreate();
 
         // this.settingsHandler = new SettingsHandler(this);
-
         testDatabase();
 
         Log.i(LOG_TAG, "On Create finished.");
@@ -45,16 +44,8 @@ public class MyApplication extends Application {
 
         customerRepository.deleteAllCustomer();
 
-
-        //for(int index = 0; index < 3; index++){
-        //    Customer newCustomer = new Customer(faker.name().lastName(),
-        //            "", faker.name().firstName(),generateRandomEmail(), generatePhonenumber());
-        //
-        //    customerRepository.insertCustomer(newCustomer);
-        //}
-
         Customer newCustomer = new Customer(faker.name().lastName(),
-                         "", faker.name().firstName(),generateRandomEmail(), generatePhonenumber());
+                         "", faker.name().firstName(), "t@t.de", generatePhonenumber());
 
         Address addressFaker = new Faker().address();
 
@@ -64,9 +55,6 @@ public class MyApplication extends Application {
         CustomerCredentials newUserCredentials = new CustomerCredentials("123");
 
         Deposit deposit = new Deposit(25000.00F);
-
-        // TODO: erstmal rausgelassen, bei Erstellung der Datenbank wird ein Kunde mit Addresse angelegt
-        // customerRepository.insertCustomer(newCustomer);
 
         customerRepository.insertUserAccount(newCustomer, customerAddress, newUserCredentials, deposit);
 

@@ -46,10 +46,18 @@ interface CustomerDao {
     @Query("DELETE FROM Customer")
     fun deleteAll()
 
+    @Query("SELECT c.customerId from Customer c where c.`Customer Email` = :customerEmail")
+    fun getCustomerIdByEmail(customerEmail: String) : LiveData<Long>
 
     @Query("SELECT * from Customer")
     fun getAllCustomersData(): LiveData<List<Customer>>
 
+    @Query("SELECT c.`Customer Email` from Customer c")
+    fun getAllCustomerEmail(): LiveData<List<String>>
+
+    @MapInfo(keyColumn = "customerEmail", valueColumn = "customerPassword")
+    @Query("SELECT  c.`Customer Email` as customerEmail  , cc.`User Password` as customerPassword  from CustomerCredentials cc INNER JOIN customer c ON c.customerId = cc.customerId")
+    fun getAllCustomerEmailAndPassword(): LiveData<Map<String, String>>
 
     @Query("SELECT c.customerId  FROM Customer c where c.`Customer Email` = :customerEmail  AND c.`Customer Phonenumber` = :customerPhonenumber")
     fun getCustomerIdByEmailndTelefonnumer(customerEmail : String, customerPhonenumber: Int ): Long

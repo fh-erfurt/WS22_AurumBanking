@@ -20,9 +20,16 @@ class MainActivity : AppCompatActivity() {
         // val currentFragment = logInFragment.getInstance()
         val manager: FragmentManager = supportFragmentManager
         val transaction: FragmentTransaction = manager.beginTransaction()
-        transaction.add(R.id.fragmentHolder, logInFragment, "Login_Tag")
+        transaction.replace(R.id.fragmentHolder, logInFragment, "Login_Tag")
         transaction.addToBackStack(null)
         transaction.commit()
 
     }
+
+    override fun onResume(){
+        super.onResume()
+    }
+
+
+
 }

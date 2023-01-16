@@ -8,7 +8,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
@@ -26,12 +28,11 @@ public class Repository {
     private CustomerDao customerDao;
     private static volatile Repository INSTANCE;
 
-    public static Repository getRepository( Application application )
-    {
-        if( INSTANCE == null ) {
-            synchronized ( Repository.class ) {
-                if( INSTANCE == null ) {
-                    INSTANCE = new Repository( application );
+    public static Repository getRepository(Application application) {
+        if (INSTANCE == null) {
+            synchronized (Repository.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new Repository(application);
                 }
             }
         }
@@ -39,19 +40,16 @@ public class Repository {
         return INSTANCE;
     }
 
-    public Repository(Context context ) {
-        CustomerBankingDatabase db = CustomerBankingDatabase.getDatabase( context );
+    public Repository(Context context) {
+        CustomerBankingDatabase db = CustomerBankingDatabase.getDatabase(context);
         this.customerDao = db.customerDao();
     }
 
 
-
-    private List<Customer> query( Callable<List<Customer>> query )
-    {
+    private List<Customer> query(Callable<List<Customer>> query) {
         try {
-            return CustomerBankingDatabase.query( query );
-        }
-        catch (ExecutionException | InterruptedException e) {
+            return CustomerBankingDatabase.query(query);
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -60,33 +58,36 @@ public class Repository {
 
 
     public void insertCustomer(Customer customer) {
-        CustomerBankingDatabase.execute( () -> customerDao.insertCustomer(customer) );
+        CustomerBankingDatabase.execute(() -> customerDao.insertCustomer(customer));
     }
 
     public void deleteAllCustomer() {
-        CustomerBankingDatabase.execute( () -> customerDao.deleteAll() );
+        CustomerBankingDatabase.execute(() -> customerDao.deleteAll());
     }
 
 
     public void insertUserAccount(Customer customer, CustomerAddress customerAddress, CustomerCredentials newUserCredentials, Deposit deposit) {
-        CustomerBankingDatabase.execute( () -> customerDao.insertUserAccount( customerDao.insertCustomer(customer) ,customerAddress, newUserCredentials, deposit));
+        CustomerBankingDatabase.execute(() -> customerDao.insertUserAccount(customerDao.insertCustomer(customer), customerAddress, newUserCredentials, deposit));
     }
 
-    public LiveData<List<Customer>> getAllCustomerData(){
+    public LiveData<List<Customer>> getAllCustomerData() {
         return customerDao.getAllCustomersData();
     }
 
-    public LiveData<String> getCustomerEmailByCustomerId(long id){
-
-        // TODO: Always get testValue = null, but in DB there are some values
-        // Query is working
-        String testValue = customerDao.getCustomerEmailByCustomerId(id).getValue();
-
-        // Transformations.map(getAllCustomerData(), cus -> {
-        //     cus.stream().filter(Customer-> Customer.getEmail().contains("@")).collect(Collectors.toList())
-        // });
-
+    public LiveData<String> getCustomerEmailByCustomerId(long id) {
         return customerDao.getCustomerEmailByCustomerId(id);
     }
+
+    public LiveData<Map<String, String>> getAllCustomerEmailAndPassword() {
+        return customerDao.getAllCustomerEmailAndPassword();
+    }
+
+    public LiveData<Long> getCustomerIdByEmail(String email) {
+        return customerDao.getCustomerIdByEmail(email);
+    }
+
+
+
+
 }
 
