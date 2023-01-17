@@ -58,7 +58,8 @@ class ProfileFragment : Fragment() {
         // TODO: Add Address from Database
 
 
-        // TODO switch logik has to fix
+
+        // TODO: Check Emulator, manchmal Probleme
         switchChangePasswordSection.setOnCheckedChangeListener ({ _, isChecked ->
             if (isChecked) {
                 this.root.findViewById<TextView?>(R.id.oldPwLeft).visibility = View.VISIBLE
@@ -66,8 +67,16 @@ class ProfileFragment : Fragment() {
                 this.root.findViewById<TextView?>(R.id.newPwLeft).visibility = View.VISIBLE
                 this.root.findViewById<EditText?>(R.id.newPwRight).visibility = View.VISIBLE
                 this.root.findViewById<TextView?>(R.id.newPwAgainLeft).visibility = View.VISIBLE
-                this.root.findViewById<EditText?>(R.id.newPwAgainLeft).visibility = View.VISIBLE
+                this.root.findViewById<EditText?>(R.id.newPwAgainRight).visibility = View.VISIBLE
                 this.root.findViewById<Button?>(R.id.button).visibility = View.VISIBLE
+            } else{
+                this.root.findViewById<TextView?>(R.id.oldPwLeft).visibility = View.INVISIBLE
+                this.root.findViewById<EditText?>(R.id.oldPwRight).visibility = View.INVISIBLE
+                this.root.findViewById<TextView?>(R.id.newPwLeft).visibility = View.INVISIBLE
+                this.root.findViewById<EditText?>(R.id.newPwRight).visibility = View.INVISIBLE
+                this.root.findViewById<TextView?>(R.id.newPwAgainLeft).visibility = View.INVISIBLE
+                this.root.findViewById<EditText?>(R.id.newPwAgainRight).visibility = View.INVISIBLE
+                this.root.findViewById<Button?>(R.id.button).visibility = View.INVISIBLE
             }
         })
 
