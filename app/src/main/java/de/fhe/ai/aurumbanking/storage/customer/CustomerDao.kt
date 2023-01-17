@@ -1,4 +1,4 @@
-package de.fhe.ai.aurumbanking.storage.Customer
+package de.fhe.ai.aurumbanking.storage.customer
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -36,6 +36,9 @@ interface CustomerDao {
     @Insert
     fun insertDeposit(deposit: Deposit): Long
 
+    @Query("Update CustomerCredentials SET `User Password` = :newPassword  where customerId = :id" )
+    fun updateNewCustomerAccountPasswordByCustomerId(id: Long, newPassword: String)
+
 
     @Update
     fun updateCustomerValues(vararg customer: Customer)
@@ -46,18 +49,29 @@ interface CustomerDao {
     @Query("DELETE FROM Customer")
     fun deleteAll()
 
+    //-----------------------------------------------------------------------------------------------------------------------------------------------
+
+    @Query("SELECT cc.`Customer Credentials Id` from Customer c INNER JOIN CustomerCredentials cc  ON cc.customerId = c.customerId where c.customerId = :customerId ")
+    fun getCustomerCredentialsIdByCustomerId(customerId: Long) : LiveData<Long>
+
     @Query("SELECT c.customerId from Customer c where c.`Customer Email` = :customerEmail")
     fun getCustomerIdByEmail(customerEmail: String) : LiveData<Long>
+
+    @Query("SELECT cc.`User Password` from Customer c INNER JOIN CustomerCredentials cc  ON cc.customerId = c.customerId where c.customerId = :customerId ")
+    fun getCustomerAccountPasswordById(customerId: Long) : LiveData<String>
+
+    @MapInfo(keyColumn = "customerEmail", valueColumn = "customerPassword")
+    @Query("SELECT  c.`Customer Email` as customerEmail  , cc.`User Password` as customerPassword  from CustomerCredentials cc INNER JOIN customer c ON c.customerId = cc.customerId")
+    fun getAllCustomerEmailAndPassword(): LiveData<Map<String, String>>
+
+    //-----------------------------------------------------------------------------------------------------------------------------------------------
+
 
     @Query("SELECT * from Customer")
     fun getAllCustomersData(): LiveData<List<Customer>>
 
     @Query("SELECT c.`Customer Email` from Customer c")
     fun getAllCustomerEmail(): LiveData<List<String>>
-
-    @MapInfo(keyColumn = "customerEmail", valueColumn = "customerPassword")
-    @Query("SELECT  c.`Customer Email` as customerEmail  , cc.`User Password` as customerPassword  from CustomerCredentials cc INNER JOIN customer c ON c.customerId = cc.customerId")
-    fun getAllCustomerEmailAndPassword(): LiveData<Map<String, String>>
 
     @Query("SELECT c.customerId  FROM Customer c where c.`Customer Email` = :customerEmail  AND c.`Customer Phonenumber` = :customerPhonenumber")
     fun getCustomerIdByEmailndTelefonnumer(customerEmail : String, customerPhonenumber: Int ): LiveData<Long>
@@ -66,17 +80,23 @@ interface CustomerDao {
     @Query("SELECT c.`Customer Email` from Customer c where c.customerId = :customerId")
     fun getCustomerEmailByCustomerId(customerId: Long): LiveData<String>
 
+    @Query("SELECT c.Firstname || ' ' || c.Lastname from Customer c where c.customerId = :customerId")
+    fun getCustomerFullNameByCustomerId(customerId: Long): LiveData<String>
+
     @Query("SELECT c.Firstname  from Customer c where c.customerId = :customerId")
     fun getCustomerFirstNameByCustomerId(customerId: Long): LiveData<String>
 
     @Query("SELECT c.Lastname from Customer c where c.customerId = :customerId")
     fun getCustomerLastNameByCustomerId(customerId: Long): LiveData<String>
 
-    @Query("SELECT c.Midname  from Customer c where c.customerId = :customerId")
-    fun getCustomerMidNameByCustomerId(customerId: Long): LiveData<String>
-
     @Query("SELECT c.`Customer Phonenumber` from Customer c where c.customerId = :customerId")
     fun getCustomerPhoneNumberByCustomerId(customerId: Long): LiveData<Int>
+
+    //-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    @Query("SELECT ca.`Street Name` || ' ' || ca.Housenumber  || ',' || ca.City || ' ' || ca.ZipCode || ',' || ca.Country AS \"Customer Address\"  from Customer c INNER JOIN CustomerAddress ca ON ca.customerId = c.customerId where c.customerId = :customerId")
+    fun getCustomerFullAddressById(customerId: Long) : LiveData<String>
 
     @Query("SELECT ca.`Street Name` from Customer c INNER JOIN CustomerAddress ca ON ca.customerId = c.customerId where c.customerId = :customerId")
     fun getStreetnameByCustomerId(customerId: Long): LiveData<String>
@@ -96,11 +116,7 @@ interface CustomerDao {
     @Query("SELECT ca.`Customer Address Id` from Customer c INNER JOIN CustomerAddress ca ON ca.customerId = c.customerId where c.customerId = :customerId")
     fun getCustomerAddressIdByCustomerId(customerId: Long): LiveData<Long>
 
-    @Query("SELECT cc.`User Password` from Customer c INNER JOIN CustomerCredentials cc  ON cc.customerId = c.customerId where c.customerId = :customerId ")
-    fun getCustomerCredentialsByCustomerId(customerId: Long) : LiveData<String>
-
-    @Query("SELECT cc.`Customer Credentials Id` from Customer c INNER JOIN CustomerCredentials cc  ON cc.customerId = c.customerId where c.customerId = :customerId ")
-    fun getCustomerCredentialsIdByCustomerId(customerId: Long) : LiveData<Long>
+    //-----------------------------------------------------------------------------------------------------------------------------------------------
 
     @Query("SELECT p.`Current Depostit Value` from Customer c INNER JOIN Deposit p  ON p.customerId = c.customerId where c.customerId  = :customerId ")
     fun getCustomerDepostitByCustomerId(customerId: Long) : LiveData<Float>

@@ -1,14 +1,13 @@
 package de.fhe.ai.aurumbanking.core;
 
 import android.app.Application;
-import android.net.wifi.hotspot2.pps.Credential;
 import android.util.Log;
 
 import de.fhe.ai.aurumbanking.model.Customer;
 import de.fhe.ai.aurumbanking.model.CustomerAddress;
 import de.fhe.ai.aurumbanking.model.CustomerCredentials;
 import de.fhe.ai.aurumbanking.model.Deposit;
-import de.fhe.ai.aurumbanking.storage.Customer.Repository;
+import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
 
 import com.github.javafaker.Address;
 import com.github.javafaker.Faker;
@@ -38,14 +37,14 @@ public class MyApplication extends Application {
     private void testDatabase() {
 
         // Create Repo instance - which in turn will init the Contact DB
-        Repository customerRepository = new Repository(this);
+        CustomerRepository customerRepository = new CustomerRepository(this);
 
         Faker faker = Faker.instance();
 
         customerRepository.deleteAllCustomer();
 
         Customer newCustomer = new Customer(faker.name().lastName(),
-                         "", faker.name().firstName(), "t@t.de", generatePhonenumber());
+                faker.name().firstName(), "t@t.de", generatePhonenumber());
 
         Address addressFaker = new Faker().address();
 

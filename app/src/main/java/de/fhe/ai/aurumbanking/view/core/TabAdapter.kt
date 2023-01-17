@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import de.fhe.ai.aurumbanking.view.moneytransfer.MoneyTransferFragment
-import de.fhe.ai.aurumbanking.view.overview.OverviewFragement
+import de.fhe.ai.aurumbanking.view.overview.OverviewFragment
 import de.fhe.ai.aurumbanking.view.support.SupportFragment
 import de.fhe.ai.aurumbanking.view.deposit.DepositFragment
 
@@ -15,7 +15,7 @@ internal class TabAdapter (var context: Context, fm: FragmentManager, var totalT
         override fun getItem(position: Int): Fragment {
             return when (position) {
                 0 -> {
-                    OverviewFragement()
+                    OverviewFragment()
                 }
                 1 -> {
                     de.fhe.ai.aurumbanking.view.profil.ProfileFragment()

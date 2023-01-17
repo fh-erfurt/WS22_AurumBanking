@@ -41,20 +41,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/customerSupportMessage"
-            android:layout_width="378dp"
-            android:layout_height="134dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_rounded_corner_style"
-            android:gravity="center"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.606"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/customerSupportMessageInfo" />
-
-        <TextView
-            android:id="@+id/customerSupportMessageInfo"
+            android:id="@+id/customerAddressConstString"
             android:layout_width="378dp"
             android:layout_height="67dp"
             android:layout_marginTop="24dp"
@@ -70,6 +57,21 @@
             app:layout_constraintTop_toBottomOf="@+id/customerFullName"
             tools:ignore="RtlHardcoded" />
 
+        <TextView
+            android:id="@+id/customerAddressTextView"
+            android:layout_width="378dp"
+            android:layout_height="134dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_rounded_corner_style"
+            android:gravity="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.606"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customerAddressConstString" />
+
+
+
 
         <TextView
             android:id="@+id/userEmailLeft"
@@ -83,7 +85,7 @@
             app:layout_constraintEnd_toStartOf="@+id/userEmailRight"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/customerSupportMessage" />
+            app:layout_constraintTop_toBottomOf="@+id/customerAddressTextView" />
 
         <TextView
             android:id="@+id/userEmailRight"
@@ -96,7 +98,7 @@
             android:gravity="center"
             android:textColorHint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/customerSupportMessage" />
+            app:layout_constraintTop_toBottomOf="@+id/customerAddressTextView" />
 
 
         <TextView
@@ -228,7 +230,7 @@
 
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/passwordSubmitButton"
             android:layout_width="197dp"
             android:layout_height="68dp"
             android:layout_marginTop="44dp"

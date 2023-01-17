@@ -6,69 +6,75 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import java.util.Map;
-
-import de.fhe.ai.aurumbanking.storage.Customer.Repository;
+import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
 
 public class ProfileViewModel extends AndroidViewModel {
 
-    private final Repository repository;
+    private final CustomerRepository customerRepository;
 
     public ProfileViewModel(@NonNull Application application) {
         super(application);
-        this.repository = Repository.getRepository(application);
+        this.customerRepository = CustomerRepository.getRepository(application);
     }
 
-    //public LiveData<String> getCustomerFullNameById(Long id){
-    //
-    //    LiveData<String> firstname = repository.getCustomerFirstNameByCustomerId(id);
-    //    LiveData<String> midname = repository.getCustomerMidNameByCustomerId(id);
-    //    LiveData<String> lastname = repository.getCustomerLastNameByCustomerId(id);
-    //
-    //
-    //
-    //    return firstname + midname + lastname ;
-    //}
-
-
     public LiveData<String> getCustomerEmailByCustomerId( Long id) {
-        return repository.getCustomerEmailByCustomerId(id);
+        return customerRepository.getCustomerEmailByCustomerId(id);
+    }
+
+
+    public LiveData<String> getCustomerAccountPasswordById( Long id) {
+        return customerRepository.getCustomerAccountPasswordById(id);
+    }
+
+    public LiveData<String> getCustomerFullNameByCustomerId(Long id){
+        return customerRepository.getCustomerFullNameByCustomerId(id);
+
     }
 
     public LiveData<String> getCustomerFirstNameByCustomerId(Long id){
-        return this.repository.getCustomerFirstNameByCustomerId(id);
-    }
-
-    public LiveData<String> getCustomerMidNameByCustomerId(Long id) {
-        return repository.getCustomerMidNameByCustomerId(id);
+        return this.customerRepository.getCustomerFirstNameByCustomerId(id);
     }
 
     public LiveData<String> getCustomerLastNameByCustomerId(Long id) {
-        return repository.getCustomerLastNameByCustomerId(id);
+        return customerRepository.getCustomerLastNameByCustomerId(id);
+    }
+
+
+    public LiveData<String> getCustomerFullAddressById(Long id) {
+        return customerRepository.getCustomerFullAddressById(id);
     }
 
     public LiveData<String> getStreetnameByCustomerId(Long id) {
-        return repository.getStreetnameByCustomerId(id);
+        return customerRepository.getStreetnameByCustomerId(id);
     }
 
     public LiveData<String> getHousenumberByCustomerId(Long id) {
-        return repository.getHousenumberByCustomerId(id);
+        return customerRepository.getHousenumberByCustomerId(id);
     }
 
     public LiveData<String> getCityByCustomerId(Long id) {
-        return repository.getCityByCustomerId(id);
+        return customerRepository.getCityByCustomerId(id);
     }
 
     public LiveData<String> getZipCodebyCustomerId(Long id) {
-        return repository.getZipCodebyCustomerId(id);
+        return customerRepository.getZipCodebyCustomerId(id);
     }
 
     public LiveData<String> getCountryCustomerId(Long id) {
-        return repository.getCountryCustomerId(id);
+        return customerRepository.getCountryCustomerId(id);
     }
 
 
     public LiveData<Integer> getCustomerPhoneNumberByCustomerId(Long id) {
-        return repository.getCustomerPhoneNumberByCustomerId(id);
+        return customerRepository.getCustomerPhoneNumberByCustomerId(id);
+    }
+
+    public LiveData<Long> getCustomerCredentialsIdByCustoimerId(Long id){
+        return customerRepository.getCustomerCredentialsIdByCustoimerId(id);
+    }
+
+    public void updateNewCustomerAccountPasswordByCustomerId(Long id, String newPassword){
+
+        customerRepository.updateNewCustomerAccountPasswordByCustomerId(id, newPassword);
     }
 }

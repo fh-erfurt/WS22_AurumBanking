@@ -1,10 +1,7 @@
-package de.fhe.ai.aurumbanking.view.LogInFragment
+package de.fhe.ai.aurumbanking.view.login
 
-import android.app.Activity
-import android.app.Application
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -15,12 +12,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.core.CustomerIdStore
-import de.fhe.ai.aurumbanking.core.MyApplication
-import de.fhe.ai.aurumbanking.view.MainActivity
 import de.fhe.ai.aurumbanking.view.StartActivity
 import java.util.regex.Pattern
 

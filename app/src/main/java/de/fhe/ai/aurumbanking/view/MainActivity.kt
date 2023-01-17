@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import de.fhe.ai.aurumbanking.R
-import de.fhe.ai.aurumbanking.view.LogInFragment.LogInFragment
+import de.fhe.ai.aurumbanking.view.login.LogInFragment
 
 
 class MainActivity : AppCompatActivity() {

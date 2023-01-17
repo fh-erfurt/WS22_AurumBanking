@@ -1,4 +1,4 @@
-package de.fhe.ai.aurumbanking.storage.Customer;
+package de.fhe.ai.aurumbanking.storage.core;
 
 import android.content.Context;
 import android.util.Log;
@@ -22,6 +22,7 @@ import de.fhe.ai.aurumbanking.model.Deposit;
 import de.fhe.ai.aurumbanking.model.OrderInput;
 import de.fhe.ai.aurumbanking.model.OrderOutput;
 import de.fhe.ai.aurumbanking.model.TransactionList;
+import de.fhe.ai.aurumbanking.storage.customer.CustomerDao;
 
 /*
     Class only there to init Database with all the entities
@@ -70,7 +71,7 @@ public abstract class CustomerBankingDatabase extends RoomDatabase {
         Singleton 'getInstance' method to create database instance thereby opening and, if not
         already done, init the database. Note the 'createCallback'.
      */
-    static CustomerBankingDatabase getDatabase(final Context context) {
+    public static CustomerBankingDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (CustomerBankingDatabase.class) {
                 if (INSTANCE == null) {
