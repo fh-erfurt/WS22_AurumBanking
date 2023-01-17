@@ -32,9 +32,6 @@ class LogInFragment: Fragment() {
     private var email: String = ""
     private val STORE_KEY_COUNTER = "CustomerId"
 
-
-
-
     private val EMAIL_ADDRESS_PATTERN = Pattern.compile(
         "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                 "\\@" +
@@ -166,6 +163,6 @@ class LogInFragment: Fragment() {
     private fun updateStuff(){
         val appInstance = activity?.application
         val customerIdStore : CustomerIdStore = CustomerIdStore(appInstance)
-        Log.i("Check Infos", "Info:" + customerIdStore.getCustomerId(STORE_KEY_COUNTER))
+        //Log.i("Check Infos", "Info:" + customerIdStore.getCustomerId(STORE_KEY_COUNTER))
     }
 }

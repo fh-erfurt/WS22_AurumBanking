@@ -60,50 +60,50 @@ interface CustomerDao {
     fun getAllCustomerEmailAndPassword(): LiveData<Map<String, String>>
 
     @Query("SELECT c.customerId  FROM Customer c where c.`Customer Email` = :customerEmail  AND c.`Customer Phonenumber` = :customerPhonenumber")
-    fun getCustomerIdByEmailndTelefonnumer(customerEmail : String, customerPhonenumber: Int ): Long
+    fun getCustomerIdByEmailndTelefonnumer(customerEmail : String, customerPhonenumber: Int ): LiveData<Long>
 
     @Transaction
     @Query("SELECT c.`Customer Email` from Customer c where c.customerId = :customerId")
     fun getCustomerEmailByCustomerId(customerId: Long): LiveData<String>
 
     @Query("SELECT c.Firstname  from Customer c where c.customerId = :customerId")
-    fun getCustomerFirstNameByCustomerId(customerId: Long): String
+    fun getCustomerFirstNameByCustomerId(customerId: Long): LiveData<String>
 
-    @Query("SELECT c.Lastname  from Customer c where c.customerId = :customerId")
-    fun getCustomerLastNameByCustomerId(customerId: Long): String
+    @Query("SELECT c.Lastname from Customer c where c.customerId = :customerId")
+    fun getCustomerLastNameByCustomerId(customerId: Long): LiveData<String>
 
     @Query("SELECT c.Midname  from Customer c where c.customerId = :customerId")
-    fun getCustomerMidNameByCustomerId(customerId: Long): String
+    fun getCustomerMidNameByCustomerId(customerId: Long): LiveData<String>
 
     @Query("SELECT c.`Customer Phonenumber` from Customer c where c.customerId = :customerId")
-    fun getCustomerPhoneNumberByCustomerId(customerId: Long): Int
+    fun getCustomerPhoneNumberByCustomerId(customerId: Long): LiveData<Int>
 
     @Query("SELECT ca.`Street Name` from Customer c INNER JOIN CustomerAddress ca ON ca.customerId = c.customerId where c.customerId = :customerId")
-    fun getStreetnameByCustomerId(customerId: Long): String
+    fun getStreetnameByCustomerId(customerId: Long): LiveData<String>
 
     @Query("SELECT ca.Housenumber from Customer c INNER JOIN CustomerAddress ca ON ca.customerId = c.customerId where c.customerId = :customerId")
-    fun getHousenumberByCustomerId(customerId: Long): String
+    fun getHousenumberByCustomerId(customerId: Long): LiveData<String>
 
     @Query("SELECT ca.City from Customer c INNER JOIN CustomerAddress ca ON ca.customerId = c.customerId where c.customerId = :customerId")
-    fun getCityByCustomerId(customerId: Long): String
+    fun getCityByCustomerId(customerId: Long): LiveData<String>
 
     @Query("SELECT ca.ZipCode from Customer c INNER JOIN CustomerAddress ca ON ca.customerId = c.customerId where c.customerId = :customerId")
-    fun getZipCodebyCustomerId(customerId: Long): String
+    fun getZipCodebyCustomerId(customerId: Long): LiveData<String>
 
     @Query("SELECT ca.Country from Customer c INNER JOIN CustomerAddress ca ON ca.customerId = c.customerId where c.customerId = :customerId")
-    fun getCountryCustomerId(customerId: Long): String
+    fun getCountryCustomerId(customerId: Long): LiveData<String>
 
     @Query("SELECT ca.`Customer Address Id` from Customer c INNER JOIN CustomerAddress ca ON ca.customerId = c.customerId where c.customerId = :customerId")
-    fun getCustomerAddressIdByCustomerId(customerId: Long): Long
+    fun getCustomerAddressIdByCustomerId(customerId: Long): LiveData<Long>
 
     @Query("SELECT cc.`User Password` from Customer c INNER JOIN CustomerCredentials cc  ON cc.customerId = c.customerId where c.customerId = :customerId ")
-    fun getCustomerCredentialsByCustomerId(customerId: Long) : String
+    fun getCustomerCredentialsByCustomerId(customerId: Long) : LiveData<String>
 
     @Query("SELECT cc.`Customer Credentials Id` from Customer c INNER JOIN CustomerCredentials cc  ON cc.customerId = c.customerId where c.customerId = :customerId ")
-    fun getCustomerCredentialsIdByCustomerId(customerId: Long) : Long
+    fun getCustomerCredentialsIdByCustomerId(customerId: Long) : LiveData<Long>
 
     @Query("SELECT p.`Current Depostit Value` from Customer c INNER JOIN Deposit p  ON p.customerId = c.customerId where c.customerId  = :customerId ")
-    fun getCustomerDepostitByCustomerId(customerId: Long) : Float
+    fun getCustomerDepostitByCustomerId(customerId: Long) : LiveData<Float>
 
 
 }

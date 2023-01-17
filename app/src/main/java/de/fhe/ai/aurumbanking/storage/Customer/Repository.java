@@ -86,6 +86,42 @@ public class Repository {
         return customerDao.getCustomerIdByEmail(email);
     }
 
+    public LiveData<String> getCustomerFirstNameByCustomerId(Long id) {
+        return customerDao.getCustomerFirstNameByCustomerId(id);
+    }
+
+    public LiveData<String> getCustomerMidNameByCustomerId(Long id) {
+        return customerDao.getCustomerMidNameByCustomerId(id);
+    }
+
+    public LiveData<String> getCustomerLastNameByCustomerId(Long id) {
+        return customerDao.getCustomerLastNameByCustomerId(id);
+    }
+
+    public LiveData<String> getStreetnameByCustomerId(Long id) {
+        return customerDao.getStreetnameByCustomerId(id);
+    }
+
+    public LiveData<String> getHousenumberByCustomerId(Long id) {
+        return customerDao.getHousenumberByCustomerId(id);
+    }
+
+    public LiveData<String> getCityByCustomerId(Long id) {
+        return customerDao.getCityByCustomerId(id);
+    }
+
+    public LiveData<String> getZipCodebyCustomerId(Long id) {
+        return customerDao.getZipCodebyCustomerId(id);
+    }
+
+    public LiveData<String> getCountryCustomerId(Long id) {
+        return customerDao.getCountryCustomerId(id);
+    }
+
+
+    public LiveData<Integer> getCustomerPhoneNumberByCustomerId(Long id) {
+        return customerDao.getCustomerPhoneNumberByCustomerId(id);
+    }
 
 
 
