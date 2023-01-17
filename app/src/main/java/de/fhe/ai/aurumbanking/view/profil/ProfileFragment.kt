@@ -55,7 +55,10 @@ class ProfileFragment : Fragment() {
 
 
         val switchChangePasswordSection = this.root.findViewById<Switch?>(R.id.switch1)
+        // TODO: Add Address from Database
 
+
+        // TODO switch logik has to fix
         switchChangePasswordSection.setOnCheckedChangeListener ({ _, isChecked ->
             if (isChecked) {
                 this.root.findViewById<TextView?>(R.id.oldPwLeft).visibility = View.VISIBLE
@@ -64,18 +67,9 @@ class ProfileFragment : Fragment() {
                 this.root.findViewById<EditText?>(R.id.newPwRight).visibility = View.VISIBLE
                 this.root.findViewById<TextView?>(R.id.newPwAgainLeft).visibility = View.VISIBLE
                 this.root.findViewById<EditText?>(R.id.newPwAgainLeft).visibility = View.VISIBLE
-                //this.root.findViewById<Button?>(R.id.button).visibility = View.VISIBLE
-            }else{
-                this.root.findViewById<TextView?>(R.id.oldPwLeft).visibility = View.VISIBLE
-                this.root.findViewById<EditText?>(R.id.oldPwRight).visibility = View.VISIBLE
-                this.root.findViewById<TextView?>(R.id.newPwLeft).visibility = View.VISIBLE
-                this.root.findViewById<EditText?>(R.id.newPwRight).visibility = View.VISIBLE
-                this.root.findViewById<TextView?>(R.id.newPwAgainLeft).visibility = View.VISIBLE
-                this.root.findViewById<EditText?>(R.id.newPwAgainLeft).visibility = View.VISIBLE
-                //this.root.findViewById<Button?>(R.id.button).visibility = View.VISIBLE
-        }
+                this.root.findViewById<Button?>(R.id.button).visibility = View.VISIBLE
+            }
         })
-
 
         return this.root
     }

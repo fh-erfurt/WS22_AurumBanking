@@ -150,6 +150,7 @@
             android:gravity="center"
             android:text="@string/old_pw"
             android:textColor="@color/white"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
@@ -163,6 +164,7 @@
             android:background="@drawable/rightside_rounded_corner_style"
             android:gravity="center"
             android:textColorHint="@color/white"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
@@ -177,6 +179,7 @@
             android:gravity="center"
             android:text="@string/new_pw"
             android:textColor="@color/white"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/oldPwLeft" />
 
@@ -190,6 +193,7 @@
             android:background="@drawable/rightside_rounded_corner_style"
             android:gravity="center"
             android:textColorHint="@color/white"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/oldPwRight" />
 
@@ -204,6 +208,7 @@
             android:gravity="center"
             android:text="@string/new_pw_check"
             android:textColor="@color/white"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/newPwLeft" />
 
@@ -217,6 +222,7 @@
             android:background="@drawable/rightside_rounded_corner_style"
             android:gravity="center"
             android:textColorHint="@color/white"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/newPwRight" />
 
@@ -229,6 +235,7 @@
             android:layout_marginBottom="44dp"
             android:background="@drawable/round_blue_btn"
             android:text="@string/change_pw_bnt"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
