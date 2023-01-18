@@ -43,6 +43,8 @@ class OverviewFragment : Fragment() {
         this.viewModel.getCustomerFullNameByCustomerId(this.customerId)
             .observe(this.requireActivity(), this::setCustomerFullNameToFragment)
 
+        this.viewModel.getCustomerDepositByCustomerId(this.customerId)
+            .observe(this.requireActivity(), this::setCustomerDepotToFragment)
 
         /*
          set current Date
@@ -53,14 +55,6 @@ class OverviewFragment : Fragment() {
 
         val depositInformation = this.root.findViewById<TextView?>(R.id.depositInformation)
         depositInformation.text = "Sichteinlagen vom " + helper.getDate(false)
-
-        /*
-         set current deposit of user, leftside
-         // TODO: Backend
-        */
-        val currentDeposit = this.root.findViewById<TextView?>(R.id.userDepotLeft)
-        currentDeposit.text = "5478,45 \n Euro"
-
 
         /*
          set current deposit of user, rightside
@@ -98,6 +92,9 @@ class OverviewFragment : Fragment() {
 
         this.viewModel.getCustomerFullNameByCustomerId(this.customerId)
             .removeObserver(this::setCustomerFullNameToFragment)
+
+        this.viewModel.getCustomerDepositByCustomerId(this.customerId)
+            .removeObserver(this::setCustomerDepotToFragment)
     }
 
 
@@ -106,6 +103,13 @@ class OverviewFragment : Fragment() {
         this.root.findViewById<TextView?>(R.id.welcomeUserText).text =
             "Willkommen \n$fullCustomerName!"
     }
+
+    @SuppressLint("SetTextI18n")
+    private fun setCustomerDepotToFragment(depositValue : Float) {
+        this.root.findViewById<TextView?>(R.id.userDepotLeft).text = "$depositValue\nEuro"
+    }
+
+
 
 
 }

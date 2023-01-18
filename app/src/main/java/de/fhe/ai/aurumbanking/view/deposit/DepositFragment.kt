@@ -14,47 +14,42 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.core.Helper
-import de.fhe.ai.aurumbanking.view.login.LogInFragmentViewModel
-import de.fhe.ai.aurumbanking.view.overview.OverviewViewModel
 
 class DepositFragment : Fragment(){
 
+    private var customerId: Long? = null
     private var helper: Helper = Helper.getHelperInstance()
     private lateinit var root: View
+    private lateinit var viewModel: DepositViewModel
 
-    //private lateinit var viewModel: OverviewViewModel
-    
-    private lateinit var viewModel : LogInFragmentViewModel
-    
-    
-    
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?): View {
         
         this.root = inflater.inflate(R.layout.fragment_deposit, container, false)
+
+        this.customerId = helper.getCustomerId(activity?.application)
+
+        this.viewModel = ViewModelProvider(this)[DepositViewModel::class.java]
+
+        this.viewModel.getCustomerDepositByCustomerId(this.customerId)
+            .observe(this.requireActivity(), this::setCustomerDepotToFragment)
 
         val depositInformation = this.root.findViewById<TextView?>(R.id.depotDateInformation)
         depositInformation.text = helper.getDate(false).toString()
 
-        /*
-            set current deposit of user, leftside
-         */
-        val currentDeposit = this.root.findViewById<TextView?>(R.id.userDepotLeft)
-        currentDeposit.text = "5478,45 \n Euro"
-
-        /*
-           set current deposit of user, rightside
-        */
         val currentDepotCountry = this.root.findViewById<ImageView>(R.id.userDepotRight)
         currentDepotCountry.setImageResource(R.drawable.europaische_union)
 
       
         return this.root
 
-
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun setCustomerDepotToFragment(depositValue : Float) {
+        this.root.findViewById<TextView?>(R.id.userDepotLeft).text = "${depositValue.toString()}\nEuro"
+    }
 }

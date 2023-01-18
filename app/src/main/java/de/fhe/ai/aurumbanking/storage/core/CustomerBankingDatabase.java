@@ -23,6 +23,7 @@ import de.fhe.ai.aurumbanking.model.OrderInput;
 import de.fhe.ai.aurumbanking.model.OrderOutput;
 import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.customer.CustomerDao;
+import de.fhe.ai.aurumbanking.storage.deposit.DepositDao;
 
 /*
     Class only there to init Database with all the entities
@@ -38,6 +39,8 @@ public abstract class CustomerBankingDatabase extends RoomDatabase {
         Contact DAO reference, will be filled by Android
      */
     public abstract CustomerDao customerDao();
+    public abstract DepositDao depositDao();
+
 
 
     /*

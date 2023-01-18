@@ -118,8 +118,7 @@ interface CustomerDao {
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------
 
-    @Query("SELECT p.`Current Depostit Value` from Customer c INNER JOIN Deposit p  ON p.customerId = c.customerId where c.customerId  = :customerId ")
-    fun getCustomerDepostitByCustomerId(customerId: Long) : LiveData<Float>
+
 
 
 }
