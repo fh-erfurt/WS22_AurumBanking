@@ -7,7 +7,10 @@ import de.fhe.ai.aurumbanking.model.Customer;
 import de.fhe.ai.aurumbanking.model.CustomerAddress;
 import de.fhe.ai.aurumbanking.model.CustomerCredentials;
 import de.fhe.ai.aurumbanking.model.Deposit;
+import de.fhe.ai.aurumbanking.model.OrderInput;
+import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
+import de.fhe.ai.aurumbanking.storage.deposit.DepositRepository;
 
 import com.github.javafaker.Address;
 import com.github.javafaker.Faker;
@@ -36,6 +39,8 @@ public class MyApplication extends Application {
 
     private void testDatabase() {
 
+
+        // ----------------------------- Initialize Customer Personal And Account Data ----------------------------
         // Create Repo instance - which in turn will init the Contact DB
         CustomerRepository customerRepository = new CustomerRepository(this);
 
@@ -53,11 +58,19 @@ public class MyApplication extends Application {
 
         CustomerCredentials newUserCredentials = new CustomerCredentials("123");
 
-        Deposit deposit = new Deposit(25000.00F);
 
-        customerRepository.insertUserAccount(newCustomer, customerAddress, newUserCredentials, deposit);
+        // ----------------------------- Initialize Customer Deposit and Transactions Data ----------------------------
 
+        // TODO: Fix Float Value
+        Deposit deposit = new Deposit((float) (Math.round(25000.00F *100)/100));
 
+        TransactionList transactionList = new TransactionList(false);
+
+        OrderInput orderInput = new OrderInput("Mainzer Werke GmBH","Deutsche Bank", "DE65069037901417863654",
+                "HELEDEF1CEM", (float) (Math.round(2800F *100)/100), "Gehalt"  );
+
+        // ----------------------------- Create Test Customer Account ----------------------------
+        customerRepository.insertUserAccount(newCustomer, customerAddress, newUserCredentials, deposit, transactionList, orderInput);
 
     }
 

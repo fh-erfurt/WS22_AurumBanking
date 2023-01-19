@@ -5,6 +5,10 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
+import de.fhe.ai.aurumbanking.model.Customer;
+import de.fhe.ai.aurumbanking.model.CustomerAddress;
+import de.fhe.ai.aurumbanking.model.CustomerCredentials;
+import de.fhe.ai.aurumbanking.model.Deposit;
 import de.fhe.ai.aurumbanking.storage.core.CustomerBankingDatabase;
 import de.fhe.ai.aurumbanking.storage.customer.CustomerDao;
 import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
@@ -36,5 +40,12 @@ public class DepositRepository {
         return depositDao.getCustomerDepositByCustomerId(id);
     }
 
+    public LiveData<Boolean> getLatestDeductionFlagByCustomerId(Long id){
+        return depositDao.getLatestDeductionFlagByCustomerId(id);
+    }
+
+    public LiveData<String> getLatestMoneyValueFromOrderInputByCustomerId(Long id){
+        return depositDao.getLatestMoneyValueFromOrderInputByCustomerId(id);
+    }
 
 }

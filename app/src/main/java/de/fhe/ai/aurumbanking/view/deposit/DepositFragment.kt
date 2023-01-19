@@ -37,8 +37,9 @@ class DepositFragment : Fragment(){
         this.viewModel.getCustomerDepositByCustomerId(this.customerId)
             .observe(this.requireActivity(), this::setCustomerDepotToFragment)
 
+        // TODO: Fix XML, zu klein
         val depositInformation = this.root.findViewById<TextView?>(R.id.depotDateInformation)
-        depositInformation.text = helper.getDate(false).toString()
+        depositInformation.text = "Sichteinlagen vom "+ helper.getDate(false).toString()
 
         val currentDepotCountry = this.root.findViewById<ImageView>(R.id.userDepotRight)
         currentDepotCountry.setImageResource(R.drawable.europaische_union)

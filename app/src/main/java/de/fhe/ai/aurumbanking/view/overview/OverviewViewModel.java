@@ -31,6 +31,13 @@ public class OverviewViewModel extends AndroidViewModel {
         return  depositRepository.getCustomerDepositByCustomerId(id);
     }
 
+    public LiveData<Boolean> getLatestDeductionFlagByCustomerId(Long id){
+        return depositRepository.getLatestDeductionFlagByCustomerId(id);
+    }
+
+    public LiveData<String> getLatestMoneyValueFromOrderInputByCustomerId(Long id){
+        return depositRepository.getLatestMoneyValueFromOrderInputByCustomerId(id);
+    }
 
 }
 

@@ -15,6 +15,9 @@ import de.fhe.ai.aurumbanking.model.Customer;
 import de.fhe.ai.aurumbanking.model.CustomerAddress;
 import de.fhe.ai.aurumbanking.model.CustomerCredentials;
 import de.fhe.ai.aurumbanking.model.Deposit;
+import de.fhe.ai.aurumbanking.model.OrderInput;
+import de.fhe.ai.aurumbanking.model.OrderOutput;
+import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.core.CustomerBankingDatabase;
 
 
@@ -65,8 +68,10 @@ public class CustomerRepository {
 
     //------------------------------------------------------------------------------
 
-    public void insertUserAccount(Customer customer, CustomerAddress customerAddress, CustomerCredentials newUserCredentials, Deposit deposit) {
-        CustomerBankingDatabase.execute(() -> customerDao.insertUserAccount(customerDao.insertCustomer(customer), customerAddress, newUserCredentials, deposit));
+    public void insertUserAccount(Customer customer, CustomerAddress customerAddress,
+                                  CustomerCredentials newUserCredentials, Deposit deposit,
+                                  TransactionList transactionList, OrderInput orderInput) {
+        CustomerBankingDatabase.execute(() -> customerDao.insertUserAccount(customerDao.insertCustomer(customer), customerAddress, newUserCredentials, deposit, transactionList, orderInput));
     }
 
     public LiveData<Long> getCustomerCredentialsIdByCustoimerId(long id){

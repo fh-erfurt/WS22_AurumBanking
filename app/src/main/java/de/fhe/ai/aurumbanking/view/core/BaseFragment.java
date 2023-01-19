@@ -26,6 +26,8 @@ public class BaseFragment extends Fragment {
                 )).get(tClass);
     }
 
+
+    // TODO Add hideKey Button
     /*
         Helper method to hide the keyboard, for example when submitting a form.
      */

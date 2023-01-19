@@ -24,10 +24,7 @@ data class Deposit(
     @ColumnInfo(name = "depositId", index = true)
      var depositId: Long? = null
 
-
-
     @ColumnInfo(name = "customerId")
      var customerId: Long? = null
-
 
 }

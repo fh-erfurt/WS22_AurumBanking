@@ -20,8 +20,6 @@ data class OrderInput(
     // @ColumnInfo(name = "Tranaktion Date")
     // var tranaktionDate: Date? = null,
 
-
-
     @ColumnInfo(name = "Shipper Name")
     var shipperName: String? = null,
 
@@ -35,7 +33,7 @@ data class OrderInput(
 
 
     @ColumnInfo(name = "BIC")
-    var bIC: String? = null,
+    var bic: String? = null,
 
 
     @ColumnInfo(name = "Money Value")

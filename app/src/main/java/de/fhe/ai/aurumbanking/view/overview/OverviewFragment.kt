@@ -46,6 +46,12 @@ class OverviewFragment : Fragment() {
         this.viewModel.getCustomerDepositByCustomerId(this.customerId)
             .observe(this.requireActivity(), this::setCustomerDepotToFragment)
 
+        this.viewModel.getLatestDeductionFlagByCustomerId(this.customerId)
+            .observe(this.requireActivity(), this::setIconForLatestTransaction)
+
+        this.viewModel.getLatestMoneyValueFromOrderInputByCustomerId(this.customerId)
+            .observe(this.requireActivity(), this::setValueForLatestTransaction)
+
         /*
          set current Date
         */
@@ -72,16 +78,6 @@ class OverviewFragment : Fragment() {
         lastTransactionInfo.text = "Letzte Transaktion"
 
 
-        /*
-         TODO: check if output transaction flag is set in Backend
-        */
-        val redCirle = this.root.findViewById<ImageButton>(R.id.cicle)
-        redCirle.setImageResource(R.drawable.redcirle)
-
-        // // TODO: Backend
-        val lasTransaction = this.root.findViewById<TextView>(R.id.lastTransaction)
-        lasTransaction.text = "4,99 Euro \n Rewe Anger"
-
         return this.root
 
 
@@ -95,6 +91,9 @@ class OverviewFragment : Fragment() {
 
         this.viewModel.getCustomerDepositByCustomerId(this.customerId)
             .removeObserver(this::setCustomerDepotToFragment)
+
+        this.viewModel.getLatestDeductionFlagByCustomerId(this.customerId)
+            .removeObserver(this::setIconForLatestTransaction)
     }
 
 
@@ -107,6 +106,33 @@ class OverviewFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun setCustomerDepotToFragment(depositValue : Float) {
         this.root.findViewById<TextView?>(R.id.userDepotLeft).text = "$depositValue\nEuro"
+    }
+
+    private fun setIconForLatestTransaction(deductionFlag : Boolean){
+        if (deductionFlag){
+            this.root.findViewById<ImageButton>(R.id.cicle)
+                .setImageResource(R.drawable.redcirle)
+        }else{
+            this.root.findViewById<ImageButton>(R.id.cicle)
+                .setImageResource(R.drawable.greencirle)
+        }
+
+    }
+
+
+    @SuppressLint("SetTextI18n")
+    private fun setValueForLatestTransaction(moneyValue : String){
+
+        //TODO: Fix Flag for latestValue
+
+        this.root.findViewById<TextView>(R.id.lastTransaction).text = moneyValue.toString().replace(",", "\n\n") + " Euro"
+
+        //if (this.viewModel.getLatestDeductionFlagByCustomerId(this.customerId).value == false){
+        //
+        //}else{
+        //    this.root.findViewById<TextView>(R.id.lastTransaction).text = null
+        //}
+
     }
 
 
