@@ -41,8 +41,8 @@ class ProfileFragment : Fragment() {
         this.root = inflater.inflate(R.layout.fragment_profile, container, false)
 
         this.customerId = helper.getCustomerId(activity?.application)
-
         this.viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
+
         this.viewModel.getCustomerEmailByCustomerId(this.customerId)
             .observe(this.requireActivity(), this::setCustomerEmailProfileToFragment)
 
@@ -58,6 +58,13 @@ class ProfileFragment : Fragment() {
         this.viewModel.getCustomerAccountPasswordById(this.customerId)
             .observe(this.requireActivity(), this::getCurrentCustomerPassword)
 
+        hidePasswordChangeSection()
+        return this.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         val switchChangePasswordSection = this.root.findViewById<Switch?>(R.id.switch1)
         switchChangePasswordSection.setOnCheckedChangeListener({ _, isChecked ->
             if (isChecked) {
@@ -68,19 +75,11 @@ class ProfileFragment : Fragment() {
                 this.root.findViewById<TextView?>(R.id.newPwAgainLeft).visibility = View.VISIBLE
                 this.root.findViewById<EditText?>(R.id.newPwAgainRight).visibility = View.VISIBLE
                 this.root.findViewById<Button?>(R.id.passwordSubmitButton).visibility = View.VISIBLE
-                Log.i("Switch Aktiviert", "OK")
+                Log.i("Switch Aktiviert", "OK, up")
             } else {
-                this.root.findViewById<TextView?>(R.id.oldPwLeft).visibility = View.INVISIBLE
-                this.root.findViewById<EditText?>(R.id.oldPwRight).visibility = View.INVISIBLE
-                this.root.findViewById<TextView?>(R.id.newPwLeft).visibility = View.INVISIBLE
-                this.root.findViewById<EditText?>(R.id.newPwRight).visibility = View.INVISIBLE
-                this.root.findViewById<TextView?>(R.id.newPwAgainLeft).visibility = View.INVISIBLE
-                this.root.findViewById<EditText?>(R.id.newPwAgainRight).visibility = View.INVISIBLE
-                this.root.findViewById<Button?>(R.id.passwordSubmitButton).visibility =
-                    View.INVISIBLE
+                hidePasswordChangeSection()
             }
         })
-
 
         val passwordSubmitButton = this.root.findViewById<Button?>(R.id.passwordSubmitButton)
         passwordSubmitButton.setOnClickListener({
@@ -89,13 +88,14 @@ class ProfileFragment : Fragment() {
             val userInputNewPassword =
                 this.root.findViewById<EditText?>(R.id.newPwRight).text.toString()
             val userSecondInputNewPassword =
-                this.root.findViewById<EditText?>(R.id.newPwRight).text.toString()
+                this.root.findViewById<EditText?>(R.id.newPwAgainRight).text.toString()
             checkNewPassword(userInputOldPassword, userInputNewPassword, userSecondInputNewPassword)
+
+            clearPasswordEditText()
+
+            Helper.getHelperInstance().hideKeyboard(requireContext(), this.view)
         })
-
-        return this.root
     }
-
 
     override fun onPause() {
         super.onPause()
@@ -111,6 +111,8 @@ class ProfileFragment : Fragment() {
 
         this.viewModel.getCustomerFullNameByCustomerId(this.customerId)
             .removeObserver(this::setCustomerFullNameToFragment)
+
+        clearPasswordEditText()
 
     }
 
@@ -146,15 +148,33 @@ class ProfileFragment : Fragment() {
         if (userInputOldPassword == this.currentPassword) {
             if (newPassword == controllNewPassword) {
                 // TODO: Need to Fix, cant update password
-                this.viewModel.updateNewCustomerAccountPasswordByCustomerId(
-                    this.customerId,
-                    newPassword
-                )
+                this.viewModel.updateNewCustomerAccountPasswordByCustomerId(this.customerId, newPassword)
+                succesfulPasswordChange()
             }
         } else {
             failedNewPasswordAlert()
         }
     }
+
+    private fun hidePasswordChangeSection(){
+        this.root.findViewById<TextView?>(R.id.oldPwLeft).visibility = View.GONE
+        this.root.findViewById<EditText?>(R.id.oldPwRight).visibility = View.GONE
+        this.root.findViewById<TextView?>(R.id.newPwLeft).visibility = View.GONE
+        this.root.findViewById<EditText?>(R.id.newPwRight).visibility = View.GONE
+        this.root.findViewById<TextView?>(R.id.newPwAgainLeft).visibility = View.GONE
+        this.root.findViewById<EditText?>(R.id.newPwAgainRight).visibility = View.GONE
+        this.root.findViewById<Button?>(R.id.passwordSubmitButton).visibility =
+            View.GONE
+        Log.i("Switch Deaktiviert", "OK, down")
+    }
+
+    private fun clearPasswordEditText(){
+        this.root.findViewById<EditText?>(R.id.oldPwRight).text.clear()
+        this.root.findViewById<EditText?>(R.id.newPwRight).text.clear()
+        this.root.findViewById<EditText?>(R.id.newPwAgainRight).text.clear()
+    }
+
+
 
 
     private fun failedNewPasswordAlert() {
@@ -167,7 +187,7 @@ class ProfileFragment : Fragment() {
             // negative button text and action
             .setNegativeButton(
                 "Password nochmal ändern!",
-                DialogInterface.OnClickListener { dialog, id ->
+                DialogInterface.OnClickListener { dialog, _ ->
                     dialog.cancel()
                 })
 
@@ -178,4 +198,25 @@ class ProfileFragment : Fragment() {
         // show alert dialog
         alert.show()
     }
+
+
+    private fun succesfulPasswordChange() {
+        val dialogBuilder = AlertDialog.Builder(requireActivity())
+
+        // set message of alert dialog
+        dialogBuilder.setMessage("Das Password wurde geändert")
+            // if the dialog is cancelable
+            .setCancelable(false)
+            .setPositiveButton("Verstanden!", DialogInterface.OnClickListener { dialog, _ ->
+                dialog.cancel()
+            })
+
+        // create dialog box
+        val alert = dialogBuilder.create()
+        // set title for alert dialog box
+        alert.setTitle("Passwortänderung Erfolgreich!")
+        // show alert dialog
+        alert.show()
+    }
+
 }

@@ -1,10 +1,9 @@
 package de.fhe.ai.aurumbanking.model
 
 import androidx.annotation.NonNull
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
+import de.fhe.ai.aurumbanking.core.Converters
+import java.math.BigDecimal
 import java.util.Date
 
 @Entity(
@@ -15,6 +14,7 @@ import java.util.Date
         onDelete = ForeignKey.CASCADE
     )]
 )
+@TypeConverters(Converters::class)
 data class OrderInput(
     //
     // @ColumnInfo(name = "Tranaktion Date")
@@ -37,7 +37,7 @@ data class OrderInput(
 
 
     @ColumnInfo(name = "Money Value")
-    var moneyValue: Float? = null,
+    var moneyValue: BigDecimal? = null,
 
 
     @ColumnInfo(name = "Purpose Of Use")

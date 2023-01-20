@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.core.CustomerIdStore
+import de.fhe.ai.aurumbanking.core.Helper
 import de.fhe.ai.aurumbanking.view.StartActivity
 import java.util.regex.Pattern
 
@@ -57,6 +58,8 @@ class LogInFragment: Fragment() {
                 val emailLiveData = this.viewModel.mapOfCustomerEmailAndPassword
                 emailLiveData.observe(requireActivity(), this::checkLogin)
             }
+
+            Helper.getHelperInstance().hideKeyboard(requireContext(), this.view)
         }
 
         (root.findViewById<TextView>(R.id.UserPassword)).setOnKeyListener(View.OnKeyListener { _, keyCode, event ->

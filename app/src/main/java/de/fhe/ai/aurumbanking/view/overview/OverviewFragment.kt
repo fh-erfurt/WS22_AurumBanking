@@ -3,7 +3,6 @@ package de.fhe.ai.aurumbanking.view.overview
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.core.Helper
+import java.math.BigDecimal
 
 import java.util.*
 
@@ -104,7 +104,7 @@ class OverviewFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setCustomerDepotToFragment(depositValue : Float) {
+    private fun setCustomerDepotToFragment(depositValue : BigDecimal) {
         this.root.findViewById<TextView?>(R.id.userDepotLeft).text = "$depositValue\nEuro"
     }
 

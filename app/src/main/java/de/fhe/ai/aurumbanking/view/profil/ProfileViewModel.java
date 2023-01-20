@@ -28,7 +28,6 @@ public class ProfileViewModel extends AndroidViewModel {
 
     public LiveData<String> getCustomerFullNameByCustomerId(Long id){
         return customerRepository.getCustomerFullNameByCustomerId(id);
-
     }
 
     public LiveData<String> getCustomerFirstNameByCustomerId(Long id){

@@ -3,12 +3,7 @@
     <string name="passwort">Passwort</string>
     <string name="email">Email:</string>
     <string name="login">Login</string>
-    <string name="profil">Profil</string>
-    <string name="sichteinlagen">Sichteinlagen</string>
-    <string name="ueberweisung">Überweisung</string>
-    <string name="sa">Support Anfragen</string>
     <string name="beguenstigter">Begünstigter:</string>
-    <string name="name_of_beneficiary">Name of Beneficiary</string>
     <string name="iban_number">IBAN:</string>
     <string name="bank_name">Bank:</string>
     <string name="amountMoney">Betrag:</string>
@@ -20,7 +15,6 @@
     <string name="kind_of_request">Art der Anfrage:</string>
     <string name="select_kind_of_request">Select kind of request:</string>
 
-    <string name="selected_item">Selected item:</string>
     <string name="customer_contact_email">Email für Kontaktaufnahme:</string>
     <string name="customer_support_message">Nachricht:</string>
     <string name="send_request_btn">Anfrage absenden</string>
@@ -33,6 +27,7 @@
     <string name="change_pw_bnt">Passwort ändern</string>
     <string name="cirle_expenses_income">cirleExpensesIncome</string>
     <string-array name="kind_of_request">
+        <item></item>
         <item>Änderung von persönlichen Daten</item>
         <item>App Fehler</item>
         <item>Terminanfrage</item>

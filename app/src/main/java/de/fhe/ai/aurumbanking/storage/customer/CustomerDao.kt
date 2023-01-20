@@ -2,8 +2,10 @@ package de.fhe.ai.aurumbanking.storage.customer
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import de.fhe.ai.aurumbanking.core.Converters
 import de.fhe.ai.aurumbanking.model.*
 
+@TypeConverters(Converters::class)
 @Dao
 interface CustomerDao {
 

@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import java.math.BigDecimal;
+
 import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
 import de.fhe.ai.aurumbanking.storage.deposit.DepositRepository;
 
@@ -20,7 +22,7 @@ public class DepositViewModel extends AndroidViewModel {
         this.depositRepository = DepositRepository.getRepository(application);
     }
 
-    public LiveData<Float> getCustomerDepositByCustomerId(Long id){
+    public LiveData<BigDecimal> getCustomerDepositByCustomerId(Long id){
         return depositRepository.getCustomerDepositByCustomerId(id);
     }
 }

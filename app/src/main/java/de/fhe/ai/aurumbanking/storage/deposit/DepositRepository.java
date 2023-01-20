@@ -5,10 +5,14 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
+import java.math.BigDecimal;
+
 import de.fhe.ai.aurumbanking.model.Customer;
 import de.fhe.ai.aurumbanking.model.CustomerAddress;
 import de.fhe.ai.aurumbanking.model.CustomerCredentials;
 import de.fhe.ai.aurumbanking.model.Deposit;
+import de.fhe.ai.aurumbanking.model.OrderOutput;
+import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.core.CustomerBankingDatabase;
 import de.fhe.ai.aurumbanking.storage.customer.CustomerDao;
 import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
@@ -36,7 +40,12 @@ public class DepositRepository {
         this.depositDao = db.depositDao();
     }
 
-    public LiveData<Float> getCustomerDepositByCustomerId(Long id){
+
+    public void insertNewOutputTransactionByTransactionListId(OrderOutput orderOutput){
+        depositDao.insertNewOutputTransactionByTransactionListId(orderOutput);
+    }
+
+    public LiveData<BigDecimal> getCustomerDepositByCustomerId(Long id){
         return depositDao.getCustomerDepositByCustomerId(id);
     }
 
@@ -47,5 +56,10 @@ public class DepositRepository {
     public LiveData<String> getLatestMoneyValueFromOrderInputByCustomerId(Long id){
         return depositDao.getLatestMoneyValueFromOrderInputByCustomerId(id);
     }
+
+    public Long insertNewTransactionListFlagByCustomerId(TransactionList transactionList){
+        return depositDao.insertNewTransactionListFlagByCustomerId(transactionList);
+    }
+
 
 }

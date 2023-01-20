@@ -25,24 +25,4 @@ public class BaseFragment extends Fragment {
                         requireActivity().getApplication()
                 )).get(tClass);
     }
-
-
-    // TODO Add hideKey Button
-    /*
-        Helper method to hide the keyboard, for example when submitting a form.
-     */
-    public void hideKeyboard(Context context, View view) {
-        InputMethodManager imm = (InputMethodManager)context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-    }
-
-    /*
-        Helper Method to remove Back Button from Navigation/Action Bar at the top of the screen
-     */
-    protected void hideBackButton() {
-        // Hide Back Button
-        Objects.requireNonNull(
-                ((AppCompatActivity) requireActivity()).getSupportActionBar()
-        ).setDisplayHomeAsUpEnabled(false);
-    }
 }

@@ -15,6 +15,8 @@ import de.fhe.ai.aurumbanking.storage.deposit.DepositRepository;
 import com.github.javafaker.Address;
 import com.github.javafaker.Faker;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -62,12 +64,12 @@ public class MyApplication extends Application {
         // ----------------------------- Initialize Customer Deposit and Transactions Data ----------------------------
 
         // TODO: Fix Float Value
-        Deposit deposit = new Deposit((float) (Math.round(25000.00F *100)/100));
+        Deposit deposit = new Deposit(new BigDecimal(12452.25));
 
         TransactionList transactionList = new TransactionList(false);
 
         OrderInput orderInput = new OrderInput("Mainzer Werke GmBH","Deutsche Bank", "DE65069037901417863654",
-                "HELEDEF1CEM", (float) (Math.round(2800F *100)/100), "Gehalt"  );
+                "HELEDEF1CEM", (new BigDecimal("2400.00")), "Gehalt"  );
 
         // ----------------------------- Create Test Customer Account ----------------------------
         customerRepository.insertUserAccount(newCustomer, customerAddress, newUserCredentials, deposit, transactionList, orderInput);
