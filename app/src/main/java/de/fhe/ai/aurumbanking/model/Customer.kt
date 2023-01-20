@@ -12,9 +12,6 @@ data class Customer(
     @ColumnInfo(name = "Lastname")
     var lastname: String? = null,
 
-    @ColumnInfo(name = "Midname")
-    var midname: String? = null,
-
     @ColumnInfo(name = "Firstname")
     var firstname: String? = null,
 

@@ -1,18 +1,22 @@
 package de.fhe.ai.aurumbanking.core;
 
 import android.app.Application;
-import android.net.wifi.hotspot2.pps.Credential;
 import android.util.Log;
 
 import de.fhe.ai.aurumbanking.model.Customer;
 import de.fhe.ai.aurumbanking.model.CustomerAddress;
 import de.fhe.ai.aurumbanking.model.CustomerCredentials;
 import de.fhe.ai.aurumbanking.model.Deposit;
-import de.fhe.ai.aurumbanking.storage.Customer.Repository;
+import de.fhe.ai.aurumbanking.model.OrderInput;
+import de.fhe.ai.aurumbanking.model.TransactionList;
+import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
+import de.fhe.ai.aurumbanking.storage.deposit.DepositRepository;
 
 import com.github.javafaker.Address;
 import com.github.javafaker.Faker;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -29,7 +33,6 @@ public class MyApplication extends Application {
         super.onCreate();
 
         // this.settingsHandler = new SettingsHandler(this);
-
         testDatabase();
 
         Log.i(LOG_TAG, "On Create finished.");
@@ -38,23 +41,17 @@ public class MyApplication extends Application {
 
     private void testDatabase() {
 
+
+        // ----------------------------- Initialize Customer Personal And Account Data ----------------------------
         // Create Repo instance - which in turn will init the Contact DB
-        Repository customerRepository = new Repository(this);
+        CustomerRepository customerRepository = new CustomerRepository(this);
 
         Faker faker = Faker.instance();
 
         customerRepository.deleteAllCustomer();
 
-
-        //for(int index = 0; index < 3; index++){
-        //    Customer newCustomer = new Customer(faker.name().lastName(),
-        //            "", faker.name().firstName(),generateRandomEmail(), generatePhonenumber());
-        //
-        //    customerRepository.insertCustomer(newCustomer);
-        //}
-
         Customer newCustomer = new Customer(faker.name().lastName(),
-                         "", faker.name().firstName(),generateRandomEmail(), generatePhonenumber());
+                faker.name().firstName(), "t@t.de", generatePhonenumber());
 
         Address addressFaker = new Faker().address();
 
@@ -63,12 +60,19 @@ public class MyApplication extends Application {
 
         CustomerCredentials newUserCredentials = new CustomerCredentials("123");
 
-        Deposit deposit = new Deposit(25000.00F);
 
-        // TODO: erstmal rausgelassen, bei Erstellung der Datenbank wird ein Kunde mit Addresse angelegt
-        // customerRepository.insertCustomer(newCustomer);
+        // ----------------------------- Initialize Customer Deposit and Transactions Data ----------------------------
 
-        customerRepository.insertUserAccount(newCustomer, customerAddress, newUserCredentials, deposit);
+        // TODO: Fix Float Value
+        Deposit deposit = new Deposit(new BigDecimal(12452.25));
+
+        TransactionList transactionList = new TransactionList(false);
+
+        OrderInput orderInput = new OrderInput("Mainzer Werke GmBH","Deutsche Bank", "DE65069037901417863654",
+                "HELEDEF1CEM", (new BigDecimal("2400.00")), "Gehalt"  );
+
+        // ----------------------------- Create Test Customer Account ----------------------------
+        customerRepository.insertUserAccount(newCustomer, customerAddress, newUserCredentials, deposit, transactionList, orderInput);
 
     }
 

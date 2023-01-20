@@ -1,4 +1,4 @@
-package de.fhe.ai.aurumbanking.storage.Customer;
+package de.fhe.ai.aurumbanking.storage.core;
 
 import android.content.Context;
 import android.util.Log;
@@ -22,12 +22,14 @@ import de.fhe.ai.aurumbanking.model.Deposit;
 import de.fhe.ai.aurumbanking.model.OrderInput;
 import de.fhe.ai.aurumbanking.model.OrderOutput;
 import de.fhe.ai.aurumbanking.model.TransactionList;
+import de.fhe.ai.aurumbanking.storage.customer.CustomerDao;
+import de.fhe.ai.aurumbanking.storage.deposit.DepositDao;
 
 /*
     Class only there to init Database with all the entities
     Database class instance should be handled as Singleton
  */
-@Database( entities = {Customer.class, CustomerAddress.class, CustomerCredentials.class, Deposit.class, OrderInput.class, OrderOutput.class, TransactionList.class}, version = 1)
+@Database(entities = {Customer.class, CustomerAddress.class, CustomerCredentials.class, Deposit.class, OrderInput.class, OrderOutput.class, TransactionList.class}, version = 1)
 
 public abstract class CustomerBankingDatabase extends RoomDatabase {
 
@@ -38,13 +40,15 @@ public abstract class CustomerBankingDatabase extends RoomDatabase {
      */
     public abstract CustomerDao customerDao();
 
+    public abstract DepositDao depositDao();
+
 
     /*
       Executor service to perform database operations asynchronous and independent from UI thread
      */
     private static final int NUMBER_OF_THREADS = 4;
     private static final ExecutorService databaseExecutor =
-            Executors.newFixedThreadPool( NUMBER_OF_THREADS );
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     /*
         Singleton Instance
@@ -56,29 +60,29 @@ public abstract class CustomerBankingDatabase extends RoomDatabase {
         e.g. perform async database operations
      */
     public static <T> T query(Callable<T> task)
-            throws ExecutionException, InterruptedException
-    {
-        return databaseExecutor.invokeAny(Collections.singletonList( task ) );
+            throws ExecutionException, InterruptedException {
+        return databaseExecutor.invokeAny(Collections.singletonList(task));
     }
 
-    public static void execute( Runnable runnable )
-    {
-        databaseExecutor.execute( runnable );
+    public static void execute(Runnable runnable) {
+        databaseExecutor.execute(runnable);
     }
 
     /*
         Singleton 'getInstance' method to create database instance thereby opening and, if not
         already done, init the database. Note the 'createCallback'.
      */
-    static CustomerBankingDatabase getDatabase(final Context context) {
+    public static CustomerBankingDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (CustomerBankingDatabase.class) {
                 if (INSTANCE == null) {
-                            INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     CustomerBankingDatabase.class, "customer_db")
-                            .addCallback(createCallback) // See below
+                            .addCallback(createCallback)
+                            // TODO: Ask if ok?!
+                            .allowMainThreadQueries()
                             .build();
-                    Log.i( LOG_TAG, "CustomerBankingDatabase was initialized. ");
+                    Log.i(LOG_TAG, "CustomerBankingDatabase was initialized. ");
                 }
             }
         }
@@ -94,7 +98,7 @@ public abstract class CustomerBankingDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
 
-            Log.i( LOG_TAG, "Calling createCallback-methode!" );
+            Log.i(LOG_TAG, "Calling createCallback-methode!");
 
             /*
             execute(() -> {

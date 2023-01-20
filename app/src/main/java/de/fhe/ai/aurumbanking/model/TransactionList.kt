@@ -13,17 +13,27 @@ import androidx.room.PrimaryKey
         parentColumns = ["depositId"],
         childColumns = ["depositId"],
         onDelete = ForeignKey.CASCADE
-    )]
+    ),
+        ForeignKey(
+            entity = TransactionList::class,
+            parentColumns = ["transactionListId"],
+            childColumns = ["transactionListId"],
+            onDelete = ForeignKey.CASCADE
+        )]
 )
 data class TransactionList(
 
-    @ColumnInfo(name = "Transction Deduction Flag")
-    var TransctionDeductionFlag: Boolean? = null
+    @ColumnInfo(name = "Deduction Flag")
+    var deductionFlag: Boolean? = null
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "transactionListId", index = true)
-    var transactionListId: Long? = 0
+    var transactionListId : Long? = null
 
     @ColumnInfo(name = "depositId")
     var depositId: Long? = 0
+
+    @ColumnInfo(name = "customerId")
+    var customerId: Long? = null
+
 }
