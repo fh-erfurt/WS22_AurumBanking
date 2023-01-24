@@ -65,7 +65,7 @@
         android:layout_weight="1"
         android:background="@drawable/rightside_rounded_corner_style"
         android:gravity="center"
-        android:text="TextView"
+        android:text="Latest Transaction"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lastTransactionInformation" />
