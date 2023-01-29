@@ -1,6 +1,7 @@
 package de.fhe.ai.aurumbanking.core
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.room.TypeConverter
 import java.math.BigDecimal
 import java.text.SimpleDateFormat
@@ -28,6 +29,7 @@ object Converters {
 
     @TypeConverter
     fun stringToBigDecimal(value: String): BigDecimal {
+        Log.i("Sring to Decimal", "Value" + BigDecimal(value))
         return BigDecimal(value)
     }
 
