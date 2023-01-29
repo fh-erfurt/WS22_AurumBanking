@@ -15,7 +15,6 @@ interface CustomerDao {
         newUserCredentials: CustomerCredentials,
         deposit: Deposit,
         transactionList: TransactionList,
-        orderInput: OrderInput
     ) {
         customerAddress.customerId = customerId
         newUserCredentials.customerId = customerId
@@ -25,9 +24,7 @@ interface CustomerDao {
         val depositId = this.insertDeposit(deposit)
         transactionList.depositId = depositId
         transactionList.customerId = customerId
-        val transactionListId = this.insertTransactionList(transactionList)
-        orderInput.transactionListId = transactionListId
-        this.insertOrderInput(orderInput)
+        this.insertTransactionList(transactionList)
     }
 
     @Insert
@@ -45,11 +42,6 @@ interface CustomerDao {
     @Insert
     fun insertTransactionList(transactionList: TransactionList?): Long?
 
-    @Insert
-    fun insertOrderInput(orderInput: OrderInput?): Long?
-
-    @Insert
-    fun insertOrderOutput(orderOutput: OrderOutput?): Long?
 
     @Query("Update CustomerCredentials SET `User Password` = :newPassword  where customerId = :id" )
     fun updateNewCustomerAccountPasswordByCustomerId(id: Long, newPassword: String)
