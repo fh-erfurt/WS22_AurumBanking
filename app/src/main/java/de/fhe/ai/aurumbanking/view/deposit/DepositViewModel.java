@@ -25,4 +25,9 @@ public class DepositViewModel extends AndroidViewModel {
     public LiveData<BigDecimal> getCustomerDepositByCustomerId(Long id){
         return depositRepository.getCustomerDepositByCustomerId(id);
     }
+
+
+    public LiveData<BigDecimal> get(Long id){
+        return depositRepository.getCustomerDepositByCustomerId(id);
+    }
 }

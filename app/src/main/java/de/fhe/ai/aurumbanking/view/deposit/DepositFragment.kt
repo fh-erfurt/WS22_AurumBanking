@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.core.Helper
@@ -47,17 +48,15 @@ class DepositFragment : Fragment(){
         val currentDepotCountry = this.root.findViewById<ImageView>(R.id.userDepotRight)
         currentDepotCountry.setImageResource(R.drawable.europaische_union)
 
-
-        // Get RecyclerView Reference
-
         // Get RecyclerView Reference
         val latestDepotTransaction = root.findViewById<RecyclerView>(R.id.latestDepotTransaction)
 
-        val adapter : TransactionListAdapter = TransactionListAdapter(requireActivity(), transactionListId {
-            var args : Bundle = Bundle()
-            args.putLong(ARG_TRANSACTIONLISTID_ID ,transactionListId)
+        val adapter : TransactionListAdapter = TransactionListAdapter(requireActivity())
 
-        })
+        latestDepotTransaction.adapter = adapter
+        latestDepotTransaction.layoutManager = LinearLayoutManager(requireActivity())
+
+
 
 
         return this.root
@@ -69,3 +68,5 @@ class DepositFragment : Fragment(){
         this.root.findViewById<TextView?>(R.id.userDepotLeft).text = "${depositValue.toString()}\nEuro"
     }
 }
+
+

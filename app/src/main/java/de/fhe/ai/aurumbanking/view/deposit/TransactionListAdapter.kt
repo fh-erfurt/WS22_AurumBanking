@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.model.TransactionList
 
-public class TransactionListAdapter(context : Context, transactionListListener : TransactionListListener):
+public class TransactionListAdapter(context : Context):
     RecyclerView.Adapter<TransactionListAdapter.TransactionViewHolder>() {
 
 
@@ -50,7 +50,7 @@ public class TransactionListAdapter(context : Context, transactionListListener :
 
     init{
         this.inflater = LayoutInflater.from(context)
-        this.transactionListListener = transactionListListener
+        //this.transactionListListener = transactionListListener
     }
 
 

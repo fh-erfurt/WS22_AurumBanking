@@ -61,5 +61,9 @@ public class DepositRepository {
         return depositDao.insertNewTransactionListFlagByCustomerId(transactionList);
     }
 
+    public LiveData<>(TransactionList transactionList){
+        return depositDao.insertNewTransactionListFlagByCustomerId(transactionList);
+    }
+
 
 }
