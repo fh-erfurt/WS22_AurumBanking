@@ -18,7 +18,6 @@ import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.core.Converters
 import de.fhe.ai.aurumbanking.core.Helper
 import de.fhe.ai.aurumbanking.model.TransactionList
-import de.fhe.ai.aurumbanking.view.profil.ProfileViewModel
 import java.util.*
 
 class MoneyTransferFragment : Fragment() {
@@ -82,26 +81,22 @@ class MoneyTransferFragment : Fragment() {
 
             var dateFromEditText = root.findViewById<EditText?>(R.id.dateOfTransferRight).text.toString()
 
-
             var beneficiary = root.findViewById<EditText?>(R.id.beneficiaryRight).text.toString()
             var iban = root.findViewById<EditText?>(R.id.ibanRight).text.toString()
             var bankName = root.findViewById<EditText?>(R.id.bankNameRight).text.toString()
-            // TODO need Iban UI
             var bic = root.findViewById<EditText?>(R.id.bicRight).toString()
             var moneyValueFromEditText = root.findViewById<EditText?>(R.id.amountMoneyRight).text.toString()
 
             Log.i("Money String", "Show:" + moneyValueFromEditText)
-
-
             var purposeOfUse = root.findViewById<EditText?>(R.id.UsageRight).text.toString()
 
             val newTransactionListElement = TransactionList(true)
             newTransactionListElement.customerId = this.customerId
+
+            // deposit ID == customerId (IMMER, ein Kunde hat immer ein Deposit)
             newTransactionListElement.depositId = this.customerId
 
-            val transactionListId = viewModel.insertNewTransactionListFlagByCustomerId(newTransactionListElement)
-
-            checkTransferInputfield(dateFromEditText, beneficiary, iban, bankName, bic, moneyValueFromEditText, purposeOfUse, transactionListId)
+            checkTransferInputfield(dateFromEditText, beneficiary, iban, bankName, bic, moneyValueFromEditText, purposeOfUse)
 
 
             Helper.getHelperInstance().hideKeyboard(requireContext(), this.view)
@@ -109,16 +104,16 @@ class MoneyTransferFragment : Fragment() {
     }
 
 
-    fun checkTransferInputfield(dateFromEditText: String, beneficiary : String, iban : String, bankName: String, bic: String, moneyValue : String, purposeOfUse : String , transactionListId: Long){
+    fun checkTransferInputfield(dateFromEditText: String, beneficiary : String, iban : String, bankName: String, bic: String, moneyValue : String, purposeOfUse : String){
         if(dateFromEditText.trim().length == 0 && beneficiary.trim().length == 0 && iban.trim().length == 0 && bankName.trim().length == 0 && bic.trim().length == 0
             && moneyValue.trim().length == 0 && purposeOfUse.trim().length == 0){
             failedTransaction()
         }
         else{
-            var date = Converters.fromDateToString(dateFromEditText)
+            var date = Converters.fromStringToDate(dateFromEditText)
             var moneyValue = Converters.stringToBigDecimal(moneyValue)
-            viewModel.prepareNewOutputTransactionByTransactionListId(date,beneficiary,iban,bankName,
-                moneyValue, purposeOfUse , transactionListId )
+            viewModel.insertNewTransactionListElementByCustomerId(this.customerId, this.customerId, date,beneficiary,iban,bankName,
+                moneyValue, purposeOfUse)
             succesfulTransaction()
         }
 

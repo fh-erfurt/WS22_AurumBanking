@@ -12,7 +12,7 @@ object Converters {
 
     @SuppressLint("SimpleDateFormat")
     @TypeConverter
-    fun fromDateToString(dateString : String) : Date? {
+    fun fromStringToDate(dateString : String) : Date? {
         return SimpleDateFormat("dd.MM.yyyy").parse(dateString);
     }
 
