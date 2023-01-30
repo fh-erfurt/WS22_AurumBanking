@@ -51,6 +51,9 @@ public class DepositRepository {
         return depositDao.getLatestMoneyValueFromTransactionListByCustomerId(id);
     }
 
+    public void updateCustomerDeposit(Long id, BigDecimal newDeposit){
+        depositDao.updateCustomerDepositByCustomerId(id, newDeposit);
+    }
 
 
 }
