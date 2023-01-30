@@ -48,7 +48,7 @@ class LogInFragment: Fragment() {
         this.viewModel = ViewModelProvider(this)[LogInFragmentViewModel::class.java]
 
 
-        login_Button.setOnClickListener() {
+       login_Button.setOnClickListener() {
             this.email = root.findViewById<TextView?>(R.id.UserEmailAddress).text.toString()
             this.password = root.findViewById<TextView?>(R.id.UserPassword).text.toString()
 
@@ -58,6 +58,8 @@ class LogInFragment: Fragment() {
             }
 
             Helper.getHelperInstance().hideKeyboard(requireContext(), this.view)
+
+           login_Button.isEnabled
         }
 
         (root.findViewById<TextView>(R.id.UserPassword)).setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
@@ -75,6 +77,13 @@ class LogInFragment: Fragment() {
 
 
         return root
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        this.viewModel.mapOfCustomerEmailAndPassword.removeObserver(this::checkLogin)
+
     }
 
 

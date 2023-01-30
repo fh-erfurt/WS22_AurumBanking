@@ -48,15 +48,17 @@ class DepositFragment : Fragment(){
         val currentDepotCountry = this.root.findViewById<ImageView>(R.id.userDepotRight)
         currentDepotCountry.setImageResource(R.drawable.europaische_union)
 
+        // RecyclerView Stuff
+        // ---------------------------------------
         // Get RecyclerView Reference
         val latestDepotTransaction = root.findViewById<RecyclerView>(R.id.latestDepotTransaction)
 
-        val adapter : TransactionListAdapter = TransactionListAdapter(requireActivity())
+        val adapter : DepositTransactionListAdapter = DepositTransactionListAdapter(requireActivity())
 
         latestDepotTransaction.adapter = adapter
         latestDepotTransaction.layoutManager = LinearLayoutManager(requireActivity())
 
-
+        viewModel.getAllTransactionListElementByCustomerId(this.customerId).observe(this.requireActivity(), adapter::setTransactionList)
 
 
         return this.root

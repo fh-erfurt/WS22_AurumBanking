@@ -27,7 +27,7 @@ data class TransactionList(
     var outputFlag: Boolean? = null,
 
     @ColumnInfo(name = "Tranaction Date")
-    var transactionDate: Date? = null,
+    var transactionDate: String? = null,
 
 
     @ColumnInfo(name = "Beneficiary")

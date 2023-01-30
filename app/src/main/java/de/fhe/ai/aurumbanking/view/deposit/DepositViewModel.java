@@ -7,7 +7,9 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
 import de.fhe.ai.aurumbanking.storage.deposit.DepositRepository;
 
@@ -26,8 +28,8 @@ public class DepositViewModel extends AndroidViewModel {
         return depositRepository.getCustomerDepositByCustomerId(id);
     }
 
-
-    public LiveData<BigDecimal> get(Long id){
-        return depositRepository.getCustomerDepositByCustomerId(id);
+    public LiveData<List<TransactionList>> getAllTransactionListElementByCustomerId(Long id){
+        return depositRepository.getAllTransactionListElementByCustomerId(id);
     }
+
 }
