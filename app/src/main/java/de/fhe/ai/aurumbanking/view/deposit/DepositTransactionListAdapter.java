@@ -22,6 +22,7 @@ public class DepositTransactionListAdapter extends RecyclerView.Adapter<DepositT
         private final TextView valueForTransaction;
         private final ImageView iconKindOfTransaction;
 
+
         private TransactionListViewHolder(View itemView) {
             super(itemView);
             this.valueForTransaction = itemView.findViewById(R.id.lastTransaction);
@@ -72,8 +73,12 @@ public class DepositTransactionListAdapter extends RecyclerView.Adapter<DepositT
         return 0;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setTransactionList(List<TransactionList> transactionList){
         this.transactionList = transactionList;
         notifyDataSetChanged();
     }
+
+
+
 }

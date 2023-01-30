@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -41,7 +42,6 @@ class DepositFragment : Fragment(){
         this.viewModel.getCustomerDepositByCustomerId(this.customerId)
             .observe(this.requireActivity(), this::setCustomerDepotToFragment)
 
-        // TODO: Fix XML, zu klein
         val depositInformation = this.root.findViewById<TextView?>(R.id.depotDateInformation)
         depositInformation.text = "Sichteinlagen vom "+ helper.getDate(false).toString()
 
@@ -51,23 +51,47 @@ class DepositFragment : Fragment(){
         // RecyclerView Stuff
         // ---------------------------------------
         // Get RecyclerView Reference
-        val latestDepotTransaction = root.findViewById<RecyclerView>(R.id.latestDepotTransaction)
+        val latestDepotTransaction = root.findViewById<RecyclerView?>(R.id.latestDepotTransaction)
 
         val adapter : DepositTransactionListAdapter = DepositTransactionListAdapter(requireActivity())
 
         latestDepotTransaction.adapter = adapter
         latestDepotTransaction.layoutManager = LinearLayoutManager(requireActivity())
 
-        viewModel.getAllTransactionListElementByCustomerId(this.customerId).observe(this.requireActivity(), adapter::setTransactionList)
+        this.viewModel.transactionList.observe(this.requireActivity(), adapter::setTransactionList)
 
 
         return this.root
 
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        val searchItem : SearchView = this.root.findViewById<SearchView>(R.id.searchDepotTransaction)
+        searchItem.setOnQueryTextListener( object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                Helper.getHelperInstance().hideKeyboard(requireActivity(), searchItem)
+                return true
+            }
+
+            override fun onQueryTextChange(searchTerm: String): Boolean {
+                DepositFragment().setSearchTerm(searchTerm)
+                return true
+            }
+        })
+    }
+
     @SuppressLint("SetTextI18n")
     private fun setCustomerDepotToFragment(depositValue : BigDecimal) {
         this.root.findViewById<TextView?>(R.id.userDepotLeft).text = "${depositValue.toString()}\nEuro"
+    }
+
+    // TODO: need help, dont know how to fix
+    private fun setSearchTerm( searchTerm: String){
+        // this.viewModel = ViewModelProvider(requireActivity())[DepositViewModel::class.java]
+        this.viewModel.setSearchTerm(searchTerm)
     }
 }
 
