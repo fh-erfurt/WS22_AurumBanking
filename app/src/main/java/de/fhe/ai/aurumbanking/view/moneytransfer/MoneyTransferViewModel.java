@@ -4,11 +4,11 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-import de.fhe.ai.aurumbanking.model.OrderOutput;
 import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
 import de.fhe.ai.aurumbanking.storage.deposit.DepositRepository;
@@ -24,16 +24,30 @@ public class MoneyTransferViewModel extends AndroidViewModel {
         this.depositRepository = DepositRepository.getRepository(application);
     }
 
-    public Long insertNewTransactionListFlagByCustomerId(TransactionList transactionList){
-        return depositRepository.insertNewTransactionListFlagByCustomerId(transactionList);
+    public Long insertNewTransactionListElementByCustomerId(Long customerId, Long depositId , Date date, String beneficiary, String iban, String bankName,
+                                                            BigDecimal moneyValue, String purposeOfUse, BigDecimal newDepotValue){
+
+        TransactionList transactionList = new TransactionList();
+        transactionList.setOutputFlag(true);
+        transactionList.setCustomerId(customerId);
+        transactionList.setDepositId(depositId);
+        transactionList.setTransactionDate(date);
+        transactionList.setBeneficiary(beneficiary);
+        transactionList.setIban(iban);
+        transactionList.setBankname(bankName);
+        transactionList.setMoneyValue(moneyValue);
+        transactionList.setPurposeOfUse(purposeOfUse);
+
+        depositRepository.updateCustomerDeposit(customerId, newDepotValue);
+
+        return depositRepository.insertNewTransactionListElementByCustomerId(transactionList);
     }
 
-    private void insertNewOutputTransactionByTransactionListId(Long id, OrderOutput orderOutput){
-        depositRepository.insertNewOutputTransactionByTransactionListId(orderOutput);
+    public LiveData<BigDecimal> getCustomerDepositByCustomerId(Long id){
+        return depositRepository.getCustomerDepositByCustomerId(id);
     }
 
-    public void prepareNewOutputTransactionByTransactionListId(Date date, String beneficiary, String iBAN, String destinationBankname,
-                                                               BigDecimal moneyValue, String purposeOfUse , Long transactionListId ){
 
-    }
+
+
 }

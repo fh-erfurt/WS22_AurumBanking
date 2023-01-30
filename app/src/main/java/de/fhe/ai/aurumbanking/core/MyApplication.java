@@ -7,7 +7,6 @@ import de.fhe.ai.aurumbanking.model.Customer;
 import de.fhe.ai.aurumbanking.model.CustomerAddress;
 import de.fhe.ai.aurumbanking.model.CustomerCredentials;
 import de.fhe.ai.aurumbanking.model.Deposit;
-import de.fhe.ai.aurumbanking.model.OrderInput;
 import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
 import de.fhe.ai.aurumbanking.storage.deposit.DepositRepository;
@@ -17,6 +16,7 @@ import com.github.javafaker.Faker;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -64,15 +64,15 @@ public class MyApplication extends Application {
         // ----------------------------- Initialize Customer Deposit and Transactions Data ----------------------------
 
         // TODO: Fix Float Value
-        Deposit deposit = new Deposit(new BigDecimal(12452.25));
+        Deposit deposit = new Deposit(new BigDecimal(7500.00));
 
-        TransactionList transactionList = new TransactionList(false);
 
-        OrderInput orderInput = new OrderInput("Mainzer Werke GmBH","Deutsche Bank", "DE65069037901417863654",
-                "HELEDEF1CEM", (new BigDecimal("2400.00")), "Gehalt"  );
+
+        TransactionList transactionList = new TransactionList(false, Converters.INSTANCE.fromStringToDate("29.01.2023"), "Gehalt",
+                "DE65069037901417863654", "HELEDEF1CEM", "Deutsche Bank",  (new BigDecimal("2400.00")) ,"Gehalt" );
 
         // ----------------------------- Create Test Customer Account ----------------------------
-        customerRepository.insertUserAccount(newCustomer, customerAddress, newUserCredentials, deposit, transactionList, orderInput);
+        customerRepository.insertUserAccount(newCustomer, customerAddress, newUserCredentials, deposit, transactionList);
 
     }
 

@@ -7,15 +7,8 @@ import androidx.lifecycle.LiveData;
 
 import java.math.BigDecimal;
 
-import de.fhe.ai.aurumbanking.model.Customer;
-import de.fhe.ai.aurumbanking.model.CustomerAddress;
-import de.fhe.ai.aurumbanking.model.CustomerCredentials;
-import de.fhe.ai.aurumbanking.model.Deposit;
-import de.fhe.ai.aurumbanking.model.OrderOutput;
 import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.core.CustomerBankingDatabase;
-import de.fhe.ai.aurumbanking.storage.customer.CustomerDao;
-import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
 
 public class DepositRepository {
 
@@ -40,25 +33,26 @@ public class DepositRepository {
         this.depositDao = db.depositDao();
     }
 
-
-    public void insertNewOutputTransactionByTransactionListId(OrderOutput orderOutput){
-        depositDao.insertNewOutputTransactionByTransactionListId(orderOutput);
-    }
-
     public LiveData<BigDecimal> getCustomerDepositByCustomerId(Long id){
         return depositDao.getCustomerDepositByCustomerId(id);
     }
 
-    public LiveData<Boolean> getLatestDeductionFlagByCustomerId(Long id){
-        return depositDao.getLatestDeductionFlagByCustomerId(id);
+    public LiveData<Boolean> getLatestOutputFlagByCustomerId(Long id){
+        return depositDao.getLatestOutputFlagByCustomerId(id);
     }
 
-    public LiveData<String> getLatestMoneyValueFromOrderInputByCustomerId(Long id){
-        return depositDao.getLatestMoneyValueFromOrderInputByCustomerId(id);
+
+    public Long insertNewTransactionListElementByCustomerId(TransactionList transactionList){
+        return depositDao.insertNewTransactionListElementByCustomerId(transactionList);
     }
 
-    public Long insertNewTransactionListFlagByCustomerId(TransactionList transactionList){
-        return depositDao.insertNewTransactionListFlagByCustomerId(transactionList);
+
+    public LiveData<String> getLatestMoneyValueFromTransactionListByCustomerId(Long id){
+        return depositDao.getLatestMoneyValueFromTransactionListByCustomerId(id);
+    }
+
+    public void updateCustomerDeposit(Long id, BigDecimal newDeposit){
+        depositDao.updateCustomerDepositByCustomerId(id, newDeposit);
     }
 
     public LiveData<>(TransactionList transactionList){
