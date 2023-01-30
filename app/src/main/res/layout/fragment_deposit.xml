@@ -54,7 +54,7 @@
 
         </ImageView>
 
-        <SearchView
+        <android.widget.SearchView
             android:id="@+id/searchDepotTransaction"
             android:layout_width="257dp"
             android:layout_height="28dp"
@@ -70,14 +70,13 @@
             android:id="@+id/latestDepotTransaction"
             android:layout_width="373dp"
             android:layout_height="532dp"
-            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.736"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchDepotTransaction"
             app:layout_constraintVertical_bias="1.0"
-            tools:listitem="@layout/user_transaction_list" />
+            tools:listitem="@layout/transaction_list_design" />
 
 
 

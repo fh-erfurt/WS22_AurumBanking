@@ -45,6 +45,7 @@ public class MyApplication extends Application {
         // ----------------------------- Initialize Customer Personal And Account Data ----------------------------
         // Create Repo instance - which in turn will init the Contact DB
         CustomerRepository customerRepository = new CustomerRepository(this);
+        DepositRepository depositRepository = new DepositRepository(this);
 
         Faker faker = Faker.instance();
 
@@ -63,16 +64,14 @@ public class MyApplication extends Application {
 
         // ----------------------------- Initialize Customer Deposit and Transactions Data ----------------------------
 
-        // TODO: Fix Float Value
-        Deposit deposit = new Deposit(new BigDecimal(7500.00));
+        Deposit deposit = new Deposit(new BigDecimal("7500.00"));
 
-
-
-        TransactionList transactionList = new TransactionList(false, Converters.INSTANCE.fromStringToDate("29.01.2023"), "Gehalt",
+        TransactionList transactionList = new TransactionList(false, "01.02.2023", "Gehalt",
                 "DE65069037901417863654", "HELEDEF1CEM", "Deutsche Bank",  (new BigDecimal("2400.00")) ,"Gehalt" );
 
         // ----------------------------- Create Test Customer Account ----------------------------
         customerRepository.insertUserAccount(newCustomer, customerAddress, newUserCredentials, deposit, transactionList);
+        //depositRepository
 
     }
 

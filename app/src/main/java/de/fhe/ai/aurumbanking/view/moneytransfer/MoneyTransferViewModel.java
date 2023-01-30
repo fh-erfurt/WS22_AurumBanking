@@ -24,7 +24,7 @@ public class MoneyTransferViewModel extends AndroidViewModel {
         this.depositRepository = DepositRepository.getRepository(application);
     }
 
-    public Long insertNewTransactionListElementByCustomerId(Long customerId, Long depositId , Date date, String beneficiary, String iban, String bankName,
+    public Long insertNewTransactionListElementByCustomerId(Long customerId, Long depositId , String date, String beneficiary, String iban, String bankName,
                                                             BigDecimal moneyValue, String purposeOfUse, BigDecimal newDepotValue){
 
         TransactionList transactionList = new TransactionList();

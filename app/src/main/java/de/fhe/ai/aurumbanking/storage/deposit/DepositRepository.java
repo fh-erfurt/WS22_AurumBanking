@@ -6,6 +6,7 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.core.CustomerBankingDatabase;
@@ -55,5 +56,7 @@ public class DepositRepository {
         depositDao.updateCustomerDepositByCustomerId(id, newDeposit);
     }
 
-
+    public LiveData<List<TransactionList>>getAllTransactionListElementByCustomerId(Long id){
+        return depositDao.getAllTransactionListElementByCustomerId(id);
+    }
 }

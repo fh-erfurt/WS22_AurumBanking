@@ -8,6 +8,7 @@ import androidx.room.Query;
 import androidx.room.TypeConverters;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import de.fhe.ai.aurumbanking.core.Converters;
 import de.fhe.ai.aurumbanking.model.TransactionList;
@@ -40,4 +41,6 @@ public interface DepositDao {
     @Query("Update Deposit SET `Current Depostit Value` = :newDepositValue  where customerId = :id" )
     void updateCustomerDepositByCustomerId( Long id, BigDecimal newDepositValue);
 
+    @Query("Select * from TransactionList where customerId = :id")
+    LiveData<List<TransactionList>>getAllTransactionListElementByCustomerId(Long id);
 }

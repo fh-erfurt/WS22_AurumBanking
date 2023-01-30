@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".view.deposit.DepositFragment">
+
+    <ImageButton
+        android:id="@+id/iconKindOfTransaction"
+        android:layout_width="150dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/leftside_rounded_corner_style"
+        android:gravity="center"
+        android:padding="25dp"
+        android:scaleType="fitCenter"
+        android:textColor="@color/white"
+        android:includeFontPadding="false"/>
+
+    <TextView
+        android:id="@+id/lastTransaction"
+        android:layout_width="150dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="4dp"
+        android:layout_weight="1"
+        android:background="@drawable/rightside_rounded_corner_style"
+        android:text="@string/latest_transaction"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:includeFontPadding="false"/>
+
+
+
+</LinearLayout>

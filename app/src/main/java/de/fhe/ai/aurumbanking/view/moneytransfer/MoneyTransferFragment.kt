@@ -26,7 +26,7 @@ class MoneyTransferFragment : Fragment() {
     private val STORE_KEY_COUNTER = "CustomerId"
     private lateinit var viewModel: MoneyTransferViewModel
 
-    private lateinit var transferDate: EditText
+    private lateinit var transferDatePicker: EditText
     private lateinit var thiscontext: Context
     private lateinit var root: View
 
@@ -46,9 +46,9 @@ class MoneyTransferFragment : Fragment() {
 
         this.viewModel = ViewModelProvider(this)[MoneyTransferViewModel::class.java]
 
-        transferDate = root.findViewById<EditText?>(R.id.dateOfTransferRight)
+        transferDatePicker = root.findViewById<EditText?>(R.id.dateOfTransferRight)
 
-        transferDate.setOnClickListener {
+        transferDatePicker.setOnClickListener {
 
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
@@ -61,7 +61,7 @@ class MoneyTransferFragment : Fragment() {
                     { _, year, monthOfYear, dayOfMonth ->
                         // setting date to our edit text.
                         val date = (dayOfMonth.toString() + "." + (monthOfYear + 1) + "." + year)
-                        transferDate.setText(date)
+                        transferDatePicker.setText(date)
                     },
                     // passing year, month and day for the selected date in our date picker.
                     year, month, day
@@ -86,16 +86,15 @@ class MoneyTransferFragment : Fragment() {
 
             // TODO: Check empty stuff fix
 
-            var dateFromEditText = root.findViewById<EditText?>(R.id.dateOfTransferRight).text.toString()
-
-            var beneficiary = root.findViewById<EditText?>(R.id.beneficiaryRight).text.toString()
-            var iban = root.findViewById<EditText?>(R.id.ibanRight).text.toString()
-            var bankName = root.findViewById<EditText?>(R.id.bankNameRight).text.toString()
-            var bic = root.findViewById<EditText?>(R.id.bicRight).toString()
-            var moneyValueFromEditText = root.findViewById<EditText?>(R.id.amountMoneyRight).text.toString()
+            val dateFromEditText = root.findViewById<EditText?>(R.id.dateOfTransferRight).text.toString()
+            val beneficiary = root.findViewById<EditText?>(R.id.beneficiaryRight).text.toString()
+            val iban = root.findViewById<EditText?>(R.id.ibanRight).text.toString()
+            val bankName = root.findViewById<EditText?>(R.id.bankNameRight).text.toString()
+            val bic = root.findViewById<EditText?>(R.id.bicRight).toString()
+            val moneyValueFromEditText = root.findViewById<EditText?>(R.id.amountMoneyRight).text.toString()
 
             Log.i("Money String", "Show:" + moneyValueFromEditText)
-            var purposeOfUse = root.findViewById<EditText?>(R.id.UsageRight).text.toString()
+            val purposeOfUse = root.findViewById<EditText?>(R.id.UsageRight).text.toString()
 
             val newTransactionListElement = TransactionList(true)
             newTransactionListElement.customerId = this.customerId
@@ -111,14 +110,16 @@ class MoneyTransferFragment : Fragment() {
 
 
     fun checkTransferInputfield(dateFromEditText: String, beneficiary : String, iban : String, bankName: String, bic: String, moneyValue : String, purposeOfUse : String){
-        if(dateFromEditText.trim().length == 0 && beneficiary.trim().length == 0 && iban.trim().length == 0 && bankName.trim().length == 0 && bic.trim().length == 0
-            && moneyValue.trim().length == 0 && purposeOfUse.trim().length == 0){
+        if(dateFromEditText.trim().isEmpty() && beneficiary.trim().isEmpty() && iban.trim()
+                .isEmpty() && bankName.trim().isEmpty() && bic.trim().isEmpty()
+            && moneyValue.trim().isEmpty() && purposeOfUse.trim().isEmpty()
+        ){
             failedTransaction()
         }
         else{
-            var date = Converters.fromStringToDate(dateFromEditText)
-            var moneyValue = Converters.stringToBigDecimal(moneyValue)
-            var newDepotValue = this.depotValue?.minus(moneyValue)
+            val date = dateFromEditText
+            val moneyValue = Converters.stringToBigDecimal(moneyValue)
+            val newDepotValue = this.depotValue?.minus(moneyValue)
 
             viewModel.insertNewTransactionListElementByCustomerId(this.customerId, this.customerId, date,beneficiary,iban,bankName,
                 moneyValue, purposeOfUse,newDepotValue )

@@ -26,6 +26,7 @@
     <string name="new_pw_check">Neue Passwort wiederholen:</string>
     <string name="change_pw_bnt">Passwort ändern</string>
     <string name="cirle_expenses_income">cirleExpensesIncome</string>
+    <string name="latest_transaction">Latest Transaction</string>
     <string-array name="kind_of_request">
         <item></item>
         <item>Änderung von persönlichen Daten</item>
