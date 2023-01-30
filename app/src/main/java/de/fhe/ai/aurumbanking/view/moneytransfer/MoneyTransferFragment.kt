@@ -18,6 +18,7 @@ import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.core.Converters
 import de.fhe.ai.aurumbanking.core.Helper
 import de.fhe.ai.aurumbanking.model.TransactionList
+import java.math.BigDecimal
 import java.util.*
 
 class MoneyTransferFragment : Fragment() {
@@ -28,6 +29,9 @@ class MoneyTransferFragment : Fragment() {
     private lateinit var transferDate: EditText
     private lateinit var thiscontext: Context
     private lateinit var root: View
+
+    private var depotValue: BigDecimal? = null
+
 
     private var helper: Helper = Helper.getHelperInstance()
 
@@ -67,6 +71,9 @@ class MoneyTransferFragment : Fragment() {
             datePickerDialog?.show()
         }
 
+        this.viewModel.getCustomerDepositByCustomerId(this.customerId).observe(this.requireActivity(), this::convertCurrentDepotValueLiveData)
+
+
         return root
     }
 
@@ -98,7 +105,6 @@ class MoneyTransferFragment : Fragment() {
 
             checkTransferInputfield(dateFromEditText, beneficiary, iban, bankName, bic, moneyValueFromEditText, purposeOfUse)
 
-
             Helper.getHelperInstance().hideKeyboard(requireContext(), this.view)
         }
     }
@@ -112,8 +118,10 @@ class MoneyTransferFragment : Fragment() {
         else{
             var date = Converters.fromStringToDate(dateFromEditText)
             var moneyValue = Converters.stringToBigDecimal(moneyValue)
+            var newDepotValue = this.depotValue?.minus(moneyValue)
+
             viewModel.insertNewTransactionListElementByCustomerId(this.customerId, this.customerId, date,beneficiary,iban,bankName,
-                moneyValue, purposeOfUse)
+                moneyValue, purposeOfUse,newDepotValue )
             succesfulTransaction()
         }
 
@@ -161,6 +169,10 @@ class MoneyTransferFragment : Fragment() {
         alert.setTitle("Transaktion Erfolgreich!")
         // show alert dialog
         alert.show()
+    }
+
+    fun convertCurrentDepotValueLiveData(currentDepotValue: BigDecimal) {
+        this.depotValue = currentDepotValue
     }
 }
 

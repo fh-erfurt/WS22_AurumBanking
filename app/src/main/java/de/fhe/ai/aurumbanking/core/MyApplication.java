@@ -64,7 +64,7 @@ public class MyApplication extends Application {
         // ----------------------------- Initialize Customer Deposit and Transactions Data ----------------------------
 
         // TODO: Fix Float Value
-        Deposit deposit = new Deposit(new BigDecimal(12452.25));
+        Deposit deposit = new Deposit(new BigDecimal(7500.00));
 
 
 

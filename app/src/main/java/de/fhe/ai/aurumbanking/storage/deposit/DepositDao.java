@@ -35,4 +35,9 @@ public interface DepositDao {
 
     @Query("Select tr.Beneficiary||','||tr.`Money Value` from TransactionList tr  INNER Join customer c ON tr.customerId = c.customerId WHERE c.customerId = :customerId ORDER BY tr.transactionListId DESC LIMIT 1")
     LiveData<String> getLatestMoneyValueFromTransactionListByCustomerId(Long customerId);
+
+
+    @Query("Update Deposit SET `Current Depostit Value` = :newDepositValue  where customerId = :id" )
+    void updateCustomerDepositByCustomerId( Long id, BigDecimal newDepositValue);
+
 }

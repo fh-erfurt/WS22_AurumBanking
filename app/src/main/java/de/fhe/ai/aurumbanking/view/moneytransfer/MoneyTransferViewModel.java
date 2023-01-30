@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -24,7 +25,7 @@ public class MoneyTransferViewModel extends AndroidViewModel {
     }
 
     public Long insertNewTransactionListElementByCustomerId(Long customerId, Long depositId , Date date, String beneficiary, String iban, String bankName,
-                                                            BigDecimal moneyValue, String purposeOfUse){
+                                                            BigDecimal moneyValue, String purposeOfUse, BigDecimal newDepotValue){
 
         TransactionList transactionList = new TransactionList();
         transactionList.setOutputFlag(true);
@@ -37,7 +38,16 @@ public class MoneyTransferViewModel extends AndroidViewModel {
         transactionList.setMoneyValue(moneyValue);
         transactionList.setPurposeOfUse(purposeOfUse);
 
+        depositRepository.updateCustomerDeposit(customerId, newDepotValue);
+
         return depositRepository.insertNewTransactionListElementByCustomerId(transactionList);
     }
+
+    public LiveData<BigDecimal> getCustomerDepositByCustomerId(Long id){
+        return depositRepository.getCustomerDepositByCustomerId(id);
+    }
+
+
+
 
 }

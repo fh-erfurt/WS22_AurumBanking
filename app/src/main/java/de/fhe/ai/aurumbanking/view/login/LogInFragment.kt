@@ -16,7 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.core.CustomerIdStore
 import de.fhe.ai.aurumbanking.core.Helper
-import de.fhe.ai.aurumbanking.view.StartActivity
+import de.fhe.ai.aurumbanking.view.MainActivity
 import java.util.regex.Pattern
 
 
@@ -53,8 +53,6 @@ class LogInFragment: Fragment() {
             this.password = root.findViewById<TextView?>(R.id.UserPassword).text.toString()
 
             if (validateEmail()){
-
-                //TODO: need an Oberserver, to get the Data from Live Data
                 val emailLiveData = this.viewModel.mapOfCustomerEmailAndPassword
                 emailLiveData.observe(requireActivity(), this::checkLogin)
             }
@@ -126,7 +124,6 @@ class LogInFragment: Fragment() {
 
         if (userCredentials.containsKey(this.email) && userCredentials.containsValue(this.password)) {
             onPostExecute()
-            // TODO: Value is not right
             this.viewModel.getCustomerIdByEmail(this.email).observe(requireActivity(), this::setCustomerIdStore)
         }
         else {
@@ -146,8 +143,8 @@ class LogInFragment: Fragment() {
     }
 
     private fun onPostExecute() {
-        val startActivity = Intent(activity, StartActivity::class.java)
-        startActivity(startActivity)
+        val mainActivity = Intent(activity, MainActivity::class.java)
+        startActivity(mainActivity)
     }
 
     private fun setCustomerIdStore(id: Long){
