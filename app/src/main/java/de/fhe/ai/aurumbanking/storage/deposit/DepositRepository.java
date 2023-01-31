@@ -59,4 +59,10 @@ public class DepositRepository {
     public LiveData<List<TransactionList>>getAllTransactionListElementByCustomerId(Long id){
         return depositDao.getAllTransactionListElementByCustomerId(id);
     }
+
+    public LiveData<List<TransactionList>>getTransactionListBySearchTerm(String searchTerm){
+        return depositDao.getTransactionListBySearchTerm(searchTerm);
+    }
+
+
 }
