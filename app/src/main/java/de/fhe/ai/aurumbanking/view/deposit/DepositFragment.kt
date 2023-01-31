@@ -77,7 +77,7 @@ class DepositFragment : Fragment(){
             }
 
             override fun onQueryTextChange(searchTerm: String): Boolean {
-                DepositFragment().setSearchTerm(searchTerm)
+                this@DepositFragment.setSearchTerm(searchTerm)
                 return true
             }
         })
@@ -90,7 +90,7 @@ class DepositFragment : Fragment(){
 
     // TODO: need help, dont know how to fix
     private fun setSearchTerm( searchTerm: String){
-        // this.viewModel = ViewModelProvider(requireActivity())[DepositViewModel::class.java]
+        this.viewModel = ViewModelProvider(this)[DepositViewModel::class.java]
         this.viewModel.setSearchTerm(searchTerm)
     }
 }
