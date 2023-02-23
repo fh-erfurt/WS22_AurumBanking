@@ -13,33 +13,28 @@
 
         <!--Begünstigter-->
 
-        <!--IBAN-->
-
-        <!--Bank Name-->
-
-        <!--BIC-->
-
         <EditText
-            android:id="@+id/bicRight"
+            android:id="@+id/beneficiaryRight"
             android:layout_width="234dp"
             android:layout_height="67dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="380dp"
+            android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:autofillHints=""
             android:background="@drawable/rightside_rounded_corner_style"
             android:gravity="center"
-            android:inputType="number"
+            android:inputType="text"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bankNameRight" />
+            app:layout_constraintEnd_toStartOf="@+id/bicLeft"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/beneficiaryLefr"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/beneficiaryLefr"
             android:layout_width="142dp"
             android:layout_height="67dp"
-            android:layout_marginStart="988dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:background="@drawable/leftside_rounded_corner_style"
             android:gravity="center"
@@ -52,38 +47,84 @@
             android:id="@+id/bankNameRight"
             android:layout_width="234dp"
             android:layout_height="67dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="380dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
             android:layout_weight="1"
             android:autofillHints=""
             android:background="@drawable/rightside_rounded_corner_style"
             android:gravity="center"
             android:inputType="text"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/dateOfTransferLeft"
             app:layout_constraintTop_toBottomOf="@+id/ibanRight" />
 
         <TextView
             android:id="@+id/bankNameLeft"
             android:layout_width="142dp"
             android:layout_height="67dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="24dp"
             android:layout_weight="1"
             android:background="@drawable/leftside_rounded_corner_style"
             android:gravity="center"
             android:text="@string/bank_name"
             android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@+id/bankNameRight"
-            app:layout_constraintHorizontal_bias="0.995"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ibanLeft" />
+
+        <EditText
+            android:id="@+id/ibanRight"
+            android:layout_width="234dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:background="@drawable/rightside_rounded_corner_style"
+            android:gravity="center"
+            android:inputType="text"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/amountMoneyLeft"
+            app:layout_constraintTop_toBottomOf="@+id/beneficiaryRight" />
+
+        <TextView
+            android:id="@+id/ibanLeft"
+            android:layout_width="142dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:background="@drawable/leftside_rounded_corner_style"
+            android:gravity="center"
+            android:text="@string/iban_number"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/ibanRight"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beneficiaryLefr" />
+
+        <EditText
+            android:id="@+id/bicRight"
+            android:layout_width="234dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:background="@drawable/rightside_rounded_corner_style"
+            android:gravity="center"
+            android:inputType="number"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/amountMoneyRight"
             android:layout_width="234dp"
             android:layout_height="67dp"
-            android:layout_marginTop="72dp"
-            android:layout_marginEnd="380dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="40dp"
             android:layout_weight="1"
             android:autofillHints=""
             android:background="@drawable/rightside_rounded_corner_style"
@@ -93,12 +134,52 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bicRight" />
 
+        <TextView
+            android:id="@+id/bicLeft"
+            android:layout_width="142dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/leftside_rounded_corner_style"
+            android:gravity="center"
+            android:text="@string/bic"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/bicRight"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dateOfTransferLeft"
+            android:layout_width="142dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:background="@drawable/leftside_rounded_corner_style"
+            android:gravity="center"
+
+            android:text="@string/date_of_transfer"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/dateOfTransferRight"
+            app:layout_constraintTop_toBottomOf="@+id/amountMoneyLeft" />
+
+        <TextView
+            android:id="@+id/amountMoneyLeft"
+            android:layout_width="142dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:background="@drawable/leftside_rounded_corner_style"
+            android:gravity="center"
+            android:text="@string/amountMoney"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/amountMoneyRight"
+            app:layout_constraintTop_toBottomOf="@+id/bicLeft" />
+
         <EditText
             android:id="@+id/dateOfTransferRight"
             android:layout_width="234dp"
             android:layout_height="67dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="380dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="40dp"
             android:layout_weight="1"
             android:autofillHints=""
             android:background="@drawable/rightside_rounded_corner_style"
@@ -114,42 +195,11 @@
             app:layout_constraintTop_toBottomOf="@+id/amountMoneyRight" />
 
         <EditText
-            android:id="@+id/ibanRight"
-            android:layout_width="234dp"
-            android:layout_height="67dp"
-            android:layout_marginTop="56dp"
-            android:layout_marginEnd="380dp"
-            android:layout_weight="1"
-            android:autofillHints=""
-            android:background="@drawable/rightside_rounded_corner_style"
-            android:gravity="center"
-            android:inputType="text"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/beneficiaryRight" />
-
-        <TextView
-            android:id="@+id/ibanLeft"
-            android:layout_width="142dp"
-            android:layout_height="67dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="56dp"
-            android:layout_weight="1"
-            android:background="@drawable/leftside_rounded_corner_style"
-            android:gravity="center"
-            android:text="@string/iban_number"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@+id/ibanRight"
-            app:layout_constraintHorizontal_bias="0.994"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/beneficiaryLefr" />
-
-        <EditText
             android:id="@+id/UsageRight"
             android:layout_width="233dp"
             android:layout_height="105dp"
-            android:layout_marginTop="112dp"
-            android:layout_marginEnd="376dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="224dp"
             android:layout_weight="1"
             android:autofillHints=""
             android:background="@drawable/rightside_rounded_corner_style"
@@ -161,100 +211,39 @@
             app:layout_constraintTop_toBottomOf="@+id/dateOfTransferRight" />
 
         <TextView
-            android:id="@+id/amountMoneyLeft"
-            android:layout_width="142dp"
-            android:layout_height="67dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="72dp"
-            android:layout_weight="1"
-            android:background="@drawable/leftside_rounded_corner_style"
-            android:gravity="center"
-            android:text="@string/amountMoney"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@+id/amountMoneyRight"
-            app:layout_constraintHorizontal_bias="0.994"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bicLeft" />
-
-        <Button
-            android:id="@+id/transactionSubmitButton"
-            android:layout_width="197dp"
-            android:layout_height="68dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/round_blue_btn"
-            android:text="@string/transfer_btn"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.676"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/UsageRight"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/bicLeft"
-            android:layout_width="142dp"
-            android:layout_height="67dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="80dp"
-            android:layout_weight="1"
-            android:background="@drawable/leftside_rounded_corner_style"
-            android:gravity="center"
-            android:text="@string/bic"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@+id/bicRight"
-            app:layout_constraintHorizontal_bias="0.994"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bankNameLeft" />
-
-        <EditText
-            android:id="@+id/beneficiaryRight"
-            android:layout_width="234dp"
-            android:layout_height="67dp"
-            android:layout_marginTop="56dp"
-            android:layout_marginEnd="16dp"
-            android:layout_weight="1"
-            android:autofillHints=""
-            android:background="@drawable/rightside_rounded_corner_style"
-            android:gravity="center"
-            android:inputType="text"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.007"
-            app:layout_constraintStart_toEndOf="@+id/beneficiaryLefr"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/dateOfTransferLeft"
-            android:layout_width="142dp"
-            android:layout_height="67dp"
-            android:layout_marginTop="12dp"
-            android:layout_weight="1"
-            android:background="@drawable/leftside_rounded_corner_style"
-            android:gravity="center"
-            android:text="@string/date_of_transfer"
-
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@+id/dateOfTransferRight"
-            app:layout_constraintHorizontal_bias="0.995"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/amountMoneyLeft" />
-
-        <TextView
             android:id="@+id/Usageleft"
             android:layout_width="147dp"
             android:layout_height="105dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="112dp"
+            android:layout_marginTop="28dp"
             android:layout_weight="1"
             android:background="@drawable/leftside_rounded_corner_style"
             android:gravity="center"
             android:text="@string/transfer_usage"
             android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@+id/UsageRight"
-            app:layout_constraintHorizontal_bias="0.987"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dateOfTransferLeft" />
+            app:layout_constraintTop_toBottomOf="@+id/bankNameRight" />
+
+        <Button
+            android:id="@+id/transactionSubmitButton"
+            android:layout_width="197dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/round_blue_btn"
+            android:text="@string/transfer_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UsageRight"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <!--IBAN-->
+
+        <!--Bank Name-->
+
+        <!--BIC-->
 
         <!--Geld Betrag-->
 
