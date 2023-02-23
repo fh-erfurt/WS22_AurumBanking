@@ -5,10 +5,13 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+import de.fhe.ai.aurumbanking.core.Helper;
 import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
 import de.fhe.ai.aurumbanking.storage.deposit.DepositRepository;
@@ -17,11 +20,23 @@ public class DepositViewModel extends AndroidViewModel {
 
     private final CustomerRepository customerRepository;
     private final DepositRepository depositRepository;
+    private final LiveData<List<TransactionList>> transactionList;
+    private final MutableLiveData<String> searchTerm = new MutableLiveData<>("");
+    private Helper helper = Helper.getHelperInstance();
+    private Long customerId;
 
-    public DepositViewModel(@NonNull Application application) {
+    public DepositViewModel(@NonNull Application application ) {
         super(application);
         this.customerRepository = CustomerRepository.getRepository(application);
         this.depositRepository = DepositRepository.getRepository(application);
+        this.customerId = helper.getCustomerId(application);
+        this.transactionList = Transformations.switchMap(this.searchTerm, input -> {
+            if(input.isEmpty()){
+                return getAllTransactionListElementByCustomerId(this.customerId);
+            }else{
+                return getTransactionListBySearchTerm(input);
+            }
+        });
     }
 
     public LiveData<BigDecimal> getCustomerDepositByCustomerId(Long id){
@@ -32,4 +47,16 @@ public class DepositViewModel extends AndroidViewModel {
         return depositRepository.getAllTransactionListElementByCustomerId(id);
     }
 
+
+    public LiveData<List<TransactionList>> getTransactionListBySearchTerm(String searchTerm){
+        return depositRepository.getTransactionListBySearchTerm(searchTerm);
+    }
+
+    public LiveData<List<TransactionList>> getTransactionList(){
+        return this.transactionList;
+    }
+
+    public void setSearchTerm(String searchTerm){
+        this.searchTerm.setValue(searchTerm);
+    }
 }

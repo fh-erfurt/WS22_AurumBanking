@@ -43,4 +43,9 @@ public interface DepositDao {
 
     @Query("Select * from TransactionList where customerId = :id")
     LiveData<List<TransactionList>>getAllTransactionListElementByCustomerId(Long id);
+
+    @Query("Select * from TransactionList WHERE `Money Value` LIKE '%' || :searchTerm || '%' OR `Output Flag` LIKE '%' || :searchTerm || " +
+            "'%' OR `Purpose Of Use` LIKE '%' || :searchTerm || '%' OR Bankname LIKE '%' || :searchTerm || '%' OR IBAN LIKE '%' || :searchTerm || " +
+            "'%' OR `Tranaction Date` LIKE '%' || :searchTerm || '%' OR IBAN LIKE '%' || :searchTerm || '%' OR BIC LIKE '%' || :searchTerm || '%' ")
+    LiveData<List<TransactionList>>getTransactionListBySearchTerm(String searchTerm);
 }
