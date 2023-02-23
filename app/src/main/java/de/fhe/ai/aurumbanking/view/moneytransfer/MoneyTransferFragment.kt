@@ -40,6 +40,7 @@ class MoneyTransferFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         this.root = inflater.inflate(R.layout.fragment_moneytransfer, container, false)
 
         this.customerId = helper.getCustomerId(activity?.application)
