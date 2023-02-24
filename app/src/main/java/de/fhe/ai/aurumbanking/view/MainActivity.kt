@@ -2,29 +2,26 @@ package de.fhe.ai.aurumbanking.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import de.fhe.ai.aurumbanking.R
-import com.google.android.material.tabs.TabLayout
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
+import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.view.core.TabAdapter
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var tabLayout: TabLayout
     lateinit var viewPager: ViewPager
-    //lateinit var tabLayoutProfile: TabLayout
-    //lateinit var tabLayoutMoneyTransfer: TabLayout
-    //lateinit var tabLayoutDeposits: TabLayout
-    //lateinit var tabLayoutSupport: TabLayout
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.start_main)
+
+
 
         tabLayout = findViewById<TabLayout>(R.id.tabLayout)
         viewPager = findViewById<ViewPager>(R.id.viewPager)
@@ -51,12 +48,11 @@ class MainActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
-        //tabLayoutProfile = findViewById(R.id.profil)
-        //tabLayoutMoneyTransfer = findViewById(R.id.moneytransfer)
-        //tabLayoutDeposits = findViewById(R.id.deposit)
-        //tabLayoutSupport = findViewById(R.id.support)
+        NavigationUI.setupActionBarWithNavController(this, navController)
 
+        //NavigationUI.setupWithNavController(navController)
 
     }
 }

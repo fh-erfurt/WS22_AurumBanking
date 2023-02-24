@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -50,19 +51,19 @@ class DepositFragment : Fragment(){
         val currentDepotCountry = this.root.findViewById<ImageView>(R.id.userDepotRight)
         currentDepotCountry.setImageResource(R.drawable.europaische_union)
 
+
+
         // RecyclerView Stuff
         // ---------------------------------------
         // Get RecyclerView Reference
         val latestDepotTransaction = root.findViewById<RecyclerView?>(R.id.latestDepotTransaction)
 
-        // TODO in main activity rein !!
-        //TODO crash, after trying to access view --> View android.widget.ScrollView{a27e635 VFED.V... ........ 4320,0-5760,2350} does not have a NavController set
-        val adapter = DepositTransactionListAdapter(requireActivity(), { transactionListId ->
-                val args = Bundle()
-                args.putLong(ARG_TRANSACTIONLISTID_ID, transactionListId)
+        // TODO: Problem, detail fragment wird nicht angezeigt
+        val adapter = DepositTransactionListAdapter(requireActivity()) { transactionListId ->
+                val args = Bundle().apply { putLong(ARG_TRANSACTIONLISTID_ID, transactionListId)}
                 val nc = NavHostFragment.findNavController(this)
-                nc.navigate(R.id.action_depositFragment_to_transactionDetail, args)
-            })
+                nc.navigate(R.id.action_depositFragment_to_transactionDetailFragment, args)
+            }
 
         latestDepotTransaction.adapter = adapter
         latestDepotTransaction.layoutManager = LinearLayoutManager(requireActivity())

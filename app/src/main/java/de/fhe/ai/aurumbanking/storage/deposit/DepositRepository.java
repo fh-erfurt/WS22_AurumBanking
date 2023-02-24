@@ -64,5 +64,27 @@ public class DepositRepository {
         return depositDao.getTransactionListBySearchTerm(searchTerm);
     }
 
+    public LiveData<String> getTransactionDateByTransactionListId(Long id){
+        return depositDao.getTransactionDateByTransactionListId(id);
+    }
+
+
+    public LiveData<String> getBicTransactionListIdId(Long id){
+        return depositDao.getBicTransactionListIdId(id);
+    }
+
+    public LiveData<String> getIbanByTransactionListIdId(Long id){
+        return depositDao.getIbanByTransactionListIdId(id);
+    }
+
+    public LiveData<String> getBanknameByTransactionListIdId(Long id){
+        return depositDao.getBanknameByTransactionListIdId(id);
+    }
+
+    public LiveData<String> getPurposeOfUseTransactionListIdId(Long id){
+        return depositDao.getPurposeOfUseTransactionListIdId(id);
+    }
+
+
 
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.Navigation
 import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.view.login.LogInFragment
 
@@ -23,6 +24,9 @@ class LaunchActivity : AppCompatActivity() {
         transaction.replace(R.id.fragmentHolder, logInFragment, "Login_Tag")
         transaction.addToBackStack(null)
         transaction.commit()
+
     }
+
+
 
 }

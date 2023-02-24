@@ -18,25 +18,37 @@ import de.fhe.ai.aurumbanking.R;
 import de.fhe.ai.aurumbanking.model.TransactionList;
 
 public class DepositTransactionListAdapter extends RecyclerView.Adapter<DepositTransactionListAdapter.TransactionListViewHolder> {
+
+    public interface TransactionListClickListener {
+        void onClick(long transactionListId);
+    }
+
     static class TransactionListViewHolder extends RecyclerView.ViewHolder {
         private final TextView valueForTransaction;
         private final ImageView iconKindOfTransaction;
+        private long currentTransactionId = -1;
 
 
-        private TransactionListViewHolder(View itemView) {
+        private TransactionListViewHolder(View itemView, TransactionListClickListener clickListener) {
             super(itemView);
             this.valueForTransaction = itemView.findViewById(R.id.lastTransaction);
             this.iconKindOfTransaction = itemView.findViewById(R.id.iconKindOfTransaction);
+
+            //TODO Fragment öffnet sich nicht
+            itemView.setOnClickListener( v -> {
+                clickListener.onClick( this.currentTransactionId );
+            });
         }
-
-
     }
 
     private final LayoutInflater inflater;
-    private List<TransactionList> transactionList; // Cached Copy of Contacts
+    private final TransactionListClickListener clickListener;
 
-    public DepositTransactionListAdapter(Context context) {
+    private List<TransactionList> transactionList;
+
+    public DepositTransactionListAdapter(Context context, TransactionListClickListener clickListener) {
         this.inflater = LayoutInflater.from(context);
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -44,7 +56,7 @@ public class DepositTransactionListAdapter extends RecyclerView.Adapter<DepositT
     public TransactionListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = this.inflater.inflate(R.layout.transaction_list_design, parent, false);
 
-        return new TransactionListViewHolder(itemView);
+        return new TransactionListViewHolder(itemView, this.clickListener);
     }
 
     @SuppressLint("SetTextI18n")
@@ -52,6 +64,8 @@ public class DepositTransactionListAdapter extends RecyclerView.Adapter<DepositT
     public void onBindViewHolder(@NonNull TransactionListViewHolder holder, int position) {
         if( this.transactionList != null && !this.transactionList.isEmpty()){
             TransactionList currentTransactionListElement = this.transactionList.get(position);
+
+            holder.currentTransactionId = currentTransactionListElement.getTransactionListId();
 
             holder.valueForTransaction.setText((currentTransactionListElement.getBeneficiary() + "\n" + currentTransactionListElement.getTransactionDate() + "\n"
                     + currentTransactionListElement.getMoneyValue()).toString() + " Euro" ) ;
@@ -61,8 +75,6 @@ public class DepositTransactionListAdapter extends RecyclerView.Adapter<DepositT
             }else{
                 holder.iconKindOfTransaction.setImageResource(R.drawable.greencirle);
             }
-
-
         }
     }
 
