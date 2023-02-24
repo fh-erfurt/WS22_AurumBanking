@@ -25,4 +25,8 @@ class LaunchActivity : AppCompatActivity() {
         transaction.commit()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 }
