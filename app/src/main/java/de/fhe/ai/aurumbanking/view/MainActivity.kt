@@ -2,6 +2,9 @@ package de.fhe.ai.aurumbanking.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import de.fhe.ai.aurumbanking.R
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
