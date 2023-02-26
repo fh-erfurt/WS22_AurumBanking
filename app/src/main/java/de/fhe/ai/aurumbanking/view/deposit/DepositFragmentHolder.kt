@@ -26,6 +26,7 @@ import java.math.BigDecimal
 class DepositFragmentHolder : Fragment() {
 
     private lateinit var root: View
+    private lateinit var navHostFragment: Fragment
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
@@ -38,8 +39,8 @@ class DepositFragmentHolder : Fragment() {
 
 
         // TODO raus in neues fragment
-        val navHostFragment: Fragment =
-            childFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+
+        navHostFragment = childFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
         //val mNavController = navHostFragment.navController
         //NavigationUI.setupActionBarWithNavController(this.activity(), navController)
@@ -55,7 +56,7 @@ class DepositFragmentHolder : Fragment() {
             this,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    requireActivity().finish()
+                    NavHostFragment.findNavController(navHostFragment).popBackStack()
                 }
 
             })
