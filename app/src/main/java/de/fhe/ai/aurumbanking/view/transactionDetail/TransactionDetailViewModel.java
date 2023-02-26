@@ -42,4 +42,15 @@ public class TransactionDetailViewModel extends AndroidViewModel {
     public LiveData<String> getPurposeOfUseTransactionListIdId(Long id){
         return depositRepository.getPurposeOfUseTransactionListIdId(id);
     }
+
+    public LiveData<Boolean> getLatestOutputFlagByTransactionListId(Long id){
+        return depositRepository.getLatestOutputFlagByTransactionListId(id);
+    }
+
+    public LiveData<String> getLatestMoneyValueFromTransactionListByTransactionListId(Long id){
+        return depositRepository.getLatestMoneyValueFromTransactionListByTransactionListId(id);
+    }
+
+
+
 }
