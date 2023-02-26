@@ -93,7 +93,7 @@ class TransactionDetailFragment : Fragment() {
         if (bic.isEmpty()){
             this.root.findViewById<TextView?>(R.id.bic).text = "leer"
         } else{
-            this.root.findViewById<TextView?>(R.id.bic).text = bic
+            this.root.findViewById<TextView?>(R.id.bic).text = bic.toString()
         }
     }
 

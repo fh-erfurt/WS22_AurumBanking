@@ -89,7 +89,7 @@ class MoneyTransferFragment : Fragment() {
             val beneficiary = root.findViewById<EditText?>(R.id.beneficiaryRight).text.toString()
             val iban = root.findViewById<EditText?>(R.id.ibanRight).text.toString()
             val bankName = root.findViewById<EditText?>(R.id.bankNameRight).text.toString()
-            val bic = root.findViewById<EditText?>(R.id.bicRight).toString()
+            val bic = root.findViewById<EditText?>(R.id.bicRight).text.toString()
             val moneyValueFromEditText = root.findViewById<EditText?>(R.id.amountMoneyRight).text.toString()
 
             Log.i("Money String", "Show:$moneyValueFromEditText")
