@@ -147,7 +147,6 @@ class ProfileFragment : Fragment() {
     ) {
         if (userInputOldPassword == this.currentPassword) {
             if (newPassword == controllNewPassword) {
-                // TODO: Need to Fix, cant update password
                 this.viewModel.updateNewCustomerAccountPasswordByCustomerId(this.customerId, newPassword)
                 succesfulPasswordChange()
             }

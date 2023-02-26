@@ -77,7 +77,6 @@ public abstract class CustomerBankingDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     CustomerBankingDatabase.class, "customer_db")
                             .addCallback(createCallback)
-                            // TODO: Ask if ok?!
                             .allowMainThreadQueries()
                             .build();
                     Log.i(LOG_TAG, "CustomerBankingDatabase was initialized. ");

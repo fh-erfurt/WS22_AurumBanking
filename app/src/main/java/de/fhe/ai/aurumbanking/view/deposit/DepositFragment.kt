@@ -58,7 +58,6 @@ class DepositFragment : Fragment(){
         // Get RecyclerView Reference
         val latestDepotTransaction = root.findViewById<RecyclerView?>(R.id.latestDepotTransaction)
 
-        //TODO zweites Element öffnet sich zwar, Daten werden aber nicht weiter gegeben
         val adapter = DepositTransactionListAdapter(requireActivity()) { transactionListId ->
                 val args = Bundle().apply { putLong(ARG_TRANSACTIONLISTID_ID, transactionListId)}
                 val nc = NavHostFragment.findNavController(this)
