@@ -85,8 +85,6 @@ class MoneyTransferFragment : Fragment() {
 
         transactionSubmitButton.setOnClickListener{
 
-            // TODO: Check empty stuff fix
-
             val dateFromEditText = root.findViewById<EditText?>(R.id.dateOfTransferRight).text.toString()
             val beneficiary = root.findViewById<EditText?>(R.id.beneficiaryRight).text.toString()
             val iban = root.findViewById<EditText?>(R.id.ibanRight).text.toString()
@@ -94,7 +92,7 @@ class MoneyTransferFragment : Fragment() {
             val bic = root.findViewById<EditText?>(R.id.bicRight).toString()
             val moneyValueFromEditText = root.findViewById<EditText?>(R.id.amountMoneyRight).text.toString()
 
-            Log.i("Money String", "Show:" + moneyValueFromEditText)
+            Log.i("Money String", "Show:$moneyValueFromEditText")
             val purposeOfUse = root.findViewById<EditText?>(R.id.UsageRight).text.toString()
 
             val newTransactionListElement = TransactionList(true)
@@ -118,12 +116,13 @@ class MoneyTransferFragment : Fragment() {
             failedTransaction()
         }
         else{
-            val date = dateFromEditText
             val moneyValue = Converters.stringToBigDecimal(moneyValue)
             val newDepotValue = this.depotValue?.minus(moneyValue)
 
-            viewModel.insertNewTransactionListElementByCustomerId(this.customerId, this.customerId, date,beneficiary,iban,bankName,
-                moneyValue, purposeOfUse,newDepotValue )
+            viewModel.insertNewTransactionListElementByCustomerId(
+                this.customerId, this.customerId, dateFromEditText, beneficiary, iban, bankName,
+                moneyValue, purposeOfUse, newDepotValue, bic
+            )
             succesfulTransaction()
         }
 
@@ -173,7 +172,7 @@ class MoneyTransferFragment : Fragment() {
         alert.show()
     }
 
-    fun convertCurrentDepotValueLiveData(currentDepotValue: BigDecimal) {
+    private fun convertCurrentDepotValueLiveData(currentDepotValue: BigDecimal) {
         this.depotValue = currentDepotValue
     }
 }

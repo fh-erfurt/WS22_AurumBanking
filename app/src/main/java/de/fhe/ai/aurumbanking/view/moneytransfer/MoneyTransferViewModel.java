@@ -25,7 +25,7 @@ public class MoneyTransferViewModel extends AndroidViewModel {
     }
 
     public Long insertNewTransactionListElementByCustomerId(Long customerId, Long depositId , String date, String beneficiary, String iban, String bankName,
-                                                            BigDecimal moneyValue, String purposeOfUse, BigDecimal newDepotValue){
+                                                            BigDecimal moneyValue, String purposeOfUse, BigDecimal newDepotValue, String bic){
 
         TransactionList transactionList = new TransactionList();
         transactionList.setOutputFlag(true);
@@ -37,6 +37,7 @@ public class MoneyTransferViewModel extends AndroidViewModel {
         transactionList.setBankname(bankName);
         transactionList.setMoneyValue(moneyValue);
         transactionList.setPurposeOfUse(purposeOfUse);
+        transactionList.setBic(bic);
 
         depositRepository.updateCustomerDeposit(customerId, newDepotValue);
 
