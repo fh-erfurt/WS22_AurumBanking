@@ -51,7 +51,6 @@ class SupportFragment : Fragment() {
         return this.root
     }
 
-    // TODO: create Notofication --> Support Request was succesful
     override fun onResume() {
         super.onResume()
 
@@ -66,7 +65,6 @@ class SupportFragment : Fragment() {
 
             this.root.findViewById<EditText?>(R.id.userEmailRight).text.clear();
             this.root.findViewById<EditText>(R.id.customerSupportMessage).text.clear()
-            //this.spinner.adapter = null
 
             Helper.getHelperInstance().hideKeyboard(requireContext(), this.view)
 
@@ -94,7 +92,7 @@ class SupportFragment : Fragment() {
             errorMessage("Bitte geben Sie eine Nachricht für den Support ein!")
             false
         } else {
-            successfulMessage("Vielen Dank für Ihre Anfrage, wir werden ihre Anliegen an den Supprt weiterleiten!")
+            successfulMessage("Vielen Dank für Ihre Anfrage, das Anliegen wird an den Supprt weitergeleitet!")
             true
         }
     }
@@ -104,7 +102,6 @@ class SupportFragment : Fragment() {
 
     }
 
-    // TODO: Auslagern!!!!
     private fun errorMessage(errorMessage: String) {
         val dialogBuilder = AlertDialog.Builder(requireActivity())
 

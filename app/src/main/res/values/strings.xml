@@ -36,7 +36,6 @@
         <item>Überweiungsfragen</item>
         <item>Andere</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="transaction">Transaktion:</string>
     <string name="transaktionsdetails">Transaktionsdetails:</string>

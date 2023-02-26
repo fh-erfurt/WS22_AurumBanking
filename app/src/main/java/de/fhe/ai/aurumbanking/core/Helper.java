@@ -49,7 +49,6 @@ public class Helper extends Fragment {
         return current.format(formatter);
     }
 
-    // TODO Add hideKey Button
     /*
         Helper method to hide the keyboard, for example when submitting a form.
      */

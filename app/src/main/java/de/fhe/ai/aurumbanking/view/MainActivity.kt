@@ -45,12 +45,5 @@ class MainActivity : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
-
-
-        //// TODO raus in neues fragment
-        //val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-        //NavigationUI.setupActionBarWithNavController(this, navController)
-        ////NavigationUI.setupWithNavController(navController)
-
     }
 }
