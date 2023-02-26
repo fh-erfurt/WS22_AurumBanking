@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.start_main)
 
-
-
         tabLayout = findViewById<TabLayout>(R.id.tabLayout)
         viewPager = findViewById<ViewPager>(R.id.viewPager)
 
@@ -48,11 +46,11 @@ class MainActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
-        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
 
-        NavigationUI.setupActionBarWithNavController(this, navController)
-
-        //NavigationUI.setupWithNavController(navController)
+        //// TODO raus in neues fragment
+        //val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        //NavigationUI.setupActionBarWithNavController(this, navController)
+        ////NavigationUI.setupWithNavController(navController)
 
     }
 }

@@ -98,7 +98,6 @@ class DepositFragment : Fragment(){
         this.root.findViewById<TextView?>(R.id.userDepotLeft).text = "${depositValue.toString()}\nEuro"
     }
 
-    // TODO: need help, dont know how to fix
     private fun setSearchTerm( searchTerm: String){
         this.viewModel = ViewModelProvider(this)[DepositViewModel::class.java]
         this.viewModel.setSearchTerm(searchTerm)

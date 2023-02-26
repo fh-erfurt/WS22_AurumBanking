@@ -8,6 +8,7 @@ import de.fhe.ai.aurumbanking.view.moneytransfer.MoneyTransferFragment
 import de.fhe.ai.aurumbanking.view.overview.OverviewFragment
 import de.fhe.ai.aurumbanking.view.support.SupportFragment
 import de.fhe.ai.aurumbanking.view.deposit.DepositFragment
+import de.fhe.ai.aurumbanking.view.deposit.DepositFragmentHolder
 
 @Suppress("DEPRECATION")
 internal class TabAdapter (var context: Context, fm: FragmentManager, var totalTabs: Int):
@@ -24,7 +25,7 @@ internal class TabAdapter (var context: Context, fm: FragmentManager, var totalT
                     MoneyTransferFragment()
                 }
                 3 -> {
-                    DepositFragment()
+                    DepositFragmentHolder()
                 }
                 4 -> {
                     SupportFragment()

@@ -20,6 +20,7 @@ class TransactionDetailFragment : Fragment() {
     private lateinit var root: View
     private lateinit var viewModel: TransactionDetailViewModel
     private val ARG_TRANSACTIONLISTID_ID = "transactionListId"
+    private var transactionListId : Long? = null
 
 
     override fun onCreateView(
@@ -32,25 +33,49 @@ class TransactionDetailFragment : Fragment() {
         this.viewModel = ViewModelProvider(this)[TransactionDetailViewModel::class.java]
 
         requireArguments().let { args ->
-            val transactionListId = args.getLong(ARG_TRANSACTIONLISTID_ID)
-
-            this.viewModel.getBanknameByTransactionListIdId(transactionListId)
-                .observe(requireActivity(), this::updateViewBankName)
-
-            this.viewModel.getIbanByTransactionListIdId(transactionListId)
-                .observe(requireActivity(), this::updateViewIban)
-
-            this.viewModel.getBicTransactionListIdId(transactionListId)
-                .observe(requireActivity(), this::updateViewBIC)
-
-            this.viewModel.getPurposeOfUseTransactionListIdId(transactionListId)
-                .observe(requireActivity(), this::updateViewPurposeOfUse)
-
-            this.viewModel.getTransactionDateByTransactionListId(transactionListId)
-                .observe(requireActivity(), this::updateViewDate)
+            this.transactionListId = args.getLong(ARG_TRANSACTIONLISTID_ID)
         }
-
         return this.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        this.viewModel.getBanknameByTransactionListIdId(transactionListId)
+            .observe(requireActivity(), this::updateViewBankName)
+
+        //this.viewModel.getIbanByTransactionListIdId(transactionListId)
+        //    .observe(requireActivity(), this::updateViewIban)
+
+        this.viewModel.getBicTransactionListIdId(transactionListId)
+            .observe(requireActivity(), this::updateViewBIC)
+
+        this.viewModel.getPurposeOfUseTransactionListIdId(transactionListId)
+            .observe(requireActivity(), this::updateViewPurposeOfUse)
+
+        this.viewModel.getTransactionDateByTransactionListId(transactionListId)
+            .observe(requireActivity(), this::updateViewDate)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        this.viewModel.getBanknameByTransactionListIdId(transactionListId)
+            .removeObserver(this::updateViewBankName)
+
+        this.viewModel.getIbanByTransactionListIdId(transactionListId)
+            .removeObserver(this::updateViewIban)
+
+        this.viewModel.getBicTransactionListIdId(transactionListId)
+            .removeObserver(this::updateViewBIC)
+
+        this.viewModel.getPurposeOfUseTransactionListIdId(transactionListId)
+            .removeObserver(this::updateViewPurposeOfUse)
+
+        this.viewModel.getTransactionDateByTransactionListId(transactionListId)
+            .removeObserver(this::updateViewDate)
+
     }
 
     private fun updateViewBankName(bankName: String) {
@@ -58,7 +83,11 @@ class TransactionDetailFragment : Fragment() {
     }
 
     private fun updateViewBIC(bic: String) {
-        this.root.findViewById<TextView?>(R.id.bic).text = bic
+        if (bic.isEmpty()){
+            this.root.findViewById<TextView?>(R.id.bic).text = "leer"
+        } else{
+            this.root.findViewById<TextView?>(R.id.bic).text = bic
+        }
     }
 
     private fun updateViewDate(date: String) {
@@ -70,7 +99,11 @@ class TransactionDetailFragment : Fragment() {
     }
 
     private fun updateViewIban(iban: String) {
-        this.root.findViewById<TextView?>(R.id.iban).text = iban
+        if (iban.isEmpty()){
+            this.root.findViewById<TextView?>(R.id.iban).text  = "leer"
+        } else{
+            this.root.findViewById<TextView?>(R.id.iban).text = iban
+        }
     }
 
 

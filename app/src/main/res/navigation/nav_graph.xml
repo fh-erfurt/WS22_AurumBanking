@@ -29,6 +29,9 @@
         <argument
             android:name="transactionListId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_transactionDetailFragment_to_depositTransactionListFragment"
+            app:destination="@id/depositTransactionListFragment" />
     </fragment>
 
 

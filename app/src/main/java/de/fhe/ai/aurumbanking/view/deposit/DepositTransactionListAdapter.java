@@ -34,7 +34,7 @@ public class DepositTransactionListAdapter extends RecyclerView.Adapter<DepositT
             this.valueForTransaction = itemView.findViewById(R.id.lastTransaction);
             this.iconKindOfTransaction = itemView.findViewById(R.id.iconKindOfTransaction);
 
-            //TODO Fragment öffnet sich nicht
+            //TODO zweites Element öffnet sich nicht
             itemView.setOnClickListener( v -> {
                 clickListener.onClick( this.currentTransactionId );
             });
