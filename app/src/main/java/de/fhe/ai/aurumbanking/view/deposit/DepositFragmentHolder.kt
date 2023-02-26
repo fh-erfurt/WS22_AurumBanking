@@ -37,14 +37,7 @@ class DepositFragmentHolder : Fragment() {
 
         this.root = inflater.inflate(R.layout.fragement_deposit_viewholder, container, false)
 
-
-        // TODO raus in neues fragment
-
         navHostFragment = childFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-
-        //val mNavController = navHostFragment.navController
-        //NavigationUI.setupActionBarWithNavController(this.activity(), navController)
-        //NavigationUI.setupWithNavController(navController)
 
         return this.root
     }
@@ -62,6 +55,12 @@ class DepositFragmentHolder : Fragment() {
             })
     }
 
+    override fun onPause() {
+        super.onPause()
+
+        requireActivity().supportFragmentManager.beginTransaction().remove(this).commit()
+
+    }
 }
 
 

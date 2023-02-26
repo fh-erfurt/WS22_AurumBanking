@@ -64,4 +64,6 @@ public interface DepositDao {
 
     @Query("Select `Purpose Of Use` from TransactionList where transactionListId = :id")
     LiveData<String>getPurposeOfUseTransactionListIdId(Long id);
+
+
 }
