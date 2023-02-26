@@ -110,7 +110,7 @@ class MoneyTransferFragment : Fragment() {
     }
 
 
-    fun checkTransferInputfield(dateFromEditText: String, beneficiary : String, iban : String, bankName: String, bic: String, moneyValue : String, purposeOfUse : String){
+    private fun checkTransferInputfield(dateFromEditText: String, beneficiary : String, iban : String, bankName: String, bic: String, moneyValue : String, purposeOfUse : String){
         if(dateFromEditText.trim().isEmpty() && beneficiary.trim().isEmpty() && iban.trim()
                 .isEmpty() && bankName.trim().isEmpty() && bic.trim().isEmpty()
             && moneyValue.trim().isEmpty() && purposeOfUse.trim().isEmpty()

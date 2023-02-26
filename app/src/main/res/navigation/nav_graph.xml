@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/depositTransactionListFragment">
+
+    <fragment
+        android:id="@+id/depositTransactionListFragment"
+        android:name="de.fhe.ai.aurumbanking.view.deposit.DepositFragment"
+        android:label="transaction_list_design"
+        tools:layout="@layout/transaction_list_design">
+        <action
+            android:id="@+id/action_depositFragment_to_transactionDetailFragment"
+            app:destination="@id/transactionDetailFragment"
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false" >
+        <argument
+            android:name="transactionListId"
+            android:defaultValue="1" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/transactionDetailFragment"
+        android:name="de.fhe.ai.aurumbanking.view.transactionDetail.TransactionDetailFragment"
+        android:label="fragment_transaction_detail"
+        tools:layout="@layout/fragment_transaction_detail">
+        <argument
+            android:name="transactionListId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_transactionDetailFragment_to_depositTransactionListFragment"
+            app:destination="@id/depositTransactionListFragment" />
+    </fragment>
+
+
+</navigation>

@@ -12,6 +12,8 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import de.fhe.ai.aurumbanking.R
@@ -20,11 +22,12 @@ import java.math.BigDecimal
 
 class DepositFragment : Fragment(){
 
-    val ARG_TRANSACTIONLISTID_ID = "contactId"
+    val ARG_TRANSACTIONLISTID_ID = "transactionListId"
     private var customerId: Long? = null
     private var helper: Helper = Helper.getHelperInstance()
     private lateinit var root: View
     private lateinit var viewModel: DepositViewModel
+
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -48,12 +51,19 @@ class DepositFragment : Fragment(){
         val currentDepotCountry = this.root.findViewById<ImageView>(R.id.userDepotRight)
         currentDepotCountry.setImageResource(R.drawable.europaische_union)
 
+
+
         // RecyclerView Stuff
         // ---------------------------------------
         // Get RecyclerView Reference
         val latestDepotTransaction = root.findViewById<RecyclerView?>(R.id.latestDepotTransaction)
 
-        val adapter : DepositTransactionListAdapter = DepositTransactionListAdapter(requireActivity())
+        //TODO zweites Element öffnet sich zwar, Daten werden aber nicht weiter gegeben
+        val adapter = DepositTransactionListAdapter(requireActivity()) { transactionListId ->
+                val args = Bundle().apply { putLong(ARG_TRANSACTIONLISTID_ID, transactionListId)}
+                val nc = NavHostFragment.findNavController(this)
+                nc.navigate(R.id.action_depositFragment_to_transactionDetailFragment, args)
+            }
 
         latestDepotTransaction.adapter = adapter
         latestDepotTransaction.layoutManager = LinearLayoutManager(requireActivity())
@@ -88,7 +98,6 @@ class DepositFragment : Fragment(){
         this.root.findViewById<TextView?>(R.id.userDepotLeft).text = "${depositValue.toString()}\nEuro"
     }
 
-    // TODO: need help, dont know how to fix
     private fun setSearchTerm( searchTerm: String){
         this.viewModel = ViewModelProvider(this)[DepositViewModel::class.java]
         this.viewModel.setSearchTerm(searchTerm)

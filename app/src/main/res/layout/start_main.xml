@@ -10,67 +10,34 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
-        >
-    </com.google.android.material.tabs.TabLayout>
+        app:tabTextAppearance="@style/MyTabLayoutTextAppearance" />
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tabLayout"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"
-            tools:layout_editor_absoluteX="8dp"
-            tools:ignore="MissingConstraints" >
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tabLayout"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp">
 
-        </androidx.viewpager.widget.ViewPager>
+        <!--
+        <fragment
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/nav_graph" />
+            -->
+    </androidx.viewpager.widget.ViewPager>
 
 
-    <?ignore
-    <ImageButton
-        android:id="@+id/profil"
-        android:layout_width="78dp"
-        android:layout_height="71dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/round_blue_btn"
-        app:layout_constraintEnd_toStartOf="@+id/moneytransfer_image"
-        app:layout_constraintHorizontal_bias="0.133"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/moneytransfer_image"
-        android:layout_width="78dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/round_btn"
-        app:layout_constraintEnd_toStartOf="@+id/deposit"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dollar_coin_2149" />
-
-    <ImageButton
-        android:id="@+id/deposit"
-        android:layout_width="78dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/round_btn"
-        app:layout_constraintEnd_toStartOf="@+id/support"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/money_bag_6384" />
-
-    <ImageButton
-        android:id="@+id/support"
-        android:layout_width="78dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="28dp"
-        android:background="@drawable/round_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/chat_support_1721" />
-        ?>
 </RelativeLayout>

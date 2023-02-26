@@ -1,6 +1,7 @@
 package de.fhe.ai.aurumbanking.storage.deposit;
 
 
+import androidx.core.widget.ListViewAutoScrollHelper;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -48,4 +49,21 @@ public interface DepositDao {
             "'%' OR `Purpose Of Use` LIKE '%' || :searchTerm || '%' OR Bankname LIKE '%' || :searchTerm || '%' OR IBAN LIKE '%' || :searchTerm || " +
             "'%' OR `Tranaction Date` LIKE '%' || :searchTerm || '%' OR IBAN LIKE '%' || :searchTerm || '%' OR BIC LIKE '%' || :searchTerm || '%' ")
     LiveData<List<TransactionList>>getTransactionListBySearchTerm(String searchTerm);
+
+    @Query("Select `Tranaction Date` from TransactionList where transactionListId = :id")
+    LiveData<String>getTransactionDateByTransactionListId(Long id);
+
+    @Query("Select IBAN from TransactionList where transactionListId = :id")
+    LiveData<String>getIbanByTransactionListIdId(Long id);
+
+    @Query("Select Bankname from TransactionList where transactionListId = :id")
+    LiveData<String>getBanknameByTransactionListIdId(Long id);
+
+    @Query("Select BIC from TransactionList where transactionListId = :id")
+    LiveData<String>getBicTransactionListIdId(Long id);
+
+    @Query("Select `Purpose Of Use` from TransactionList where transactionListId = :id")
+    LiveData<String>getPurposeOfUseTransactionListIdId(Long id);
+
+
 }
