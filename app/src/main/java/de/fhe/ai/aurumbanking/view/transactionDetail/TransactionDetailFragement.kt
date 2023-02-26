@@ -1,9 +1,11 @@
 package de.fhe.ai.aurumbanking.view.transactionDetail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -44,8 +46,8 @@ class TransactionDetailFragment : Fragment() {
         this.viewModel.getBanknameByTransactionListIdId(transactionListId)
             .observe(requireActivity(), this::updateViewBankName)
 
-        //this.viewModel.getIbanByTransactionListIdId(transactionListId)
-        //    .observe(requireActivity(), this::updateViewIban)
+        this.viewModel.getIbanByTransactionListIdId(transactionListId)
+            .observe(requireActivity(), this::updateViewIban)
 
         this.viewModel.getBicTransactionListIdId(transactionListId)
             .observe(requireActivity(), this::updateViewBIC)
@@ -55,6 +57,12 @@ class TransactionDetailFragment : Fragment() {
 
         this.viewModel.getTransactionDateByTransactionListId(transactionListId)
             .observe(requireActivity(), this::updateViewDate)
+
+        this.viewModel.getLatestOutputFlagByTransactionListId(transactionListId)
+            .observe(this.requireActivity(), this::updateViewIconForLatestTransaction)
+
+        this.viewModel.getLatestMoneyValueFromTransactionListByTransactionListId(transactionListId)
+            .observe(this.requireActivity(), this::updateViewValueForLatestTransaction)
     }
 
     override fun onPause() {
@@ -103,6 +111,23 @@ class TransactionDetailFragment : Fragment() {
         } else{
             this.root.findViewById<TextView?>(R.id.iban).text = iban
         }
+    }
+
+    private fun updateViewIconForLatestTransaction(deductionFlag : Boolean){
+        if (deductionFlag){
+            this.root.findViewById<ImageButton>(R.id.cicle)
+                .setImageResource(R.drawable.redcirle)
+        }else{
+            this.root.findViewById<ImageButton>(R.id.cicle)
+                .setImageResource(R.drawable.greencirle)
+        }
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateViewValueForLatestTransaction(moneyValue : String){
+        this.root.findViewById<TextView>(R.id.lastTransaction).text = moneyValue.toString().replace(",", "\n\n") + " Euro"
+
     }
 
 

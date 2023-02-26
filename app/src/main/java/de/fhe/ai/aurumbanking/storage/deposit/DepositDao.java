@@ -66,4 +66,10 @@ public interface DepositDao {
     LiveData<String>getPurposeOfUseTransactionListIdId(Long id);
 
 
+    @Query("Select `Output Flag` from TransactionList tr  WHERE tr.transactionListId = :transactionListId ORDER BY `Output Flag` DESC LIMIT 1")
+    LiveData<Boolean> getLatestOutputFlagByTransactionListId(Long transactionListId);
+
+    @Query("Select `Money Value` from TransactionList tr  WHERE tr.transactionListId = :transactionListId ORDER BY `Money Value` DESC LIMIT 1")
+    LiveData<String> getLatestMoneyValueFromTransactionListByTransactionListId(Long transactionListId);
+
 }

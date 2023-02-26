@@ -122,14 +122,9 @@ class OverviewFragment : Fragment() {
 
     }
 
-
     @SuppressLint("SetTextI18n")
     private fun setValueForLatestTransaction(moneyValue : String){
-
-        //TODO: Fix Flag for latestValue
-
         this.root.findViewById<TextView>(R.id.lastTransaction).text = moneyValue.toString().replace(",", "\n\n") + " Euro"
-
 
     }
 

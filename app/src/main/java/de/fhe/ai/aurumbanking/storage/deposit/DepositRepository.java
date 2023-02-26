@@ -85,6 +85,14 @@ public class DepositRepository {
         return depositDao.getPurposeOfUseTransactionListIdId(id);
     }
 
+    public LiveData<Boolean> getLatestOutputFlagByTransactionListId(Long id){
+        return depositDao.getLatestOutputFlagByTransactionListId(id);
+    }
+
+    public LiveData<String> getLatestMoneyValueFromTransactionListByTransactionListId(Long id){
+        return depositDao.getLatestMoneyValueFromTransactionListByTransactionListId(id);
+    }
+
 
 
 }
