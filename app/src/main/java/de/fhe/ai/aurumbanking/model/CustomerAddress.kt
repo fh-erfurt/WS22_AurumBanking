@@ -8,6 +8,15 @@ import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
 
+/**
+ * Entity class for customer address database table, database table customer address will be generated and mapped by room framework.
+ *
+ * @property streetname
+ * @property streetAddressNumber
+ * @property city
+ * @property zipCode
+ * @property country
+ */
 @Entity(
     foreignKeys = [ForeignKey(
         entity = Customer::class,

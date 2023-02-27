@@ -11,6 +11,9 @@ import java.math.BigDecimal;
 import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
 import de.fhe.ai.aurumbanking.storage.deposit.DepositRepository;
 
+/**
+ * View Model class for the Overview Fragment.
+ */
 public class OverviewViewModel extends AndroidViewModel {
 
     private final CustomerRepository customerRepository;

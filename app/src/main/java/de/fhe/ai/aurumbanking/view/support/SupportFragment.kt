@@ -18,6 +18,10 @@ import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.core.Helper
 import de.fhe.ai.aurumbanking.view.profil.ProfileViewModel
 
+/**
+ * Fragment class for the support layout of the app.
+ *
+ */
 class SupportFragment : Fragment() {
     private lateinit var root: View
     private var customerId: Long? = null
@@ -31,9 +35,12 @@ class SupportFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
+
         this.root = inflater.inflate(R.layout.fragment_support, container, false)
 
+        /**
+         * Get customerid from shared preference
+         */
         this.customerId = helper.getCustomerId(activity?.application)
         this.viewModel = ViewModelProvider(this)[SupportViewModel::class.java]
 
@@ -44,6 +51,9 @@ class SupportFragment : Fragment() {
 
         val request = resources.getStringArray(R.array.kind_of_request)
 
+        /**
+         * create and set a array adapter for the spinner, which multiple value to select
+         */
         this.spinner = this.root.findViewById<Spinner>(R.id.spinnerSelectRequest)
         val adapter = ArrayAdapter( requireActivity(), R.layout.spinner_kind_of_request, request)
         adapter.setDropDownViewResource(R.layout.spinner_kind_of_request)
@@ -56,6 +66,9 @@ class SupportFragment : Fragment() {
 
         val supportRequestButton = this.root.findViewById<Button?>(R.id.supportRequestButton)
 
+        /**
+         * setOnClickListener for "Anfrage absenden" button and bypass the values after the click to the view model
+         */
         supportRequestButton.setOnClickListener {
             val kindOrRequest = this.root.findViewById<Spinner?>(R.id.spinnerSelectRequest).selectedItem.toString()
             val customerRequestEmail = this.root.findViewById<EditText?>(R.id.userEmailRight).text.toString()
@@ -78,7 +91,14 @@ class SupportFragment : Fragment() {
             .removeObserver(this::setCustomerFullNameToFragment)
     }
 
-
+    /**
+     * Checking if required fields are filled in the formula
+     *
+     * @param kindOrRequest
+     * @param customerRequestEmail
+     * @param customerRequestMessage
+     * @return
+     */
     private fun checkRequiredFieldsAreFilled(kindOrRequest:String, customerRequestEmail : String
                                      ,customerRequestMessage :String) : Boolean{
 
@@ -97,11 +117,21 @@ class SupportFragment : Fragment() {
         }
     }
 
+    /**
+     * display customer full name to the fragment view
+     *
+     * @param customerFullName
+     */
     private fun setCustomerFullNameToFragment(customerFullName: String) {
         this.root.findViewById<TextView?>(R.id.customerFullNameSupport).text = customerFullName
 
     }
 
+    /**
+     * DialogBuilder for wrong input value of the support formula
+     *
+     * @param errorMessage
+     */
     private fun errorMessage(errorMessage: String) {
         val dialogBuilder = AlertDialog.Builder(requireActivity())
 
@@ -123,7 +153,11 @@ class SupportFragment : Fragment() {
         alert.show()
     }
 
-
+    /**
+     * DialogBuilder for valid input value of the support formula
+     *
+     * @param message
+     */
     private fun successfulMessage(message: String) {
         val dialogBuilder = AlertDialog.Builder(requireActivity())
 

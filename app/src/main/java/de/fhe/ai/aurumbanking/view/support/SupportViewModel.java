@@ -8,6 +8,9 @@ import androidx.lifecycle.LiveData;
 
 import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
 
+/**
+ * View Model for the Support Fragment
+ */
 public class SupportViewModel extends AndroidViewModel {
 
     private final CustomerRepository customerRepository;

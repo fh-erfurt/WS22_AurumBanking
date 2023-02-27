@@ -6,7 +6,11 @@ import de.fhe.ai.aurumbanking.core.Converters
 import java.math.BigDecimal
 import java.text.DecimalFormat
 
-
+/**
+ * Entity class for deposit database table, database table will be generated and mapped by room framework.
+ *
+ * @property currentDepostitValue
+ */
 @Entity(
     foreignKeys = [ForeignKey(
         entity = Customer::class,
