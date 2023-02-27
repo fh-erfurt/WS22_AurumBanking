@@ -13,11 +13,11 @@
 
 <summary>Table of Contents</summary>
 <ol>
-  <li><a href="#Note Of Thanks"> Note of thanks</a></li>
+  <li><a href="#Note-Of-Thanks"> Note of thanks</a></li>
   <li><a href="#Introduction"> Introduction</a></li>
-  <li><a href="#BusinessDiagram">Business Diagram</a></li>
-  <li><a href="#Entity Relationship Model">Entity Relationship Model</a></li>
-  <li><a href="#App Backend Architecture">App Backend Architecture</a></li>
+  <li><a href="#Business-Diagram">Business Diagram</a></li>
+  <li><a href="#Entity-Relationship-Model">Entity Relationship Model</a></li>
+  <li><a href="#App-Backend-Architecture">App Backend Architecture</a></li>
   <li><a href="#Contributors">Contributors</a></li>
   <li><a href="#Contributing">Contributing</a></li>
   <li><a href="#License">License</a></li>
