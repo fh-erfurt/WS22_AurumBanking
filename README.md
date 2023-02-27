@@ -15,7 +15,7 @@
 <ol>
   <li><a href="#note-of-thanks"> Note of thanks</a></li>
   <li><a href="#introduction"> Introduction</a></li>
-  <li><a href="#business-Diagram">Business Diagram</a></li>
+  <li><a href="#business-diagram">Business Diagram</a></li>
   <li><a href="#entity-relationship-model">Entity Relationship Model</a></li>
   <li><a href="#app-backend-architecture">App Backend Architecture</a></li>
   <li><a href="#contributors">Contributors</a></li>
