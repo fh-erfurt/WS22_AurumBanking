@@ -18,6 +18,10 @@ import java.math.BigDecimal
 
 import java.util.*
 
+/**
+ * Fragment class for the overview layout.
+ *
+ */
 class OverviewFragment : Fragment() {
     private var customerId: Long? = null
 
@@ -36,18 +40,19 @@ class OverviewFragment : Fragment() {
         this.root = inflater.inflate(R.layout.fragment_overview, container, false)
         this.customerId = helper.getCustomerId(activity?.application)
 
-        /*
-         set current deposit of user, rightside
+        /**
+         * set current deposit of user, rightside
         */
         val currentDepotCountry = this.root.findViewById<ImageView>(R.id.userDepotRight)
         currentDepotCountry.setImageResource(R.drawable.europaische_union)
 
 
-        /*
-         set Text Information of latest Transaction
+        /**
+         * set Text Information of latest Transaction
         */
         val lastTransactionInfo = this.root.findViewById<TextView?>(R.id.lastTransactionInformation)
         lastTransactionInfo.text = "Letzte Transaktion"
+
 
 
         return this.root
@@ -75,8 +80,8 @@ class OverviewFragment : Fragment() {
         this.viewModel.getLatestMoneyValueFromTransactionListByCustomerId(this.customerId)
             .observe(this.requireActivity(), this::setValueForLatestTransaction)
 
-        /*
-         set current Date
+        /**
+         * set current Date
         */
         val currentDate = this.root.findViewById<TextView?>(R.id.currentDate)
         currentDate.text = helper.getDate(true).toString()
@@ -111,6 +116,12 @@ class OverviewFragment : Fragment() {
         this.root.findViewById<TextView?>(R.id.userDepotLeft).text = "$depositValue\nEuro"
     }
 
+    /**
+     * Check deductionFlag from View Model:
+     * true == red icon -> output transaction
+     * false == green icon --> input transaction
+     * @param deductionFlag
+     */
     private fun setIconForLatestTransaction(deductionFlag : Boolean){
         if (deductionFlag){
             this.root.findViewById<ImageButton>(R.id.cicle)
@@ -127,6 +138,8 @@ class OverviewFragment : Fragment() {
         this.root.findViewById<TextView>(R.id.lastTransaction).text = moneyValue.toString().replace(",", "\n\n") + " Euro"
 
     }
+
+
 
 
 

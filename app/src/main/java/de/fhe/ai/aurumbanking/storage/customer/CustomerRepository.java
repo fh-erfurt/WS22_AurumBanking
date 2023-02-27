@@ -18,7 +18,11 @@ import de.fhe.ai.aurumbanking.model.Deposit;
 import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.core.CustomerBankingDatabase;
 
-
+/**
+ * Singleton customer repository is used as an abstraction layer between viewmodel-layer an dao-layer.
+ * Repository functions are used in the viewmodel-layer of the app.
+ * For more architecture detail, please look into the architecture documentation.
+ */
 public class CustomerRepository {
 
     public static final String LOG_TAG = "CustomerRepository";
@@ -72,7 +76,7 @@ public class CustomerRepository {
         CustomerBankingDatabase.execute(() -> customerDao.insertUserAccount(customerDao.insertCustomer(customer), customerAddress, newUserCredentials, deposit, transactionList));
     }
 
-    public LiveData<Long> getCustomerCredentialsIdByCustoimerId(long id){
+    public LiveData<Long> getCustomerCredentialsIdByCustomerId(long id){
         return customerDao.getCustomerCredentialsIdByCustomerId(id);
     }
 

@@ -6,7 +6,11 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-
+/**
+ * Entity class for database customer credentials table, database table data class customer credentials will be generated and mapped by room framework.
+ *
+ * @property password
+ */
 @Entity(
     foreignKeys = [ForeignKey(
         entity = Customer::class,

@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+/**
+ * Class store session/sharedpreferences data, when user is logged in
+ */
 public class CustomerIdStore {
 
     private static String KEY_VALUE_STORE_FILE_NAME = "Customer_Id_Store";

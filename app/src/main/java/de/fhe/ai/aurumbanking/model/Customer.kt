@@ -6,6 +6,13 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Entity class for customer database table, database table customer will be generated and mapped by room framework.
+ * @property lastname
+ * @property firstname
+ * @property email
+ * @property phonenumber
+ */
 @Entity
 data class Customer(
 

@@ -17,11 +17,14 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+
+/**
+ * Singleton class with certain supporter functions, that is needed in multiple fragments
+ */
 public class Helper extends Fragment {
 
     private static final Helper helper = new Helper();
     private final String STORE_KEY_COUNTER = "CustomerId";
-
 
 
     public static Helper getHelperInstance() {
@@ -36,6 +39,11 @@ public class Helper extends Fragment {
     }
 
 
+    /**
+     * Convert current login time into string
+     * @param newLineFlag
+     * @return String
+     */
     @RequiresApi(Build.VERSION_CODES.O)
     public String getDate(Boolean newLineFlag ) {
 
@@ -49,16 +57,18 @@ public class Helper extends Fragment {
         return current.format(formatter);
     }
 
-    /*
-        Helper method to hide the keyboard, for example when submitting a form.
+    /**
+     * function to hide the keyboard, for example when submitting a form.
+     * @param context
+     * @param view
      */
     public void hideKeyboard(Context context, View view) {
         InputMethodManager imm = (InputMethodManager)context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    /*
-        Helper Method to remove Back Button from Navigation/Action Bar at the top of the screen
+    /**
+     * function to remove Back Button from Navigation/Action Bar at the top of the screen
      */
     protected void hideBackButton() {
         // Hide Back Button
@@ -66,4 +76,5 @@ public class Helper extends Fragment {
                 ((AppCompatActivity) requireActivity()).getSupportActionBar()
         ).setDisplayHomeAsUpEnabled(false);
     }
+
 }

@@ -13,6 +13,9 @@ import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
 import de.fhe.ai.aurumbanking.storage.deposit.DepositRepository;
 
+/**
+ * View Model Class for the Money Transfer Fragment
+ */
 public class MoneyTransferViewModel extends AndroidViewModel {
 
     private final CustomerRepository customerRepository;

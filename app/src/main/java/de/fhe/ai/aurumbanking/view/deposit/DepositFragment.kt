@@ -20,6 +20,9 @@ import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.core.Helper
 import java.math.BigDecimal
 
+/**
+ * Class represent the Deposit-Fragment of the app.
+ */
 class DepositFragment : Fragment(){
 
     val ARG_TRANSACTIONLISTID_ID = "transactionListId"
@@ -45,19 +48,29 @@ class DepositFragment : Fragment(){
         this.viewModel.getCustomerDepositByCustomerId(this.customerId)
             .observe(this.requireActivity(), this::setCustomerDepotToFragment)
 
+
+        /**
+         * set current date in fragement view
+         */
         val depositInformation = this.root.findViewById<TextView?>(R.id.depotDateInformation)
         depositInformation.text = "Sichteinlagen vom "+ helper.getDate(false).toString()
 
+        /**
+         * set image for the current currency union as the drawable image
+         */
         val currentDepotCountry = this.root.findViewById<ImageView>(R.id.userDepotRight)
         currentDepotCountry.setImageResource(R.drawable.europaische_union)
 
 
-
-        // RecyclerView Stuff
-        // ---------------------------------------
-        // Get RecyclerView Reference
+        /** RecyclerView Stuff
+         * ---------------------------------------
+         * Get RecyclerView Reference
+         */
         val latestDepotTransaction = root.findViewById<RecyclerView?>(R.id.latestDepotTransaction)
 
+        /**
+         * Define RecyclerView Apdater and Naivagation Host Controller for the RecyclerView and DetailView
+         */
         val adapter = DepositTransactionListAdapter(requireActivity()) { transactionListId ->
                 val args = Bundle().apply { putLong(ARG_TRANSACTIONLISTID_ID, transactionListId)}
                 val nc = NavHostFragment.findNavController(this)
@@ -67,6 +80,9 @@ class DepositFragment : Fragment(){
         latestDepotTransaction.adapter = adapter
         latestDepotTransaction.layoutManager = LinearLayoutManager(requireActivity())
 
+        /**
+         * observer for TransactionList
+         */
         this.viewModel.transactionList.observe(this.requireActivity(), adapter::setTransactionList)
 
 
@@ -77,6 +93,10 @@ class DepositFragment : Fragment(){
 
     override fun onResume() {
         super.onResume()
+
+        /**
+         * Listener for the searchbar and display in search result in the RecyclerView
+         */
         val searchItem : SearchView = this.root.findViewById<SearchView>(R.id.searchDepotTransaction)
         searchItem.setOnQueryTextListener( object : SearchView.OnQueryTextListener {
 
@@ -92,6 +112,11 @@ class DepositFragment : Fragment(){
         })
     }
 
+    /**
+     * display current Deposit Value in the view
+     *
+     * @param depositValue
+     */
     @SuppressLint("SetTextI18n")
     private fun setCustomerDepotToFragment(depositValue : BigDecimal) {
         this.root.findViewById<TextView?>(R.id.userDepotLeft).text = "${depositValue.toString()}\nEuro"

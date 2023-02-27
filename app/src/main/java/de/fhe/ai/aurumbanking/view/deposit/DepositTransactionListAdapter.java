@@ -16,13 +16,22 @@ import java.util.Objects;
 
 import de.fhe.ai.aurumbanking.R;
 import de.fhe.ai.aurumbanking.model.TransactionList;
-
+/**
+ * Class represent the Adapter for the Deposit Transaction List
+ */
 public class DepositTransactionListAdapter extends RecyclerView.Adapter<DepositTransactionListAdapter.TransactionListViewHolder> {
 
+    /**
+     * Interface for the click listener from the Deposit Fragment
+     */
     public interface TransactionListClickListener {
         void onClick(long transactionListId);
     }
 
+    // -------------------------------------------------------------------------------
+    /**
+     * inner class, which is use for the RecyclerView ViewHolder
+     */
     static class TransactionListViewHolder extends RecyclerView.ViewHolder {
         private final TextView valueForTransaction;
         private final ImageView iconKindOfTransaction;
@@ -39,6 +48,7 @@ public class DepositTransactionListAdapter extends RecyclerView.Adapter<DepositT
             });
         }
     }
+    // -------------------------------------------------------------------------------
 
     private final LayoutInflater inflater;
     private final TransactionListClickListener clickListener;
@@ -66,9 +76,18 @@ public class DepositTransactionListAdapter extends RecyclerView.Adapter<DepositT
 
             holder.currentTransactionId = currentTransactionListElement.getTransactionListId();
 
+            /**
+             * set money value from the transaction into view
+             */
             holder.valueForTransaction.setText((currentTransactionListElement.getBeneficiary() + "\n" + currentTransactionListElement.getTransactionDate() + "\n"
                     + currentTransactionListElement.getMoneyValue()).toString() + " Euro" ) ;
 
+
+            /**
+             * Check and set kind of transaction and switching between red and green cirle icon
+             * green-icon: input transaction
+             * red-icon: output transaction
+             */
             if (Boolean.TRUE.equals(currentTransactionListElement.getOutputFlag())){
                 holder.iconKindOfTransaction.setImageResource(R.drawable.redcirle);
             }else{

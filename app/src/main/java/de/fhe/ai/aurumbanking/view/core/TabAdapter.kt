@@ -10,6 +10,14 @@ import de.fhe.ai.aurumbanking.view.support.SupportFragment
 import de.fhe.ai.aurumbanking.view.deposit.DepositFragment
 import de.fhe.ai.aurumbanking.view.deposit.DepositFragmentHolder
 
+
+/**
+ * Internal class is used for logic of the app tab layout design.
+ * Particularly for the tab layout a Fragment-Pager-Adapter is needed. This adapter will recognizes, when the user switch the tab and it will change the associated fragment.
+ * @property context
+ * @property totalTabs
+ * @param fm
+ */
 @Suppress("DEPRECATION")
 internal class TabAdapter (var context: Context, fm: FragmentManager, var totalTabs: Int):
     FragmentPagerAdapter(fm) {
