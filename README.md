@@ -10,33 +10,51 @@
 
 </div>
 
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#Note Of Thanks"> Note of thanks</a></li>
-    <li><a href="#Introduction"> Introduction</a></li>
-    <li><a href="#Business Diagram">Business Diagram</a></li>
-    <li><a href="#Entity Relationship Model">Entity Relationship Model</a></li>
-    <li><a href="#App Backend Architecture">App Backend Architecture</a></li>
-    <li><a href="#Contributors">Contributors</a></li>
-    <li><a href="#Contributing">Contributing</a></li>
-    <li><a href="#License">License</a></li>
-  </ol>
-</details>
 
+<summary>Table of Contents</summary>
+<ol>
+  <li><a href="#Note Of Thanks"> Note of thanks</a></li>
+  <li><a href="#Introduction"> Introduction</a></li>
+  <li><a href="#BusinessDiagram">Business Diagram</a></li>
+  <li><a href="#Entity Relationship Model">Entity Relationship Model</a></li>
+  <li><a href="#App Backend Architecture">App Backend Architecture</a></li>
+  <li><a href="#Contributors">Contributors</a></li>
+  <li><a href="#Contributing">Contributing</a></li>
+  <li><a href="#License">License</a></li>
+</ol>
+
+
+
+<details>
+<summary>Note of thanks</summary>
 
 # Note of thanks
 
-I want to give a special thanks to Prof. Dr.  Steffen Avemarg for the lecture, project consulting, help and the opportunity to try this project my own!
+I want to give a special thanks to Prof. Dr. Steffen Avemarg for the lecture, project consulting, help and the opportunity to try this project my own!
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+</details>
+
+
+<details>
+<summary>Introduction</summary>
 
 # Introduction
 
 This repository is the PME Project of an banking-app. Focus on UI and specification from the predefined Programmierung mobiler Endgeräte (PME) Module.
 
+The App was programmed on a **Google Pixel 6 Pro API 27**.
+User Credetials to access the app is: <br>
+* Email: t@t.de 
+* Password: 123
+
 For this Project the programming language Kotlin and Java was used. Besides that a relational database was implemented in a local database by using LiteSQL and Room from Android Jetpack. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+</details>
+
+<details>
+<summary>Business Diagram</summary>
 
 # Business Diagram
 
@@ -47,6 +65,10 @@ At the beginning of the project I tried to evaluate the business usecase of the 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+</details>
+
+<details>
+<summary>Entity Relationship Model</summary>
 # Entity Relationship Model
 
 In the following image is the ER-Model the database. Only for faster and simpler SQL-Queries the transactionlist table and customer table are 1 to 1 connect. In real project this kind of ER-Model is not recommended.
@@ -54,6 +76,11 @@ In the following image is the ER-Model the database. Only for faster and simpler
 ![alt text](docs/diagrams/ER_Modell_Aurumbank_Final.jpg)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+</details>
+
+<details>
+<summary>App Backend Architecture </summary>
 
 # App Backend Architecture 
 
@@ -84,21 +111,36 @@ The **Database-Layer** is the stored data layer.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+</details>
+
+<details>
+<summary>Contributors</summary>
+
 # Contributors
 
 This repository is maintained by Tran Anh Hoang as a Project of the University Module "Programmierung mobiler Endgeräte (PME)".
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+</details>
+
+<details>
+<summary>Contributing</summary>
 
 # Contributing
 
 This repository was created for educational purposes only so no contributions are required.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+</details>
+
+<details>
+<summary>License</summary>
 
 # License
 
 Distributed under the MIT License, see the [LICENSE](./LICENSE) file for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+</details>
