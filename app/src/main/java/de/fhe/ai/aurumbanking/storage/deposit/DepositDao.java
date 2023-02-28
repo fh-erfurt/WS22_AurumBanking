@@ -14,6 +14,10 @@ import java.util.List;
 import de.fhe.ai.aurumbanking.core.Converters;
 import de.fhe.ai.aurumbanking.model.TransactionList;
 
+/**
+ * DepositDao layer contains database CRUD functions that is need to operated in the app functionalities.
+ * For more architecture detail, please look into the architecture documentation.
+ */
 @TypeConverters(Converters.class)
 @Dao
 public interface DepositDao {

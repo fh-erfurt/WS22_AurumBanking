@@ -10,6 +10,9 @@ import java.util.Map;
 
 import de.fhe.ai.aurumbanking.storage.customer.CustomerRepository;
 
+/**
+ * Class is used as the View Model of the Login Fragment
+ */
 public class LogInFragmentViewModel extends AndroidViewModel {
 
     private final CustomerRepository customerRepository;

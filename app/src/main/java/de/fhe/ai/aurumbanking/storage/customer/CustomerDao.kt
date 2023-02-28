@@ -5,6 +5,10 @@ import androidx.room.*
 import de.fhe.ai.aurumbanking.core.Converters
 import de.fhe.ai.aurumbanking.model.*
 
+/**
+ * CustomerDao layer contains database CRUD functions that is need to operated in the app functionalities.
+ * For more architecture detail, please look into the architecture documentation.
+ */
 @TypeConverters(Converters::class)
 @Dao
 interface CustomerDao {
@@ -122,10 +126,5 @@ interface CustomerDao {
 
     @Query("SELECT ca.`Customer Address Id` from Customer c INNER JOIN CustomerAddress ca ON ca.customerId = c.customerId where c.customerId = :customerId")
     fun getCustomerAddressIdByCustomerId(customerId: Long): LiveData<Long>
-
-    //-----------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
 
 }

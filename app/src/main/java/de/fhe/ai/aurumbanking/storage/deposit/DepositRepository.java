@@ -11,6 +11,13 @@ import java.util.List;
 import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.core.CustomerBankingDatabase;
 
+/**
+ *
+ * Singleton deposit repository is used as a abstraction layer between viewmodel-layer an dao-layer.
+ * Repository functions are used in the viewmodel-layer of the app.
+ * For more architecture detail, please look into the architecture documentation.
+ *
+ */
 public class DepositRepository {
 
     public static final String LOG_TAG = "DepositRepository";

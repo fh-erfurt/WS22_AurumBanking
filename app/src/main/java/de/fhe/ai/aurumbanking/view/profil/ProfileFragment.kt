@@ -59,6 +59,10 @@ class ProfileFragment : Fragment() {
             .observe(this.requireActivity(), this::getCurrentCustomerPassword)
 
         hidePasswordChangeSection()
+
+
+
+
         return this.root
     }
 

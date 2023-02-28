@@ -6,6 +6,18 @@ import de.fhe.ai.aurumbanking.core.Converters
 import java.math.BigDecimal
 import java.util.*
 
+/**
+ * Entity class for TransactionList database table, database table will be generated and mapped by room framework.
+ *
+ * @property outputFlag
+ * @property transactionDate
+ * @property beneficiary
+ * @property iban
+ * @property bic
+ * @property bankname
+ * @property moneyValue
+ * @property purposeOfUse
+ */
 @TypeConverters(Converters::class)
 @Entity(
     foreignKeys = [ForeignKey(

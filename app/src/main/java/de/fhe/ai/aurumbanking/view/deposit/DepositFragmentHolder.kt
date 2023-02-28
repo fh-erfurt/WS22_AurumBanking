@@ -23,6 +23,9 @@ import de.fhe.ai.aurumbanking.R
 import de.fhe.ai.aurumbanking.core.Helper
 import java.math.BigDecimal
 
+/**
+ * Class is just a placeholder for the navigation logic from Depotfragment to the Transactionlist Detailview Fragment.
+ */
 class DepositFragmentHolder : Fragment() {
 
     private lateinit var root: View
@@ -37,6 +40,9 @@ class DepositFragmentHolder : Fragment() {
 
         this.root = inflater.inflate(R.layout.fragement_deposit_viewholder, container, false)
 
+        /**
+         * define childFragmentManager, which search the navigation host fragment
+         */
         navHostFragment = childFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
         return this.root
@@ -45,6 +51,9 @@ class DepositFragmentHolder : Fragment() {
     override fun onResume() {
         super.onResume()
 
+        /**
+         * Business Logic for the "Back-Button" from detailview to depositview
+         */
         requireActivity().onBackPressedDispatcher.addCallback(
             this,
             object : OnBackPressedCallback(true) {
@@ -57,7 +66,9 @@ class DepositFragmentHolder : Fragment() {
 
     override fun onPause() {
         super.onPause()
-
+        /**
+         * destroy detailview, when fragment is not use
+         */
         requireActivity().supportFragmentManager.beginTransaction().remove(this).commit()
 
     }

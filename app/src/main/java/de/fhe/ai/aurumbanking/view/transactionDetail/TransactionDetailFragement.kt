@@ -15,7 +15,7 @@ import de.fhe.ai.aurumbanking.view.deposit.DepositViewModel
 /**
  * A simple [Fragment] subclass.
  * Use the [transactionDetail.newInstance] factory method to
- * create an instance of this fragment.
+ * create an instance of this fragment. This class include the detail view layout of an transaction.
  */
 class TransactionDetailFragment : Fragment() {
 
@@ -29,11 +29,14 @@ class TransactionDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        
         this.root = inflater.inflate(R.layout.fragment_transaction_detail, container, false)
 
         this.viewModel = ViewModelProvider(this)[TransactionDetailViewModel::class.java]
 
+        /**
+         * get transactionListId from args bundle, which was save in the Deposit Fragment 
+         */
         requireArguments().let { args ->
             this.transactionListId = args.getLong(ARG_TRANSACTIONLISTID_ID)
         }
@@ -42,7 +45,7 @@ class TransactionDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        
         this.viewModel.getBanknameByTransactionListIdId(transactionListId)
             .observe(requireActivity(), this::updateViewBankName)
 
@@ -85,10 +88,20 @@ class TransactionDetailFragment : Fragment() {
 
     }
 
+    /**
+     * set bankname to view layout
+     *
+     * @param bankName
+     */
     private fun updateViewBankName(bankName: String) {
         this.root.findViewById<TextView?>(R.id.bankName).text = bankName
     }
 
+    /**
+     * set bic to view layout
+     *
+     * @param bic
+     */
     private fun updateViewBIC(bic: String) {
         if (bic.isEmpty()){
             this.root.findViewById<TextView?>(R.id.bic).text = "leer"
@@ -97,14 +110,29 @@ class TransactionDetailFragment : Fragment() {
         }
     }
 
+    /**
+     * set transaction date to view layout
+     *
+     * @param date
+     */
     private fun updateViewDate(date: String) {
         this.root.findViewById<TextView?>(R.id.Date).text = date
     }
 
+    /**
+     * set purpose of use date to view layout
+     *
+     * @param purposeOfUse
+     */
     private fun updateViewPurposeOfUse(purposeOfUse: String) {
         this.root.findViewById<TextView?>(R.id.purposeOfUse).text = purposeOfUse
     }
 
+    /**
+     * set iban to view layout
+     *
+     * @param iban
+     */
     private fun updateViewIban(iban: String) {
         if (iban.isEmpty()){
             this.root.findViewById<TextView?>(R.id.iban).text  = "leer"
@@ -113,6 +141,11 @@ class TransactionDetailFragment : Fragment() {
         }
     }
 
+    /**
+     * check kind of transaction and set icon to view layout 
+     *
+     * @param deductionFlag
+     */
     private fun updateViewIconForLatestTransaction(deductionFlag : Boolean){
         if (deductionFlag){
             this.root.findViewById<ImageButton>(R.id.cicle)
@@ -124,6 +157,11 @@ class TransactionDetailFragment : Fragment() {
 
     }
 
+    /**
+     * set transaction value to view layout
+     *
+     * @param moneyValue
+     */
     @SuppressLint("SetTextI18n")
     private fun updateViewValueForLatestTransaction(moneyValue : String){
         this.root.findViewById<TextView>(R.id.lastTransaction).text = moneyValue.toString().replace(",", "\n\n") + " Euro"

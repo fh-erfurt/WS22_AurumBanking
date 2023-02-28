@@ -68,8 +68,8 @@ public class ProfileViewModel extends AndroidViewModel {
         return customerRepository.getCustomerPhoneNumberByCustomerId(id);
     }
 
-    public LiveData<Long> getCustomerCredentialsIdByCustoimerId(Long id){
-        return customerRepository.getCustomerCredentialsIdByCustoimerId(id);
+    public LiveData<Long> getCustomerCredentialsIdByCustomerId(Long id){
+        return customerRepository.getCustomerCredentialsIdByCustomerId(id);
     }
 
     public void updateNewCustomerAccountPasswordByCustomerId(Long id, String newPassword){

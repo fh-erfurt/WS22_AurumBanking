@@ -23,9 +23,10 @@ import de.fhe.ai.aurumbanking.model.TransactionList;
 import de.fhe.ai.aurumbanking.storage.customer.CustomerDao;
 import de.fhe.ai.aurumbanking.storage.deposit.DepositDao;
 
-/*
-    Class only there to init Database with all the entities
-    Database class instance should be handled as Singleton
+/**
+ * Class only there to init Database with all the entities.
+ * Database class instance should be handled as Singleton.
+ *
  */
 @Database(entities = {Customer.class, CustomerAddress.class, CustomerCredentials.class, Deposit.class, TransactionList.class}, version = 1)
 
@@ -33,29 +34,28 @@ public abstract class CustomerBankingDatabase extends RoomDatabase {
 
     private static final String LOG_TAG = "CustomerBakingDatabase";
 
-    /*
-        Contact DAO reference, will be filled by Android
+    /**
+     * Contact DAO reference, will be filled by Android
      */
     public abstract CustomerDao customerDao();
 
     public abstract DepositDao depositDao();
 
 
-    /*
-      Executor service to perform database operations asynchronous and independent from UI thread
+    /**
+     * Executor service to perform database operations asynchronous and independent from UI thread
      */
     private static final int NUMBER_OF_THREADS = 4;
     private static final ExecutorService databaseExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    /*
-        Singleton Instance
+    /**
+     *  Singleton Instance
      */
     private static volatile CustomerBankingDatabase INSTANCE;
 
-    /*
-        Helper methods to ease external usage of ExecutorService
-        e.g. perform async database operations
+    /**
+     * Helper methods to ease external usage of ExecutorService e.g. perform async database operations
      */
     public static <T> T query(Callable<T> task)
             throws ExecutionException, InterruptedException {
@@ -66,9 +66,8 @@ public abstract class CustomerBankingDatabase extends RoomDatabase {
         databaseExecutor.execute(runnable);
     }
 
-    /*
-        Singleton 'getInstance' method to create database instance thereby opening and, if not
-        already done, init the database. Note the 'createCallback'.
+    /**
+     * Singleton 'getInstance' method to create database instance thereby opening and, if no already done, init the database. Note the 'createCallback'.
      */
     public static CustomerBankingDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -86,9 +85,8 @@ public abstract class CustomerBankingDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    /*
-        Create DB Callback
-        Used to add some initial data
+    /**
+     * Create DB Callback Used to add some initial data
      */
     private static final Callback createCallback = new Callback() {
         @Override
@@ -96,24 +94,6 @@ public abstract class CustomerBankingDatabase extends RoomDatabase {
             super.onCreate(db);
 
             Log.i(LOG_TAG, "Calling createCallback-methode!");
-
-            /*
-            execute(() -> {
-                ContactDao dao = CUSTOMERDATBASE.contactDao();
-
-                Faker faker = Faker.instance();
-                for (int i = 0; i < 10; i++)
-                {
-                    Contact contact = new Contact(faker.name().lastName(), faker.name().firstName());
-                    contact.setCreated( System.currentTimeMillis() );
-                    contact.setModified( contact.getCreated() );
-                    contact.setVersion( 1 );
-                    dao.insert(contact);
-                }
-                Log.i(LOG_TAG, "Inserted 10 values to DB");
-            });
-
-             */
         }
     };
 }

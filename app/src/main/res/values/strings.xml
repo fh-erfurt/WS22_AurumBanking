@@ -41,6 +41,7 @@
     <string name="transaktionsdetails">Transaktionsdetails:</string>
     <string name="purpose_of_use">Verwendungszweck:</string>
     <string name="latest_transaction_detailview">Latest Transaction</string>
+    <string name="logout">logout</string>
 
 
 </resources>

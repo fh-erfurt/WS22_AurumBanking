@@ -43,12 +43,19 @@ class MoneyTransferFragment : Fragment() {
 
         this.root = inflater.inflate(R.layout.fragment_moneytransfer, container, false)
 
+        /**
+         * Get customerId from shared preference
+         */
         this.customerId = helper.getCustomerId(activity?.application)
 
         this.viewModel = ViewModelProvider(this)[MoneyTransferViewModel::class.java]
 
         transferDatePicker = root.findViewById<EditText?>(R.id.dateOfTransferRight)
 
+
+        /**
+         * setOnClickListener which display a date picker and save value in the Edittext
+         */
         transferDatePicker.setOnClickListener {
 
             val calendar = Calendar.getInstance()
@@ -68,7 +75,7 @@ class MoneyTransferFragment : Fragment() {
                     year, month, day
                 )
             }
-            //display DayPicker
+            // display DayPicker
             datePickerDialog?.show()
         }
 
@@ -77,11 +84,17 @@ class MoneyTransferFragment : Fragment() {
         return root
     }
 
+
     override fun onResume() {
         super.onResume()
 
         var transactionSubmitButton = root.findViewById<Button?>(R.id.transactionSubmitButton)
 
+
+        /**
+         * setOnClickListener for the "Überweisung durchführen"-Button.
+         * Take all the Edittext in the formula and bypass it to the view model
+         */
         transactionSubmitButton.setOnClickListener{
 
             val dateFromEditText = root.findViewById<EditText?>(R.id.dateOfTransferRight).text.toString()
@@ -97,17 +110,31 @@ class MoneyTransferFragment : Fragment() {
             val newTransactionListElement = TransactionList(true)
             newTransactionListElement.customerId = this.customerId
 
-            // deposit ID == customerId (IMMER, ein Kunde hat immer ein Deposit)
+            // deposit ID == customerId
             newTransactionListElement.depositId = this.customerId
 
-            checkTransferInputfield(dateFromEditText, beneficiary, iban, bankName, bic, moneyValueFromEditText, purposeOfUse)
+            checkTransferInputField(dateFromEditText, beneficiary, iban, bankName, bic, moneyValueFromEditText, purposeOfUse)
 
             Helper.getHelperInstance().hideKeyboard(requireContext(), this.view)
+
+
         }
+
     }
 
 
-    private fun checkTransferInputfield(dateFromEditText: String, beneficiary : String, iban : String, bankName: String, bic: String, moneyValue : String, purposeOfUse : String){
+    /**
+     * Check all the needed Edittext from the formula is not emptys
+     *
+     * @param dateFromEditText
+     * @param beneficiary
+     * @param iban
+     * @param bankName
+     * @param bic
+     * @param moneyValue
+     * @param purposeOfUse
+     */
+    private fun checkTransferInputField(dateFromEditText: String, beneficiary : String, iban : String, bankName: String, bic: String, moneyValue : String, purposeOfUse : String){
         if(dateFromEditText.trim().isEmpty() && beneficiary.trim().isEmpty() && iban.trim()
                 .isEmpty() && bankName.trim().isEmpty() && bic.trim().isEmpty()
             && moneyValue.trim().isEmpty() && purposeOfUse.trim().isEmpty()
@@ -116,19 +143,26 @@ class MoneyTransferFragment : Fragment() {
         }
         else{
             val moneyValue = Converters.stringToBigDecimal(moneyValue)
+
+            /**
+             * current value - transfer value = newDepotValue
+             */
             val newDepotValue = this.depotValue?.minus(moneyValue)
 
             viewModel.insertNewTransactionListElementByCustomerId(
                 this.customerId, this.customerId, dateFromEditText, beneficiary, iban, bankName,
                 moneyValue, purposeOfUse, newDepotValue, bic
             )
-            succesfulTransaction()
+            successfulTransaction()
         }
 
     }
 
 
-
+    /**
+     *
+     * DialogBuilder for failed money transfer order.
+     */
     private fun failedTransaction() {
         val dialogBuilder = AlertDialog.Builder(requireActivity())
 
@@ -152,7 +186,11 @@ class MoneyTransferFragment : Fragment() {
     }
 
 
-    private fun succesfulTransaction() {
+    /**
+     * 
+     * DialogBuilder for sucessfull money transfer order.
+     */
+    private fun successfulTransaction() {
         val dialogBuilder = AlertDialog.Builder(requireActivity())
 
         // set message of alert dialog

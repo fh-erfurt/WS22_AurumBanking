@@ -46,13 +46,17 @@ class LogInFragment: Fragment() {
         val login_Button = root.findViewById<Button>(R.id.login)
 
         this.viewModel = ViewModelProvider(this)[LogInFragmentViewModel::class.java]
-
-
+        /**
+         * click listener for the login button
+         */
        login_Button.setOnClickListener() {
             this.email = root.findViewById<TextView?>(R.id.UserEmailAddress).text.toString()
             this.password = root.findViewById<TextView?>(R.id.UserPassword).text.toString()
 
-            if (validateEmail()){
+           /**
+            * validate Email, if email is in a correct form, check login credentials
+            */
+           if (validateEmail()){
                 val emailLiveData = this.viewModel.mapOfCustomerEmailAndPassword
                 emailLiveData.observe(requireActivity(), this::checkLogin)
             }
@@ -62,6 +66,9 @@ class LogInFragment: Fragment() {
            login_Button.isEnabled
         }
 
+        /**
+         * Key listener is used for the "enter"-keyboard, check credentials of the user, after enter key is pressed.
+         */
         (root.findViewById<TextView>(R.id.UserPassword)).setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 this.email = root.findViewById<TextView?>(R.id.UserEmailAddress).text.toString()
@@ -86,7 +93,9 @@ class LogInFragment: Fragment() {
 
     }
 
-
+    /**
+     * Display dialogBuilder for a wrong password
+     */
     private fun logInError(){
         // build alert dialog
         val dialogBuilder = AlertDialog.Builder(requireActivity())
@@ -108,6 +117,9 @@ class LogInFragment: Fragment() {
         alert.show()
     }
 
+    /**
+     * Display dialogBuilder for an wrong email
+     */
     private fun emailError(){
         val dialogBuilder = AlertDialog.Builder(requireActivity())
 
@@ -128,7 +140,11 @@ class LogInFragment: Fragment() {
         alert.show()
     }
 
-    //(
+    /**
+     *
+     * check user credentials with data from database
+     * @param userCredentials
+     */
     private fun checkLogin ( userCredentials: Map<String, String>){
 
         if (userCredentials.containsKey(this.email) && userCredentials.containsValue(this.password)) {
@@ -143,6 +159,11 @@ class LogInFragment: Fragment() {
 
     }
 
+    /**
+     * Validate Email-Input with predefined regular expression
+     *
+     * @return boolean flag
+     */
     private fun validateEmail() : Boolean{
 
         if (!EMAIL_ADDRESS_PATTERN.matcher(this.email).matches()){
@@ -156,6 +177,11 @@ class LogInFragment: Fragment() {
         startActivity(mainActivity)
     }
 
+    /**
+     * Set customerId to shared preference. This is needed to curl data from database. It's like a session in website after login.
+     *
+     * @param id
+     */
     private fun setCustomerIdStore(id: Long){
         val appInstance = activity?.application
         val customerIdStore : CustomerIdStore = CustomerIdStore(appInstance)

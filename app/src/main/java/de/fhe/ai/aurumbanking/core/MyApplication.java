@@ -20,25 +20,28 @@ import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
-
+/**
+ * Class is defined at startpoint of the app. The class contains predefined and essential data and functionalities for the database and logs.
+ */
 public class MyApplication extends Application {
 
 
     private static final String LOG_TAG = "Banking App Init";
 
-    // private SettingsHandler settingsHandler;
-
     @Override
     public void onCreate() {
         super.onCreate();
-
-        // this.settingsHandler = new SettingsHandler(this);
         testDatabase();
 
         Log.i(LOG_TAG, "On Create finished.");
     }
 
 
+    /**
+     * Initialize database with customer data, login credentials, deposit and transaction list.
+     * For the test of the app there is only one user predefined.
+     * Customerdata are generated with Faker Library
+     */
     private void testDatabase() {
 
 
@@ -80,11 +83,18 @@ public class MyApplication extends Application {
         return String.format("%s_%s", UUID.randomUUID().toString().substring(0, 5), System.currentTimeMillis() / 1000);
     }
 
+    /**
+     * generate random email in a certain regular expression
+     * @return String
+     */
     public String generateRandomEmail() {
         return String.format("%s@%s", getUniqueId(), "yourHostName.com");
     }
 
-
+    /**
+     *  generate random phone number in a certain regular expression
+     * @return int
+     */
     public int generatePhonenumber() {
         return ThreadLocalRandom.current().nextInt(10000000, 99999999);
     }
