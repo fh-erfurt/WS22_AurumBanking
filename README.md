@@ -105,7 +105,7 @@ In this view the user can use the landscape mode by rotate the app with rotation
 
 5. Deposit/Depot
 
-In this view the user can check the her/his current money value, search certain by click on the magnifying glass of the search bar and commit a search term. The user also can see all his transactions the past in an recyclerview.
+In this view the user can check the current money value of her/his depot, search certain terms by click on the magnifying glass of the search bar and commit a search term. The user can also see all his transactions of the past in an recyclerview.
 
 ![alt text](docs/AppGuideImages/depot.png)
 
@@ -114,11 +114,14 @@ In this view the user can check the her/his current money value, search certain 
 
 6. Transaction Details/Transaktionsdetails
 
-In this view the user can see the transaction list by clicking on the value site of the textfield from the recyclerview. The app will guide the user to the detail view. This will be shown in the following images. 
+
+In this view the user can see the transaction detail by clicking on the value site of the textfield from the recyclerview. The app will guide the user to the detail view. This will be shown in the following images.
 
 ![alt text](docs/AppGuideImages/detail_view_1.png)
 
 ![alt text](docs/AppGuideImages/dezail_view_2.png)
+
+By clicking on the "back"-button of the smartphone. The user can get back to the deposit view.
 
 7. Support
 
@@ -154,6 +157,7 @@ At the beginning of the project I tried to evaluate the business usecase of the 
 
 <details>
 <summary>Entity Relationship Model</summary>
+
 # Entity Relationship Model
 
 In the following image is the ER-Model the database. Only for faster and simpler SQL-Queries the transactionlist table and customer table are 1 to 1 connect. In real project this kind of ER-Model is not recommended.
