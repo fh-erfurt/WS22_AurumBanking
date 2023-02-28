@@ -119,9 +119,8 @@ In this view the user can see the transaction detail by clicking on the value si
 
 ![alt text](docs/AppGuideImages/detail_view_1.png)
 
-![alt text](docs/AppGuideImages/dezail_view_2.png)
-
-By clicking on the "back"-button of the smartphone. The user can get back to the deposit view.
+![alt text](docs/AppGuideImages/detail_view_2.png)
+By clicking on the "Zurück zum Depot"-button of the smartphone. The user can get back to the deposit view.
 
 7. Support
 
@@ -134,6 +133,9 @@ This view can be used in a landscape-mode, too.
 ![alt text](docs/AppGuideImages/support_landscape_1.png)
 
 ![alt text](docs/AppGuideImages/support_landscape_2.png)
+
+
+The user can use "back" button of the smartphone to return from the current tab to the tab before (example by using the "back" button: Deposit -> Überweisung -> Profil )  
 
 
 
