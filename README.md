@@ -15,6 +15,7 @@
 <ol>
   <li><a href="#note-of-thanks"> Note of thanks</a></li>
   <li><a href="#introduction"> Introduction</a></li>
+  <li><a href="#app-guidance"> App Guidance</a></li>
   <li><a href="#business-diagram">Business Diagram</a></li>
   <li><a href="#entity-relationship-model">Entity Relationship Model</a></li>
   <li><a href="#app-backend-architecture">App Backend Architecture</a></li>
@@ -43,12 +44,96 @@ I want to give a special thanks to Prof. Dr. Steffen Avemarg for the lecture, pr
 
 This repository is the PME Project of an banking-app. Focus on UI and specification from the predefined Programmierung mobiler Endgeräte (PME) Module.
 
-The App was programmed on a **Google Pixel 6 Pro API 27**.
+The App was programmed and tested on a **Google Pixel 6 Pro API 27**.<br>
 User Credetials to access the app is: <br>
 * Email: t@t.de 
 * Password: 123
 
+The App has **only two view** with a completed implemenation of a landscape mode:
+* **Money Transfer/Überweisung**
+* **Support**
+
 For this Project the programming language Kotlin and Java was used. Besides that a relational database was implemented in a local database by using LiteSQL and Room from Android Jetpack. 
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+</details>
+
+<details>
+<summary>App Guidance</summary>
+
+
+1. Login 
+To Login into the App use the following crentials. 
+
+* Email: t@t.de 
+* Password: 123
+
+The user will be generated after every restart of the app, because the project is base on a local database in the RAM.
+
+
+![alt text](docs/AppGuideImages/Login.png)
+
+2. Overview/Übersicht
+
+After the Login, the user will be forwarded to the Overview-Fragment. Which will be shown in the following image. 
+
+![alt text](docs/AppGuideImages/Overview.png)
+
+The lastest transaction value will show the newest transaction that's was made.
+
+3. Profile/Profil
+
+The user can see their personal information the tab "Profil". If the user want to change his/her password. The person has to change the switch to "yes", so the password-change section will be shown.  
+
+![alt text](docs/AppGuideImages/Profil.png)
+
+![alt text](docs/AppGuideImages/Profi_Password_Change.png)
+
+4. Money Transfer/Überweisung
+
+In the view "Überweisung" the user can execute a money transfer order. The person has to fill all the Edittext of the formula and click the "Überweisung durchführen"- Button. 
+
+![alt text](docs/AppGuideImages/Ueberweisung_1.png)
+
+![alt text](docs/AppGuideImages/Ueberweisung_2.png)
+
+In this view the user can use the landscape mode by rotate the app with rotation fuction of the smartphone.
+
+![alt text](docs/AppGuideImages/Ueberweisung_Landscape_1.png)
+
+![alt text](docs/AppGuideImages/Ueberweisung_Landscape_2.png)
+
+5. Deposit/Depot
+
+In this view the user can check the her/his current money value, search certain by click on the magnifying glass of the search bar and commit a search term. The user also can see all his transactions the past in an recyclerview.
+
+![alt text](docs/AppGuideImages/depot.png)
+
+![alt text](docs/AppGuideImages/depot2.png)
+
+
+6. Transaction Details/Transaktionsdetails
+
+In this view the user can see the transaction list by clicking on the value site of the textfield from the recyclerview. The app will guide the user to the detail view. This will be shown in the following images. 
+
+![alt text](docs/AppGuideImages/detail_view_1.png)
+
+![alt text](docs/AppGuideImages/dezail_view_2.png)
+
+7. Support
+
+In the fragement "Support" the user can send the support a spefic request. The user has to fill all the Edittext and select one of the options in "Art der Anfrage". By pressing the button "Anfrage Absenden" the message will be "sent" to the support.
+
+![alt text](docs/AppGuideImages/support_1.png)
+
+This view can be used in a landscape-mode, too.
+
+![alt text](docs/AppGuideImages/support_landscape_1.png)
+
+![alt text](docs/AppGuideImages/support_landscape_2.png)
+
+
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 </details>
