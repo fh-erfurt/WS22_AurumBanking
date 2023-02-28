@@ -81,7 +81,6 @@ class MoneyTransferFragment : Fragment() {
 
         this.viewModel.getCustomerDepositByCustomerId(this.customerId).observe(this.requireActivity(), this::convertCurrentDepotValueLiveData)
 
-
         return root
     }
 
@@ -210,6 +209,11 @@ class MoneyTransferFragment : Fragment() {
         alert.show()
     }
 
+    /**
+     * set current depot value
+     *
+     * @param currentDepotValue
+     */
     private fun convertCurrentDepotValueLiveData(currentDepotValue: BigDecimal) {
         this.depotValue = currentDepotValue
     }

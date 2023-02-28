@@ -2,6 +2,10 @@ package de.fhe.ai.aurumbanking.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import de.fhe.ai.aurumbanking.R
@@ -59,5 +63,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
+    /**
+     * set App Logic by pressing Back Pressed Button on Tab-Layout
+     */
+    override fun onBackPressed() {
+        if(viewPager.currentItem > 0){
+            viewPager.currentItem = viewPager.currentItem - 1
+        }else {
+            super.onBackPressed()
+        }
+    }
 }
