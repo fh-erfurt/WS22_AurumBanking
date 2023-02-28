@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import de.fhe.ai.aurumbanking.R
-import de.fhe.ai.aurumbanking.view.deposit.DepositViewModel
+import de.fhe.ai.aurumbanking.view.deposit.DepositFragment
 
 /**
  * A simple [Fragment] subclass.
@@ -40,6 +42,17 @@ class TransactionDetailFragment : Fragment() {
         requireArguments().let { args ->
             this.transactionListId = args.getLong(ARG_TRANSACTIONLISTID_ID)
         }
+
+
+        /**
+         * Business Logic and Click Listener for the "Zurück zum Depot" - Button from detail view to deposit view
+         */
+        val backToDepotButton = this.root.findViewById<Button?>(R.id.backToDepotButton)
+        backToDepotButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+
         return this.root
     }
 

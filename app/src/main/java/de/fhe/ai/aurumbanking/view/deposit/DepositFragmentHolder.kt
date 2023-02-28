@@ -50,18 +50,6 @@ class DepositFragmentHolder : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
-        /**
-         * Business Logic for the "Back-Button" from detailview to depositview
-         */
-        requireActivity().onBackPressedDispatcher.addCallback(
-            this,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    NavHostFragment.findNavController(navHostFragment).popBackStack()
-                }
-
-            })
     }
 
     override fun onPause() {
