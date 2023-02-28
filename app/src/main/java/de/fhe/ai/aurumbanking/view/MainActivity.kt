@@ -63,8 +63,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-
+    /**
+     * set App Logic by pressing Back Pressed Button on Tab-Layout
+     */
     override fun onBackPressed() {
         if(viewPager.currentItem > 0){
             viewPager.currentItem = viewPager.currentItem - 1
