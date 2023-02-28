@@ -65,7 +65,7 @@ For this Project the programming language Kotlin and Java was used. Besides that
 
 **The App was programmed and tested on a Google Pixel 6 Pro API 27.**
 
-1. Login
+## Login
 
 To Login into the App use the following credentials.
 
@@ -77,7 +77,7 @@ The user will be generated after every restart of the app, because the project i
 
 ![alt text](docs/AppGuideImages/Login.png)
 
-2. Overview/Übersicht
+## Overview/Übersicht
 
 After the Login, the user will be forwarded to the Overview-Fragment. Which will be shown in the following image. 
 
@@ -85,7 +85,7 @@ After the Login, the user will be forwarded to the Overview-Fragment. Which will
 
 The lastest transaction value will show the newest transaction that's was made.
 
-3. Profile/Profil
+## Profile/Profil
 
 The user can see their personal information the tab "Profil". If the user want to change his/her password. The person has to change the switch to "yes", so the password-change section will be shown.  
 
@@ -93,7 +93,7 @@ The user can see their personal information the tab "Profil". If the user want t
 
 ![alt text](docs/AppGuideImages/Profi_Password_Change.png)
 
-4. Money Transfer/Überweisung
+## Money Transfer/Überweisung
 
 In the view "Überweisung" the user can execute a money transfer order. The person has to fill all the Edittext of the formula and click the "Überweisung durchführen"- Button. 
 
@@ -107,7 +107,7 @@ In this view the user can use the landscape mode by rotate the app with rotation
 
 ![alt text](docs/AppGuideImages/Ueberweisung_Landscape_2.png)
 
-5. Deposit/Depot
+## Deposit/Depot
 
 In this view the user can check the current money value of her/his depot, search certain terms by click on the magnifying glass of the search bar and commit a search term. The user can also see all his transactions of the past in an recyclerview.
 
@@ -116,7 +116,7 @@ In this view the user can check the current money value of her/his depot, search
 ![alt text](docs/AppGuideImages/depot2.png)
 
 
-6. Transaction Details/Transaktionsdetails
+## Transaction Details/Transaktionsdetails
 
 
 In this view the user can see the transaction detail by clicking on the value site of the textfield from the recyclerview. The app will guide the user to the detail view. This will be shown in the following images.
@@ -127,7 +127,7 @@ In this view the user can see the transaction detail by clicking on the value si
 
 By clicking on the "Zurück zum Depot"-button of the smartphone. The user can get back to the deposit view.
 
-7. Support
+## Support
 
 In the fragement "Support" the user can send the support a spefic request. The user has to fill all the Edittext and select one of the options in "Art der Anfrage". By pressing the button "Anfrage Absenden" the message will be "sent" to the support.
 
@@ -139,7 +139,7 @@ This view can be used in a landscape-mode, too.
 
 ![alt text](docs/AppGuideImages/support_landscape_2.png)
 
-
+## "Back" button
 The user can use "back" button of the smartphone to return from the current tab to the tab before (example by using the "back" button: Deposit -> Überweisung -> Profil -> Login).
 
 If the user click on "back" button of the smartphone while the user is on the login fragment, the app will be close.
