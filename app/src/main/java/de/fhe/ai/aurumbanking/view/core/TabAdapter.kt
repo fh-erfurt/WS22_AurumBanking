@@ -38,4 +38,5 @@ internal class TabAdapter (var context: Context, fm: FragmentManager, var totalT
         }
 
 
+
 }

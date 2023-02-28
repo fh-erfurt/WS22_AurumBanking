@@ -74,7 +74,6 @@ class MoneyTransferFragment : Fragment() {
 
         this.viewModel.getCustomerDepositByCustomerId(this.customerId).observe(this.requireActivity(), this::convertCurrentDepotValueLiveData)
 
-
         return root
     }
 

@@ -46,4 +46,12 @@ class MainActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
     }
+
+    override fun onBackPressed() {
+        if(viewPager.currentItem > 0){
+            viewPager.currentItem = viewPager.currentItem - 1
+        }else {
+            super.onBackPressed()
+        }
+    }
 }
