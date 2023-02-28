@@ -120,6 +120,7 @@ In this view the user can see the transaction detail by clicking on the value si
 ![alt text](docs/AppGuideImages/detail_view_1.png)
 
 ![alt text](docs/AppGuideImages/detail_view_2.png)
+
 By clicking on the "Zurück zum Depot"-button of the smartphone. The user can get back to the deposit view.
 
 7. Support
