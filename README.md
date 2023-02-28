@@ -61,6 +61,7 @@ For this Project the programming language Kotlin and Java was used. Besides that
 <details>
 <summary>App Guidance</summary>
 
+**The App was programmed and tested on a Google Pixel 6 Pro API 27.**
 
 1. Login 
 To Login into the App use the following credentials.
