@@ -6,7 +6,7 @@
     <img src="https://raw.githubusercontent.com/fh-erfurt/ws2021_team_1_service_7_persons/java2/.github/assets/logo.png" width="80" alt="fhe logo" />
   </a>
   <br>
-  <h3 align="center">PME Project WS_2022/23 - Aurumbanking</h3>
+  <h3 align="center">PME Project WS_2022/23 - AurumBanking</h3>
 
 </div>
 
@@ -42,14 +42,14 @@ I want to give a special thanks to Prof. Dr. Steffen Avemarg for the lecture, pr
 
 # Introduction
 
-This repository is the PME Project of an banking-app. Focus on UI and specification from the predefined Programmierung mobiler Endgeräte (PME) Module.
+This repository is the PME Project of an banking-app. Focus on UI and specification from the predefined "Programmierung mobiler Endgeräte (PME)" Module.
 
 The App was programmed and tested on a **Google Pixel 6 Pro API 27**.<br>
-User Credetials to access the app is: <br>
+User Credentials to access the app is: <br>
 * Email: t@t.de 
 * Password: 123
 
-The App has **only two view** with a completed implemenation of a landscape mode:
+The App has **only two view** with a completed implementation of a landscape mode:
 * **Money Transfer/Überweisung**
 * **Support**
 
@@ -63,7 +63,7 @@ For this Project the programming language Kotlin and Java was used. Besides that
 
 
 1. Login 
-To Login into the App use the following crentials. 
+To Login into the App use the following credentials.
 
 * Email: t@t.de 
 * Password: 123
@@ -97,7 +97,7 @@ In the view "Überweisung" the user can execute a money transfer order. The pers
 
 ![alt text](docs/AppGuideImages/Ueberweisung_2.png)
 
-In this view the user can use the landscape mode by rotate the app with rotation fuction of the smartphone.
+In this view the user can use the landscape mode by rotate the app with rotation function of the smartphone.
 
 ![alt text](docs/AppGuideImages/Ueberweisung_Landscape_1.png)
 
@@ -136,7 +136,9 @@ This view can be used in a landscape-mode, too.
 ![alt text](docs/AppGuideImages/support_landscape_2.png)
 
 
-The user can use "back" button of the smartphone to return from the current tab to the tab before (example by using the "back" button: Deposit -> Überweisung -> Profil )  
+The user can use "back" button of the smartphone to return from the current tab to the tab before (example by using the "back" button: Deposit -> Überweisung -> Profil -> Login).
+
+If the user click on "back" button of the smartphone while the user is on the login fragment, the app will be close.
 
 
 
@@ -176,7 +178,7 @@ In the following image is the ER-Model the database. Only for faster and simpler
 
 # App Backend Architecture 
 
-Basically the AurumBanking Backend Architecture is structered in _**8 specifics layers**_, which can be _**abstacted to 4 layers**_.
+Basically the AurumBanking Backend Architecture is structured in _**8 specifics layers**_, which can be _**abstacted to 4 layers**_.
 
 The 8 Layers you can see on the diagamm below. 
 
@@ -190,12 +192,12 @@ The _**abstacted to 4 layers**_ are:
 
 The **Activity/Fragement-Layer** are the "User Interface"-Layer, in which the user can interact with the app. In this layer the data will be only process and displayed into the specific form of the UI.
 
-The **Viemmodel-Layer** bypass the data into the **Activity/Fragement-Layer** from underlying data layer and process certain data for the overlying layers. 
+The **Viemmodel-Layer** bypass the data into the **Activity/Fragment-Layer** from underlying data layer and process certain data for the overlying layers.
 
-The **Repository-Layer** is an abstraction layer between the **Viemmodel-Layer** and the **DAO-Layers**. This layer process the function and datas from both overlying and underlying layer.
+The **Repository-Layer** is an abstraction layer between the **Viewmodel-Layer** and the **DAO-Layers**. This layer process the function and data from both overlying and underlying layer.
 
 
-The **DAO-Layer** is used for the definition of the SQL-queries and fuction, which will be transformed into LiteSQL. The input and output data will be operated by the CRUD-Methods. 
+The **DAO-Layer** is used for the definition of the SQL-queries and function, which will be transformed into LiteSQL. The input and output data will be operated by the CRUD-Methods.
 
 The **Database-Layer** is the stored data layer.
 
